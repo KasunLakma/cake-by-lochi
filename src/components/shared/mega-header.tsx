@@ -4,8 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Menu, 
-  X, 
   ChevronDown, 
   Search, 
   ShoppingBag, 
@@ -14,7 +12,6 @@ import {
   Cake, 
   Heart, 
   Calendar,
-  Gift,
   ArrowRight,
   Sparkle
 } from "lucide-react";
@@ -38,7 +35,6 @@ export default function MegaHeader() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileCategoriesExpanded, setMobileCategoriesExpanded] = useState(false);
   
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle scroll detection for sticky glass updates
@@ -107,16 +103,22 @@ export default function MegaHeader() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`mx-auto w-full max-w-7xl rounded-full glass-card border border-white/30 transition-all duration-500 ${
+        className={`mx-auto w-full max-w-7xl rounded-full glass-card transition-all duration-300 ${
           isScrolled 
-            ? "py-2 px-6 shadow-lg bg-bg-vanilla-glow/85 backdrop-blur-lg" 
-            : "py-4 px-8 bg-bg-vanilla-glow/65 backdrop-blur-md"
+            ? "py-2.5 px-6 shadow-lg bg-bg-vanilla/90 dark:bg-bg-vanilla-cream/90 border-white/30" 
+            : "py-4 px-8 shadow-sm bg-bg-vanilla/50 dark:bg-bg-vanilla-cream/50 border-white/20"
         }`}
       >
         <div className="flex items-center justify-between">
           
           {/* Brand Logo */}
           <Link href="/" className="group relative z-50 flex items-center gap-2">
+            <motion.div
+              whileHover={{ rotate: 15, scale: 1.1 }}
+              className="text-primary-pink"
+            >
+              <Cake className="w-6 h-6 stroke-[1.5]" />
+            </motion.div>
             <span className="font-serif text-2xl font-bold tracking-wide text-accent-chocolate dark:text-bg-vanilla transition-colors duration-300">
               cake<span className="text-primary-pink group-hover:text-primary-pink-deep transition-colors duration-300">_by_</span>lochi
             </span>
@@ -130,9 +132,9 @@ export default function MegaHeader() {
 
             {/* Categories Menu Trigger (Hoverable) */}
             <div 
-              className="relative"
               onMouseEnter={() => handleMouseEnter("categories")}
               onMouseLeave={handleMouseLeave}
+              className="py-2"
             >
               <button className="flex items-center gap-1.5 text-sm font-medium tracking-wide text-accent-chocolate/85 dark:text-bg-vanilla/90 hover:text-accent-chocolate dark:hover:text-white transition-colors cursor-pointer">
                 Categories
@@ -152,22 +154,22 @@ export default function MegaHeader() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.98 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute top-full -left-48 lg:-left-64 mt-4 w-[680px] lg:w-[840px] rounded-3xl glass-card border border-white/40 p-8 shadow-2xl z-50 bg-bg-vanilla/95 dark:bg-bg-vanilla-cream/95 backdrop-blur-xl"
+                    className="absolute top-full left-0 right-0 mx-auto mt-4 w-[calc(100%-2rem)] max-w-5xl rounded-3xl glass-card border border-white/40 p-8 shadow-2xl z-50 bg-bg-vanilla/95 dark:bg-bg-vanilla-cream/95 backdrop-blur-xl before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
                   >
                     <div className="grid grid-cols-12 gap-8">
                       
                       {/* Left: Dynamic Cake Categories Layout */}
-                      <div className="col-span-8 grid grid-cols-2 gap-x-8 gap-y-6">
+                      <div className="col-span-9 grid grid-cols-3 gap-6">
                         {categories.map((cat, idx) => (
-                          <div key={idx} className={idx === 2 ? "col-span-2 grid grid-cols-2 gap-8 border-t border-accent-chocolate/5 dark:border-white/5 pt-6" : ""}>
-                            <div className="flex items-center gap-2 mb-2">
+                          <div key={idx} className="flex flex-col">
+                            <div className="flex items-center gap-2 mb-4 border-b border-accent-chocolate/5 dark:border-white/5 pb-2">
                               {cat.icon}
                               <span className="text-xs font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-primary-pink-soft">
                                 {cat.title}
                               </span>
                             </div>
                             <ul className="space-y-3">
-                              {cat.items.slice(0, idx === 2 ? 4 : 2).map((item, itemIdx) => (
+                              {cat.items.map((item, itemIdx) => (
                                 <li key={itemIdx}>
                                   <Link 
                                     href={item.href}
@@ -177,7 +179,7 @@ export default function MegaHeader() {
                                       {item.name}
                                       <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
                                     </div>
-                                    <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 line-clamp-1 mt-0.5 font-normal">
+                                    <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 line-clamp-2 mt-0.5 font-normal">
                                       {item.desc}
                                     </p>
                                   </Link>
@@ -189,7 +191,7 @@ export default function MegaHeader() {
                       </div>
 
                       {/* Right: Featured Interactive Banner */}
-                      <div className="col-span-4 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-primary-pink/20 to-primary-pink-soft/10 dark:from-primary-pink/10 dark:to-accent-chocolate/20 p-6 border border-white/20">
+                      <div className="col-span-3 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-primary-pink/20 to-primary-pink-soft/10 dark:from-primary-pink/10 dark:to-accent-chocolate/20 p-6 border border-white/20">
                         <div>
                           <div className="inline-flex items-center gap-1 rounded-full bg-white/70 dark:bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-accent-chocolate dark:text-primary-pink-soft border border-white/50">
                             <Sparkle className="w-3.5 h-3.5 text-gold-accent fill-gold-accent" />
@@ -231,7 +233,7 @@ export default function MegaHeader() {
             
             {/* Search Button */}
             <motion.button 
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.08, y: -1 }}
               whileTap={{ scale: 0.95 }}
               className="p-2.5 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer"
               aria-label="Search Catalog"
@@ -241,7 +243,7 @@ export default function MegaHeader() {
 
             {/* Profile Button */}
             <motion.button 
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.08, y: -1 }}
               whileTap={{ scale: 0.95 }}
               className="p-2.5 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer"
               aria-label="User Account"
@@ -251,7 +253,7 @@ export default function MegaHeader() {
 
             {/* Cart Icon with indicator */}
             <motion.button 
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.08, y: -1 }}
               whileTap={{ scale: 0.95 }}
               className="relative p-2.5 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer"
               aria-label="Shopping Bag"
@@ -264,7 +266,7 @@ export default function MegaHeader() {
 
             {/* Book Now primary CTA */}
             <motion.div
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.03, y: -1 }}
               whileTap={{ scale: 0.97 }}
               className="hidden lg:block"
             >
@@ -281,14 +283,26 @@ export default function MegaHeader() {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex items-center justify-center p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full md:hidden transition-colors cursor-pointer"
+              className="flex items-center justify-center p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full md:hidden transition-colors cursor-pointer z-50 relative"
               aria-label="Toggle Mobile Menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              <div className="w-6 h-6 flex flex-col justify-center items-center relative">
+                <motion.span
+                  className="w-5 h-0.5 bg-accent-chocolate dark:bg-bg-vanilla rounded-full absolute"
+                  animate={isMobileMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                />
+                <motion.span
+                  className="w-5 h-0.5 bg-accent-chocolate dark:bg-bg-vanilla rounded-full absolute"
+                  animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                />
+                <motion.span
+                  className="w-5 h-0.5 bg-accent-chocolate dark:bg-bg-vanilla rounded-full absolute"
+                  animate={isMobileMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                />
+              </div>
             </motion.button>
 
           </div>
@@ -303,7 +317,7 @@ export default function MegaHeader() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full left-4 right-4 mt-2 overflow-hidden rounded-3xl glass-card border border-white/30 shadow-2xl md:hidden bg-bg-vanilla/98 dark:bg-bg-vanilla-cream/98"
+            className="absolute top-full left-4 right-4 mt-2 overflow-y-auto max-h-[calc(100vh-6rem)] rounded-3xl glass-card border border-white/30 shadow-2xl md:hidden bg-bg-vanilla/98 dark:bg-bg-vanilla-cream/98"
           >
             <div className="flex flex-col gap-6 p-6">
               
@@ -338,17 +352,26 @@ export default function MegaHeader() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="pl-4 mt-2 space-y-2 border-l border-primary-pink/30 overflow-hidden"
+                        className="pl-4 mt-2 space-y-4 border-l border-primary-pink/30 overflow-hidden"
                       >
-                        {categories.flatMap(c => c.items).map((item, idx) => (
-                          <li key={idx}>
-                            <Link 
-                              href={item.href}
-                              onClick={() => setIsMobileMenuOpen(false)}
-                              className="block py-2 text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/80 hover:text-primary-pink"
-                            >
-                              {item.name}
-                            </Link>
+                        {categories.map((cat, idx) => (
+                          <li key={idx} className="space-y-1">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-primary-pink-soft/60 block pt-2">
+                              {cat.title}
+                            </span>
+                            <ul className="space-y-1 pl-2">
+                              {cat.items.map((item, itemIdx) => (
+                                <li key={itemIdx}>
+                                  <Link 
+                                    href={item.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block py-1 text-sm font-medium text-accent-chocolate dark:text-bg-vanilla-cream hover:text-primary-pink transition-colors"
+                                  >
+                                    {item.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
                           </li>
                         ))}
                       </motion.ul>
