@@ -13,6 +13,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { Sacramento } from "next/font/google";
+import ProductCategories from "@/components/shared/product-categories";
 
 const sacramento = Sacramento({
   weight: "400",
@@ -85,8 +86,34 @@ export default function Home() {
     <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans">
       
       {/* Floating White Navigation Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white dark:bg-bg-vanilla-cream pb-5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.015)] flex flex-col">
-        <div className="mx-auto w-full max-w-7xl px-4 py-4 md:px-6 relative flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full pb-5 transition-all duration-300 flex flex-col h-[120px] bg-transparent">
+        {/* Background Glass Panel with Clip-Path */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-0 bg-white/65 dark:bg-bg-vanilla-cream/65 backdrop-blur-md"
+          style={{
+            clipPath: "url(#header-clip)"
+          }}
+        />
+
+        {/* Golden Stroke Rim Overlay */}
+        <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[120px]">
+          <svg
+            viewBox="0 0 1440 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,96 C160,75.6 320,75.6 480,96 C600,115.2 840,115.2 960,96 C1120,75.6 1280,75.6 1440,96"
+              stroke="#c5a059"
+              strokeWidth="1.5"
+              fill="none"
+            />
+          </svg>
+        </div>
+
+        <div className="mx-auto w-full max-w-7xl px-4 py-4 md:px-6 relative flex items-center justify-between z-20">
           
           {/* Desktop Navigation Split Grid */}
           <div className="hidden md:grid grid-cols-3 items-center w-full relative">
@@ -279,7 +306,7 @@ export default function Home() {
                 </Link>
               </motion.div>
 
-              <span className="h-4 w-px bg-accent-chocolate/10 dark:bg-white/10" />
+
 
               {/* Utilities */}
               <div className="flex items-center gap-3">
@@ -340,30 +367,14 @@ export default function Home() {
 
         </div>
 
-        {/* Golden Inverted Triple Arch Bottom Boundary */}
-        <div className="absolute bottom-[-40px] left-0 right-0 w-full overflow-hidden pointer-events-none h-12">
-          <svg
-            viewBox="0 0 1440 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-full preserve-3d"
-            preserveAspectRatio="none"
-          >
-            {/* Main solid bottom arch fill */}
-            <path
-              d="M0,24 C160,4 320,4 480,24 C600,44 840,44 960,24 C1120,4 1280,4 1440,24 L1440,0 L0,0 Z"
-              fill="white"
-              className="fill-white dark:fill-bg-vanilla-cream"
-            />
-            {/* Golden stroke trace */}
-            <path
-              d="M0,24 C160,4 320,4 480,24 C600,44 840,44 960,24 C1120,4 1280,4 1440,24"
-              stroke="#c5a059"
-              strokeWidth="1.5"
-              fill="none"
-            />
-          </svg>
-        </div>
+        {/* Responsive Clip Path Definition */}
+        <svg className="absolute w-0 h-0 pointer-events-none">
+          <defs>
+            <clipPath id="header-clip" clipPathUnits="objectBoundingBox">
+              <path d="M 0,0 L 1,0 L 1,0.8 C 0.888,0.63 0.777,0.63 0.666,0.8 C 0.583,0.96 0.416,0.96 0.333,0.8 C 0.222,0.63 0.111,0.63 0,0.8 Z" />
+            </clipPath>
+          </defs>
+        </svg>
 
         {/* Mobile Drawer Panel */}
         <AnimatePresence>
@@ -476,10 +487,10 @@ export default function Home() {
       <main className="w-full pt-[136px] bg-[#fdfbf7] dark:bg-bg-vanilla-cream min-h-screen flex flex-col">
         
         {/* Collage & Glass Panel Section */}
-        <section className="relative w-full flex-grow min-h-[60vh] flex items-center justify-center overflow-hidden py-16 -mt-20">
+        <section className="relative w-full flex-grow min-h-[60vh] flex items-center justify-center overflow-hidden py-16">
           
           {/* Collage Grid */}
-          <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 gap-0 z-0">
+          <div className="absolute -top-20 bottom-0 left-0 right-0 grid grid-cols-2 md:grid-cols-4 gap-0 z-0">
             <div className="relative h-full w-full overflow-hidden">
               <Image 
                 src="/cake_hero_main.png" 
@@ -588,6 +599,9 @@ export default function Home() {
           </div>
 
         </section>
+
+        {/* Product Categories Grid */}
+        <ProductCategories />
 
         {/* Bottom Ribbon Coordinate Bar */}
         <div className="relative z-30 w-full bg-white dark:bg-bg-vanilla-cream py-8 border-t border-accent-chocolate/5 flex flex-col items-center">
