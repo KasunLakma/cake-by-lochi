@@ -86,7 +86,7 @@ export default function Home() {
     <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans">
       
       {/* Floating White Navigation Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full pb-5 transition-all duration-300 flex flex-col h-[140px] bg-transparent">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full pb-5 transition-all duration-300 flex flex-col h-[160px] bg-transparent">
         {/* Background Glass Panel with Clip-Path */}
         <div 
           className="absolute inset-0 pointer-events-none z-0 bg-white/65 dark:bg-bg-vanilla-cream/65 backdrop-blur-md"
@@ -96,16 +96,16 @@ export default function Home() {
         />
 
         {/* Golden Stroke Rim Overlay */}
-        <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[140px]">
+        <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[160px]">
           <svg
-            viewBox="0 0 1440 140"
+            viewBox="0 0 1440 160"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="w-full h-full"
             preserveAspectRatio="none"
           >
             <path
-              d="M0,112 C160,88.2 320,88.2 480,112 C600,134.4 840,134.4 960,112 C1120,88.2 1280,88.2 1440,112"
+              d="M0,128 C160,100.8 320,100.8 480,128 C600,153.6 840,153.6 960,128 C1120,100.8 1280,100.8 1440,128"
               stroke="#c5a059"
               strokeWidth="1.5"
               fill="none"
@@ -113,13 +113,13 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-4 pt-8 pb-12 md:px-6 relative flex items-center justify-between z-20">
+        <div className="mx-auto w-full max-w-7xl px-4 pt-10 pb-10 md:px-6 relative flex items-center justify-between z-20 transform translate-y-2">
           
           {/* Desktop Navigation Split Grid */}
           <div className="hidden md:grid grid-cols-3 items-center w-full relative">
             
             {/* Left Side Links */}
-            <div className="flex items-center gap-8 justify-start">
+            <div className="flex items-center gap-8 justify-start -mt-4">
               <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
                 <Link href="/" className="text-sm font-medium tracking-wide text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors">
                   Home
@@ -229,7 +229,7 @@ export default function Home() {
 
             {/* Center Brand Identity (Pure SVG Logo & Custom Typography) */}
             <div className="flex justify-center items-center">
-              <Link href="/" className="group flex flex-col items-center select-none z-50 transform translate-y-2.5">
+              <Link href="/" className="group flex flex-col items-center select-none z-50">
                 {/* Arched peripheral subtext */}
                 <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-bg-vanilla/65 mb-1 transition-colors">
                   Baked with Style
@@ -287,7 +287,7 @@ export default function Home() {
             </div>
 
             {/* Right Side Links & Utilities */}
-            <div className="flex items-center gap-8 justify-end">
+            <div className="flex items-center gap-8 justify-end -mt-4">
               <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
                 <Link href="/blog" className="text-sm font-medium tracking-wide text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors">
                   Blog
@@ -490,7 +490,7 @@ export default function Home() {
         <section className="relative w-full flex-grow min-h-[60vh] flex items-center justify-center overflow-hidden py-16">
           
           {/* Collage Grid */}
-          <div className="absolute -top-20 bottom-0 left-0 right-0 grid grid-cols-2 md:grid-cols-4 gap-0 z-0">
+          <div className="absolute -top-20 bottom-0 left-0 right-0 grid grid-cols-2 md:grid-cols-4 gap-0 z-0 pt-28">
             <div className="relative h-full w-full overflow-hidden">
               <Image 
                 src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
@@ -534,7 +534,7 @@ export default function Home() {
           </div>
 
           {/* Centered Glass Text Panel */}
-          <div className="relative z-20 w-full max-w-2xl mx-auto px-6 text-center">
+          <div className="relative z-20 w-full max-w-2xl mx-auto px-6 text-center transform translate-y-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

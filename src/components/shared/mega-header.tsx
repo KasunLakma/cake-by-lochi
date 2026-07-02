@@ -66,7 +66,7 @@ export default function MegaHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full pb-4 transition-all duration-300 flex flex-col h-[140px] bg-transparent">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full pb-4 transition-all duration-300 flex flex-col h-[160px] bg-transparent">
       {/* Background Glass Panel with Clip-Path */}
       <div 
         className="absolute inset-0 pointer-events-none z-0 bg-white/65 dark:bg-bg-vanilla-cream/65 backdrop-blur-md"
@@ -76,16 +76,16 @@ export default function MegaHeader() {
       />
 
       {/* Golden Stroke Rim Overlay */}
-      <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[140px]">
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[160px]">
         <svg
-          viewBox="0 0 1440 140"
+          viewBox="0 0 1440 160"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
           preserveAspectRatio="none"
         >
           <path
-            d="M0,112 C160,88.2 320,88.2 480,112 C600,134.4 840,134.4 960,112 C1120,88.2 1280,88.2 1440,112"
+            d="M0,128 C160,100.8 320,100.8 480,128 C600,153.6 840,153.6 960,128 C1120,100.8 1280,100.8 1440,128"
             stroke="#c5a059"
             strokeWidth="1.5"
             fill="none"
@@ -94,13 +94,13 @@ export default function MegaHeader() {
       </div>
 
       {/* Main Content Layout Container */}
-      <div className="mx-auto w-full max-w-7xl px-8 pt-10 pb-16 relative flex items-center justify-between z-20">
+      <div className="mx-auto w-full max-w-7xl px-8 pt-10 pb-10 relative flex items-center justify-between z-20 transform translate-y-2">
         
         {/* Desktop Navigation Split Grid */}
         <div className="hidden md:grid grid-cols-3 items-center w-full relative">
           
           {/* Left Side Links */}
-          <div className="flex items-center gap-8 justify-start flex-row">
+          <div className="flex items-center gap-8 justify-start flex-row -mt-4">
             <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
               <Link href="/" className="text-sm font-medium tracking-wide text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors">
                 Home
@@ -192,7 +192,7 @@ export default function MegaHeader() {
 
           {/* Centered Brand Identity (Pure SVG Logo & Custom Typography) */}
           <div className="flex justify-center items-center">
-            <Link href="/" className="group flex flex-col items-center select-none z-50 transform translate-y-2.5">
+            <Link href="/" className="group flex flex-col items-center select-none z-50">
               {/* Arched peripheral subtext */}
               <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-bg-vanilla/65 mb-1 transition-colors">
                 Baked with Style
@@ -250,7 +250,7 @@ export default function MegaHeader() {
           </div>
 
           {/* Right Side Links & Utilities */}
-          <div className="flex items-center gap-8 justify-end flex-row">
+          <div className="flex items-center gap-8 justify-end flex-row -mt-4">
             <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
               <Link href="/blog" className="text-sm font-medium tracking-wide text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors">
                 Blog
