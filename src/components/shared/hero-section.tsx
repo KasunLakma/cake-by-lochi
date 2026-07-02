@@ -61,7 +61,7 @@ export default function HeroSection() {
           className="absolute inset-0 w-full h-full"
         >
           <Image
-            src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1920&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop"
             alt="Bespoke Bakery Landscape Background"
             fill
             priority

@@ -86,7 +86,7 @@ export default function Home() {
     <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans">
       
       {/* Floating White Navigation Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full pb-5 transition-all duration-300 flex flex-col h-[120px] bg-transparent">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full pb-5 transition-all duration-300 flex flex-col h-[140px] bg-transparent">
         {/* Background Glass Panel with Clip-Path */}
         <div 
           className="absolute inset-0 pointer-events-none z-0 bg-white/65 dark:bg-bg-vanilla-cream/65 backdrop-blur-md"
@@ -96,16 +96,16 @@ export default function Home() {
         />
 
         {/* Golden Stroke Rim Overlay */}
-        <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[120px]">
+        <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[140px]">
           <svg
-            viewBox="0 0 1440 120"
+            viewBox="0 0 1440 140"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="w-full h-full"
             preserveAspectRatio="none"
           >
             <path
-              d="M0,96 C160,75.6 320,75.6 480,96 C600,115.2 840,115.2 960,96 C1120,75.6 1280,75.6 1440,96"
+              d="M0,112 C160,88.2 320,88.2 480,112 C600,134.4 840,134.4 960,112 C1120,88.2 1280,88.2 1440,112"
               stroke="#c5a059"
               strokeWidth="1.5"
               fill="none"
@@ -113,7 +113,7 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-4 py-4 md:px-6 relative flex items-center justify-between z-20">
+        <div className="mx-auto w-full max-w-7xl px-4 pt-8 pb-12 md:px-6 relative flex items-center justify-between z-20">
           
           {/* Desktop Navigation Split Grid */}
           <div className="hidden md:grid grid-cols-3 items-center w-full relative">
@@ -229,7 +229,7 @@ export default function Home() {
 
             {/* Center Brand Identity (Pure SVG Logo & Custom Typography) */}
             <div className="flex justify-center items-center">
-              <Link href="/" className="group flex flex-col items-center select-none z-50 transform translate-y-3.5">
+              <Link href="/" className="group flex flex-col items-center select-none z-50 transform translate-y-2.5">
                 {/* Arched peripheral subtext */}
                 <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-bg-vanilla/65 mb-1 transition-colors">
                   Baked with Style
@@ -493,7 +493,7 @@ export default function Home() {
           <div className="absolute -top-20 bottom-0 left-0 right-0 grid grid-cols-2 md:grid-cols-4 gap-0 z-0">
             <div className="relative h-full w-full overflow-hidden">
               <Image 
-                src="/cake_hero_main.png" 
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
                 alt="High-end Bakery Creations" 
                 fill 
                 className="object-cover object-center filter brightness-95" 

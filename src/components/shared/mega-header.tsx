@@ -1,20 +1,15 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   ChevronDown, 
   Search, 
   ShoppingBag, 
-  User, 
-  Sparkles, 
-  Cake, 
-  Heart, 
   Calendar,
-  ArrowRight,
-  Sparkle
+  Sparkle,
+  Sparkles
 } from "lucide-react";
 import { Sacramento } from "next/font/google";
 
@@ -24,7 +19,6 @@ const sacramento = Sacramento({
   display: "swap",
 });
 
-// Types for navigation items
 interface DropdownItem {
   name: string;
   href: string;
@@ -33,66 +27,33 @@ interface DropdownItem {
 
 interface CategoryGroup {
   title: string;
-  icon: React.ReactNode;
   items: DropdownItem[];
 }
 
 export default function MegaHeader() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileCategoriesExpanded, setMobileCategoriesExpanded] = useState(false);
-  
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Handle scroll detection for sticky glass updates
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Category mapping for the Mega Dropdown Menu
   const categories: CategoryGroup[] = [
     {
-      title: "Celebration Bakes",
-      icon: <Cake className="w-4 h-4 text-primary-pink" />,
+      title: "Signature Bakes",
       items: [
-        { name: "Wedding Masterpieces", href: "/categories/wedding", desc: "Bespoke tier creations styled for your story" },
-        { name: "Birthday Specials", href: "/categories/birthday", desc: "Whimsical designs for unforgettable milestones" },
-        { name: "Anniversary Couture", href: "/categories/anniversary", desc: "Timeless bakes symbolizing everlasting love" },
-        { name: "Sculptural Custom Art", href: "/categories/custom", desc: "Cake sculptures designed to amaze guests" }
+        { name: "Celebration Cakes", href: "/categories/celebration", desc: "Multi-layered luxury custom creations" },
+        { name: "Artisanal Cupcakes", href: "/categories/cupcakes", desc: "Hand-piped buttercream delicate bites" },
+        { name: "French Macarons", href: "/categories/macarons", desc: "Crisp almond shells with rich ganache fills" }
       ]
     },
     {
-      title: "Fine Pastries & Treats",
-      icon: <Sparkles className="w-4 h-4 text-primary-pink" />,
+      title: "Specialties",
       items: [
-        { name: "Signature Cupcakes", href: "/categories/cupcakes", desc: "Fluffy bakes dressed in velvety toppings" },
-        { name: "French Macarons", href: "/categories/macarons", desc: "Delicate almond shells filled with fresh ganache" },
-        { name: "Eclairs & Profiteroles", href: "/categories/choux", desc: "Crisp choux pastry featuring house custard" },
-        { name: "Artisanal Tartlets", href: "/categories/tartlets", desc: "Crispy tart shells holding seasonal curds" }
-      ]
-    },
-    {
-      title: "Dietary Artistry",
-      icon: <Heart className="w-4 h-4 text-primary-pink" />,
-      items: [
-        { name: "Vegan Luxe Collection", href: "/categories/vegan", desc: "Dairy-free luxury without flavor compromises" },
-        { name: "Gluten-Free Wonders", href: "/categories/gluten-free", desc: "Coeliac-friendly bakes made with fresh grains" },
-        { name: "Refined Sugar-Free", href: "/categories/sugar-free", desc: "Naturally sweetened to guiltless perfection" },
+        { name: "Coffee & Chocolate", href: "/categories/chocolate", desc: "Single-origin cacao and espresso fusions" },
         { name: "Organic Botanical", href: "/categories/organic", desc: "Crafted strictly with local, farm-fresh harvest" }
       ]
     }
   ];
 
-  // Helper handling dropdown hover timings
   const handleMouseEnter = (menu: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setActiveDropdown(menu);
@@ -105,7 +66,7 @@ export default function MegaHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full pb-4 transition-all duration-300 flex flex-col h-[120px] bg-transparent">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full pb-4 transition-all duration-300 flex flex-col h-[140px] bg-transparent">
       {/* Background Glass Panel with Clip-Path */}
       <div 
         className="absolute inset-0 pointer-events-none z-0 bg-white/65 dark:bg-bg-vanilla-cream/65 backdrop-blur-md"
@@ -115,16 +76,16 @@ export default function MegaHeader() {
       />
 
       {/* Golden Stroke Rim Overlay */}
-      <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[120px]">
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[140px]">
         <svg
-          viewBox="0 0 1440 120"
+          viewBox="0 0 1440 140"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
           preserveAspectRatio="none"
         >
           <path
-            d="M0,96 C160,75.6 320,75.6 480,96 C600,115.2 840,115.2 960,96 C1120,75.6 1280,75.6 1440,96"
+            d="M0,112 C160,88.2 320,88.2 480,112 C600,134.4 840,134.4 960,112 C1120,88.2 1280,88.2 1440,112"
             stroke="#c5a059"
             strokeWidth="1.5"
             fill="none"
@@ -132,13 +93,14 @@ export default function MegaHeader() {
         </svg>
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-4 py-4 md:px-6 relative flex items-center justify-between z-20">
+      {/* Main Content Layout Container */}
+      <div className="mx-auto w-full max-w-7xl px-8 pt-10 pb-16 relative flex items-center justify-between z-20">
         
         {/* Desktop Navigation Split Grid */}
         <div className="hidden md:grid grid-cols-3 items-center w-full relative">
           
           {/* Left Side Links */}
-          <div className="flex items-center gap-8 justify-start">
+          <div className="flex items-center gap-8 justify-start flex-row">
             <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
               <Link href="/" className="text-sm font-medium tracking-wide text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors">
                 Home
@@ -161,80 +123,60 @@ export default function MegaHeader() {
                 </motion.div>
               </button>
 
-              {/* Mega Dropdown Panel */}
+              {/* Categories Mega Dropdown Menu */}
               <AnimatePresence>
                 {activeDropdown === "categories" && (
                   <motion.div
-                    initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute top-[80%] left-0 right-0 mx-auto mt-4 w-[calc(100%-2rem)] max-w-5xl rounded-3xl glass-card border border-white/40 p-8 shadow-2xl z-50 bg-bg-vanilla/95 dark:bg-bg-vanilla-cream/95 backdrop-blur-xl before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute top-full left-0 mt-2 w-[460px] rounded-3xl overflow-hidden glass-card border border-white/30 shadow-2xl p-6 bg-white/95 dark:bg-bg-vanilla-cream/95 backdrop-blur-xl z-50 flex flex-col gap-6"
                   >
-                    <div className="grid grid-cols-12 gap-8">
-                      
-                      {/* Left: Dynamic Cake Categories Layout */}
-                      <div className="col-span-9 grid grid-cols-3 gap-6">
-                        {categories.map((cat, idx) => (
-                          <div key={idx} className="flex flex-col">
-                            <div className="flex items-center gap-2 mb-4 border-b border-accent-chocolate/5 dark:border-white/5 pb-2">
-                              {cat.icon}
-                              <span className="text-xs font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-primary-pink-soft">
-                                {cat.title}
-                              </span>
-                            </div>
-                            <ul className="space-y-3">
-                              {cat.items.map((item, itemIdx) => (
-                                <li key={itemIdx}>
-                                  <Link 
-                                    href={item.href}
-                                    className="group/item block rounded-xl p-2 hover:bg-primary-pink/10 dark:hover:bg-primary-pink/10 transition-colors duration-200"
-                                  >
-                                    <div className="flex items-center gap-1 text-sm font-semibold text-accent-chocolate dark:text-bg-vanilla group-hover/item:text-primary-pink-deep dark:group-hover/item:text-primary-pink transition-colors">
-                                      {item.name}
-                                      <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
-                                    </div>
-                                    <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 line-clamp-2 mt-0.5 font-normal">
-                                      {item.desc}
-                                    </p>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Right: Featured Interactive Banner */}
-                      <div className="col-span-3 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-primary-pink/20 to-primary-pink-soft/10 dark:from-primary-pink/10 dark:to-accent-chocolate/20 p-6 border border-white/20">
-                        <div>
-                          <div className="inline-flex items-center gap-1 rounded-full bg-white/70 dark:bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-accent-chocolate dark:text-primary-pink-soft border border-white/50">
-                            <Sparkle className="w-3.5 h-3.5 text-gold-accent fill-gold-accent" />
-                            Chef's Highlight
-                          </div>
-                          <h4 className="mt-4 text-base font-serif font-bold text-accent-chocolate dark:text-white leading-snug">
-                            Raspberry Rose Gold Truffle Cake
-                          </h4>
-                          <p className="mt-1 text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
-                            A triple-layered champagne sponge layered with biological wild berries and premium white chocolate frosting.
-                          </p>
+                    <div className="grid grid-cols-2 gap-6">
+                      {categories.map((group, groupIdx) => (
+                        <div key={groupIdx} className="space-y-3">
+                          <span className="text-[10px] font-extrabold tracking-widest text-primary-pink-deep dark:text-primary-pink-soft uppercase block border-b border-primary-pink/10 pb-1.5">
+                            {group.title}
+                          </span>
+                          <ul className="space-y-2">
+                            {group.items.map((item, itemIdx) => (
+                              <li key={itemIdx}>
+                                <Link 
+                                  href={item.href}
+                                  className="group/item flex flex-col hover:bg-primary-pink/5 p-2 rounded-xl transition-colors duration-200"
+                                >
+                                  <span className="text-xs font-bold text-accent-chocolate dark:text-white group-hover/item:text-primary-pink transition-colors">
+                                    {item.name}
+                                  </span>
+                                  <span className="text-[9px] text-accent-chocolate-light/75 dark:text-bg-vanilla/60 mt-0.5 leading-relaxed font-normal">
+                                    {item.desc}
+                                  </span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
+                      ))}
+                    </div>
 
-                        <div className="relative group overflow-hidden rounded-xl mt-6">
-                          <Link 
-                            href="/order/featured"
-                            className="glass-button relative py-2 px-4 text-xs font-semibold hover:bg-primary-pink hover:text-white transition-all duration-300 flex items-center justify-between w-full border border-white/20 bg-white/25 dark:bg-white/10 backdrop-blur-md"
-                          >
-                            {/* Shine Sweep Overlay */}
-                            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
-                            <span className="relative z-10 flex items-center justify-between w-full">
-                              Discover Sweet Art
-                              <ArrowRight className="w-4 h-4" />
-                            </span>
-                          </Link>
-                        </div>
+                    {/* Bottom CTA Block inside Dropdown */}
+                    <div className="bg-primary-pink/10 dark:bg-white/5 rounded-2xl p-4 flex items-center justify-between border border-primary-pink/15">
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-accent-chocolate dark:text-white flex items-center gap-1">
+                          <Sparkle className="w-3.5 h-3.5 text-primary-pink fill-primary-pink/20" />
+                          Custom Orders Available
+                        </span>
+                        <span className="text-[9px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5 font-normal">
+                          Reserve a bespoke design for your celebration
+                        </span>
                       </div>
-
+                      <Link 
+                        href="/contacts" 
+                        className="glass-button relative py-2 px-3 text-[10px] font-bold tracking-wide shadow-md border border-white/20 bg-white/25 dark:bg-white/10 backdrop-blur-md hover:bg-primary-pink hover:text-white transition-all duration-300 flex items-center gap-1 rounded-xl"
+                      >
+                        Inquire
+                      </Link>
                     </div>
                   </motion.div>
                 )}
@@ -250,7 +192,7 @@ export default function MegaHeader() {
 
           {/* Centered Brand Identity (Pure SVG Logo & Custom Typography) */}
           <div className="flex justify-center items-center">
-            <Link href="/" className="group flex flex-col items-center select-none z-50 transform translate-y-3.5">
+            <Link href="/" className="group flex flex-col items-center select-none z-50 transform translate-y-2.5">
               {/* Arched peripheral subtext */}
               <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-bg-vanilla/65 mb-1 transition-colors">
                 Baked with Style
@@ -308,7 +250,7 @@ export default function MegaHeader() {
           </div>
 
           {/* Right Side Links & Utilities */}
-          <div className="flex items-center gap-8 justify-end">
+          <div className="flex items-center gap-8 justify-end flex-row">
             <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
               <Link href="/blog" className="text-sm font-medium tracking-wide text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors">
                 Blog
@@ -327,15 +269,13 @@ export default function MegaHeader() {
               </Link>
             </motion.div>
 
-
-
             {/* Utilities */}
             <div className="flex items-center gap-3">
               {/* Search Button */}
               <motion.button 
                 whileHover={{ scale: 1.08, y: -1 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
+                className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
                 aria-label="Search Catalog"
               >
                 <Search className="w-4 h-4" />
@@ -345,39 +285,21 @@ export default function MegaHeader() {
               <motion.button 
                 whileHover={{ scale: 1.08, y: -1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
-                aria-label="Shopping Bag"
+                className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
+                aria-label="View Shopping Cart"
               >
                 <ShoppingBag className="w-4 h-4" />
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary-pink text-[9px] font-bold text-white shadow-sm">
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary-pink text-[9px] font-bold text-white shadow-sm animate-scale-in">
                   2
                 </span>
               </motion.button>
-
-              {/* Book Now primary CTA */}
-              <motion.div
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.97 }}
-                className="hidden lg:block relative group overflow-hidden rounded-full"
-              >
-                <Link 
-                  href="/book" 
-                  className="glass-button relative py-2 px-4 text-xs font-semibold tracking-wide shadow-md border border-white/20 bg-white/20 dark:bg-white/10 backdrop-blur-md hover:bg-primary-pink/15 transition-all duration-300 flex items-center gap-1.5"
-                >
-                  {/* Shine Sweep Overlay */}
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
-                  <Calendar className="w-3.5 h-3.5 text-primary-pink" />
-                  Book Now
-                </Link>
-              </motion.div>
             </div>
-
           </div>
 
         </div>
 
         {/* Mobile Layout */}
-        <div className="flex md:hidden items-center justify-between w-full">
+        <div className="flex md:hidden items-center justify-between w-full z-20">
           {/* Logo */}
           <Link href="/" className="group flex flex-col items-center">
             <span className={`${sacramento.className} text-xl font-bold text-accent-chocolate dark:text-white`}>
@@ -423,7 +345,7 @@ export default function MegaHeader() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full left-4 right-4 mt-2 overflow-y-auto max-h-[calc(100vh-6rem)] rounded-3xl glass-card border border-white/30 shadow-2xl md:hidden bg-white/98 dark:bg-bg-vanilla-cream/98"
+            className="absolute top-full left-4 right-4 mt-2 overflow-y-auto max-h-[calc(100vh-6rem)] rounded-3xl glass-card border border-white/30 shadow-2xl md:hidden bg-white/98 dark:bg-bg-vanilla-cream/98 z-50"
           >
             <div className="flex flex-col gap-6 p-6">
               
@@ -432,29 +354,24 @@ export default function MegaHeader() {
                 <Link 
                   href="/" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
                 >
                   Home
                 </Link>
 
-                {/* Mobile Categories Group */}
-                <div>
+                {/* Expandable Categories Group */}
+                <div className="flex flex-col">
                   <button 
                     onClick={() => setMobileCategoriesExpanded(!mobileCategoriesExpanded)}
-                    className="flex items-center justify-between w-full text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5 cursor-pointer bg-transparent border-none"
+                    className="flex items-center justify-between text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 cursor-pointer bg-transparent border-none w-full text-left"
                   >
                     <span>Categories</span>
-                    <motion.div
-                      animate={{ rotate: mobileCategoriesExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ChevronDown className="w-5 h-5 text-accent-chocolate-light" />
-                    </motion.div>
+                    <ChevronDown className={`w-4 h-4 text-accent-chocolate-light transition-transform duration-300 ${mobileCategoriesExpanded ? 'rotate-180' : ''}`} />
                   </button>
 
                   <AnimatePresence>
                     {mobileCategoriesExpanded && (
-                      <motion.ul 
+                      <motion.ul
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
@@ -462,7 +379,7 @@ export default function MegaHeader() {
                       >
                         {categories.map((cat, idx) => (
                           <li key={idx} className="space-y-1">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-primary-pink-soft/60 block pt-2">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 block pt-2">
                               {cat.title}
                             </span>
                             <ul className="space-y-1 pl-2">
@@ -488,7 +405,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/about" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
                 >
                   Our Craft
                 </Link>
@@ -496,7 +413,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/blog" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
                 >
                   Blog
                 </Link>
@@ -504,7 +421,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/shop" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
                 >
                   Shop
                 </Link>
@@ -512,29 +429,15 @@ export default function MegaHeader() {
                 <Link 
                   href="/contacts" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
                 >
                   Contacts
                 </Link>
               </nav>
-
-              {/* Mobile CTA */}
-              <div className="flex flex-col gap-4 mt-4">
-                <Link 
-                  href="/book"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="glass-button w-full py-3 text-center text-sm font-bold shadow-md bg-primary-pink/15 hover:bg-primary-pink text-accent-chocolate dark:text-bg-vanilla border border-primary-pink/30 flex items-center justify-center gap-2"
-                >
-                  <Calendar className="w-4 h-4 text-primary-pink" />
-                  Book A Consultation
-                </Link>
-              </div>
-
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
     </header>
   );
 }
