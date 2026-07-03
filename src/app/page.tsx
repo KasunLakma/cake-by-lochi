@@ -34,6 +34,119 @@ interface CategoryGroup {
   items: DropdownItem[];
 }
 
+// Interactive cursor trail overlay component
+function CursorTrail() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    class Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      maxSize: number;
+      life: number;
+      maxLife: number;
+      color: string;
+
+      constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = (Math.random() - 0.5) * 1.5 - 0.5;
+        this.size = 12;
+        this.maxSize = 42;
+        this.life = 0;
+        this.maxLife = 45;
+        this.color = "250, 246, 240";
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life++;
+        this.size = 12 + (this.maxSize - 12) * (this.life / this.maxLife);
+      }
+
+      draw(c: CanvasRenderingContext2D) {
+        const progress = this.life / this.maxLife;
+        const opacity = 1 - progress;
+        
+        c.save();
+        const gradient = c.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size
+        );
+        gradient.addColorStop(0, `rgba(${this.color}, ${opacity * 0.18})`);
+        gradient.addColorStop(0.5, `rgba(${this.color}, ${opacity * 0.08})`);
+        gradient.addColorStop(1, `rgba(${this.color}, 0)`);
+        
+        c.fillStyle = gradient;
+        c.beginPath();
+        c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        c.fill();
+        c.restore();
+      }
+    }
+
+    let particles: Particle[] = [];
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      particles.push(new Particle(e.clientX, e.clientY));
+      if (particles.length > 150) {
+        particles.shift();
+      }
+    };
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
+
+    const loop = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles = particles.filter(p => p.life < p.maxLife);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.update();
+        p.draw(ctx);
+      }
+
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    loop();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-[9999]"
+    />
+  );
+}
+
 export default function Home() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -589,7 +702,26 @@ export default function Home() {
 
               {/* Main Typography Title */}
               <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-                Dessert is a Beautiful Cake, Cafes, Coffe and All Sweet WordPress Theme
+                {"Dessert is a Beautiful Cake, Handcrafted with Love and a Touch of Sri Lankan Flavor!"
+                  .split("")
+                  .map((char, index) => (
+                    <motion.span
+                      key={index}
+                      className="inline-block origin-center"
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        y: [0, -4, 0]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: index * 0.05,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  ))}
               </h1>
 
               {/* Description */}
@@ -1053,6 +1185,9 @@ export default function Home() {
         </footer>
 
       </main>
+
+      {/* Interactive cursor trail canvas overlay */}
+      <CursorTrail />
 
     </div>
   );
