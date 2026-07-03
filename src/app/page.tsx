@@ -86,13 +86,10 @@ export default function Home() {
     <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans">
       
       {/* Floating White Navigation Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full pb-5 transition-all duration-300 flex flex-col h-[160px] bg-transparent">
-        {/* Background Glass Panel with Clip-Path */}
+      <header className="absolute top-0 left-0 w-full z-50 pb-5 transition-all duration-300 flex flex-col h-[160px] bg-transparent">
+        {/* Background Glass Panel */}
         <div 
-          className="absolute inset-0 pointer-events-none z-0 bg-white/65 dark:bg-bg-vanilla-cream/65 backdrop-blur-md"
-          style={{
-            clipPath: "url(#header-clip)"
-          }}
+          className="absolute inset-0 pointer-events-none z-0 bg-white/20 backdrop-blur-md border-b border-white/10"
         />
 
         {/* Golden Stroke Rim Overlay */}
@@ -367,14 +364,7 @@ export default function Home() {
 
         </div>
 
-        {/* Responsive Clip Path Definition */}
-        <svg className="absolute w-0 h-0 pointer-events-none">
-          <defs>
-            <clipPath id="header-clip" clipPathUnits="objectBoundingBox">
-              <path d="M 0,0 L 1,0 L 1,0.8 C 0.888,0.63 0.777,0.63 0.666,0.8 C 0.583,0.96 0.416,0.96 0.333,0.8 C 0.222,0.63 0.111,0.63 0,0.8 Z" />
-            </clipPath>
-          </defs>
-        </svg>
+
 
         {/* Mobile Drawer Panel */}
         <AnimatePresence>
@@ -484,13 +474,13 @@ export default function Home() {
       </header>
 
       {/* Hero Collage Section */}
-      <main className="w-full pt-[136px] bg-[#fdfbf7] dark:bg-bg-vanilla-cream min-h-screen flex flex-col">
+      <main className="w-full pt-0 bg-[#fdfbf7] dark:bg-bg-vanilla-cream min-h-screen flex flex-col">
         
         {/* Collage & Glass Panel Section */}
-        <section className="relative w-full flex-grow min-h-[60vh] flex items-center justify-center overflow-hidden py-16">
+        <section className="-mt-[160px] relative w-full flex-grow min-h-[60vh] flex items-center justify-center overflow-visible pt-[160px] pb-16">
           
           {/* Collage Grid */}
-          <div className="absolute -top-20 bottom-0 left-0 right-0 grid grid-cols-2 md:grid-cols-4 gap-0 z-0 pt-28">
+          <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 gap-0 space-x-0 z-10 min-h-[550px]">
             <div className="relative h-full w-full overflow-hidden">
               <Image 
                 src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
@@ -534,12 +524,12 @@ export default function Home() {
           </div>
 
           {/* Centered Glass Text Panel */}
-          <div className="relative z-20 w-full max-w-2xl mx-auto px-6 text-center transform translate-y-6">
+          <div className="relative z-20 w-full max-w-2xl mx-auto px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="glass-card bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 rounded-3xl p-8 sm:p-10 shadow-2xl flex flex-col items-center gap-6"
+              className="flex flex-col items-center gap-6 w-full text-center"
             >
               
               {/* Floating Sparkles Badge */}
@@ -549,12 +539,12 @@ export default function Home() {
               </div>
 
               {/* Main Typography Title */}
-              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
                 Dessert is a Beautiful Cake, Cafes, Coffe and All Sweet WordPress Theme
               </h1>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-white/90 max-w-md leading-relaxed font-normal drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]">
+              <p className="text-xs sm:text-sm text-white/90 max-w-md leading-relaxed font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]">
                 We co-create architectural cake structures and delicate pastries with organic ingredients, celebrating life's sweet milestones with true artistic excellence.
               </p>
 
@@ -574,29 +564,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Repeating Scalloped / Wavy Border Pattern */}
-          <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none w-full">
-            <svg 
-              viewBox="0 0 1440 120" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-auto translate-y-[2px]"
-              preserveAspectRatio="none"
-            >
-              {/* Secondary wave shadow */}
-              <path 
-                d="M0,60 C240,110 480,110 720,60 C960,10 1200,10 1440,60 L1440,120 L0,120 Z" 
-                fill="rgba(255, 255, 255, 0.35)" 
-                className="backdrop-blur-md"
-              />
-              {/* Main solid wave */}
-              <path 
-                d="M0,64 C240,114 480,114 720,64 C960,14 1200,14 1440,64 L1440,120 L0,120 Z" 
-                fill="white"
-                className="fill-white dark:fill-bg-vanilla-cream"
-              />
-            </svg>
-          </div>
+
 
         </section>
 

@@ -3,23 +3,19 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Sparkles } from "lucide-react";
+import { Sacramento } from "next/font/google";
+
+const sacramento = Sacramento({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
-  // Track scroll position inside the hero section for parallax effects
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
 
-  // Parallax background scroll offsets
-  const yBg = useTransform(scrollYProgress, [0, 1], [0, 80]);
-  const scaleBg = 1;
-
-  // Main heading word and character configurations
   const headingText = "Handcrafted Elegance in Every Bite";
   const words = headingText.split(" ");
 
@@ -44,7 +40,7 @@ export default function HeroSection() {
       scale: 1,
       transition: {
         duration: 0.4,
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number]
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
@@ -52,25 +48,48 @@ export default function HeroSection() {
   return (
     <section 
       ref={sectionRef} 
-      className="-mt-20 relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-40 pb-32 px-4 md:px-8 lg:px-12 transition-colors duration-500"
+      className="-mt-[160px] relative w-full min-h-screen flex items-center justify-center overflow-visible pt-[160px] pb-32 px-4 md:px-8 lg:px-12 transition-colors duration-500"
     >
-      {/* Full-screen Background Cake Image with Soft Pastel Pink and Warm Creamy Vanilla Translucent Gradient Mask */}
-      <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
-        <motion.div 
-          style={{ y: yBg, scale: scaleBg }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <Image
-            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop"
-            alt="Bespoke Bakery Landscape Background"
-            fill
-            priority
-            className="object-cover object-center"
+      {/* Collage Grid */}
+      <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 gap-0 space-x-0 z-10">
+        <div className="relative h-full w-full overflow-hidden">
+          <Image 
+            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
+            alt="High-end Bakery Creations" 
+            fill 
+            className="object-cover object-center filter brightness-95" 
+            priority 
           />
-        </motion.div>
-        {/* Soft Pastel Pink and Warm Creamy Vanilla translucent uniform mask overlay */}
-        <div className="absolute inset-0 bg-white/70 dark:bg-bg-vanilla-cream/70 transition-colors duration-500 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-rose-50/50 via-white/60 to-bg-vanilla/40 z-20" />
+        </div>
+        <div className="relative h-full w-full overflow-hidden">
+          <Image 
+            src="/cake_cat_celebration.png" 
+            alt="Luxury Cake Displays" 
+            fill 
+            className="object-cover object-center filter brightness-90" 
+            priority 
+          />
+        </div>
+        <div className="relative h-full w-full overflow-hidden">
+          <Image 
+            src="/cake_cat_cupcake.png" 
+            alt="Custom Cupcakes" 
+            fill 
+            className="object-cover object-center filter brightness-90" 
+            priority 
+          />
+        </div>
+        <div className="relative h-full w-full overflow-hidden">
+          <Image 
+            src="/cake_cat_dietary.png" 
+            alt="Artisanal Bakes & Gift Boxes" 
+            fill 
+            className="object-cover object-center filter brightness-90" 
+            priority 
+          />
+        </div>
+        {/* Soft blur divider */}
+        <div className="absolute top-0 bottom-0 left-[50%] md:left-[25%] w-[2px] bg-white/20 backdrop-blur-sm shadow-[0_0_8px_rgba(255,255,255,0.4)] z-10" />
       </div>
 
       {/* Main Content (Centered Typography, CTAs, and Metrics) */}
@@ -81,9 +100,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-1.5 rounded-full bg-primary-pink/20 dark:bg-primary-pink/15 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-primary-pink border border-primary-pink/30 shadow-sm"
+          className="inline-flex items-center gap-1.5 rounded-full bg-primary-pink/20 dark:bg-primary-pink/15 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-white border border-white/30 shadow-sm"
         >
-          <Sparkles className="w-3.5 h-3.5 text-primary-pink fill-primary-pink/25" />
+          <Sparkles className="w-3.5 h-3.5 text-pink-200 fill-pink-200/25" />
           Artisanal Dessert Studio
         </motion.div>
 
@@ -92,7 +111,7 @@ export default function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-accent-chocolate leading-[1.08] max-w-3xl text-center"
+          className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] max-w-3xl text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
         >
           {words.map((word, wordIdx) => (
             <span key={wordIdx} className="inline-block whitespace-nowrap mr-3 md:mr-4">
@@ -114,7 +133,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base md:text-lg text-accent-chocolate-light max-w-xl leading-relaxed font-normal"
+          className="text-base md:text-lg text-white/90 max-w-xl leading-relaxed font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
         >
           Crafting bespoke luxury confections that double as sculptural masterpieces. Every cake is custom-tailored with organic farm-to-table ingredients and timeless Parisian elegance.
         </motion.p>
@@ -134,13 +153,13 @@ export default function HeroSection() {
           >
             <Link 
               href="/catalog" 
-              className="group relative w-full sm:w-auto glass-button px-8 py-4 text-base font-semibold border-white/50 bg-white/40 dark:bg-white/10 hover:bg-primary-pink/15 hover:border-primary-pink/30 shadow-lg text-accent-chocolate overflow-hidden"
+              className="group relative w-full sm:w-auto glass-button px-8 py-4 text-base font-semibold border-white/50 bg-white/40 dark:bg-white/10 hover:bg-primary-pink/15 hover:border-primary-pink/30 shadow-lg text-white overflow-hidden"
             >
               {/* Shine Sweep Animation */}
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
               <span className="relative z-10 flex items-center gap-2">
                 Explore Catalog
-                <ArrowRight className="w-5 h-5 text-primary-pink-deep" />
+                <ArrowRight className="w-5 h-5 text-white" />
               </span>
             </Link>
           </motion.div>
@@ -153,12 +172,12 @@ export default function HeroSection() {
           >
             <Link 
               href="/book" 
-              className="group relative w-full sm:w-auto glass-button px-8 py-4 text-base font-semibold border-white/30 bg-white/20 dark:bg-white/5 hover:bg-white/40 hover:border-white/50 shadow-md text-accent-chocolate overflow-hidden"
+              className="group relative w-full sm:w-auto glass-button px-8 py-4 text-base font-semibold border-white/30 bg-white/20 dark:bg-white/5 hover:bg-white/40 hover:border-white/50 shadow-md text-white overflow-hidden"
             >
               {/* Shine Sweep Animation */}
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
               <span className="relative z-10 flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-primary-pink-deep" />
+                <Calendar className="w-5 h-5 text-white" />
                 Book a Slot
               </span>
             </Link>
@@ -170,26 +189,26 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-3 gap-6 border-t border-accent-chocolate/15 pt-8 mt-10 w-full max-w-xl"
+          className="grid grid-cols-3 gap-6 border-t border-white/20 pt-8 mt-10 w-full max-w-xl"
         >
           <div>
-            <span className="block text-2xl md:text-3xl font-serif font-bold text-accent-chocolate">100%</span>
-            <span className="block text-[10px] md:text-xs uppercase tracking-widest text-accent-chocolate-light mt-1 font-medium">Bespoke Art</span>
+            <span className="block text-2xl md:text-3xl font-serif font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">100%</span>
+            <span className="block text-[10px] md:text-xs uppercase tracking-widest text-white/80 mt-1 font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">Bespoke Art</span>
           </div>
           <div>
-            <span className="block text-2xl md:text-3xl font-serif font-bold text-accent-chocolate">15+</span>
-            <span className="block text-[10px] md:text-xs uppercase tracking-widest text-accent-chocolate-light mt-1 font-medium">Years of Craft</span>
+            <span className="block text-2xl md:text-3xl font-serif font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">15+</span>
+            <span className="block text-[10px] md:text-xs uppercase tracking-widest text-white/80 mt-1 font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">Years of Craft</span>
           </div>
           <div>
-            <span className="block text-2xl md:text-3xl font-serif font-bold text-accent-chocolate">5-Star</span>
-            <span className="block text-[10px] md:text-xs uppercase tracking-widest text-accent-chocolate-light mt-1 font-medium">Customer Care</span>
+            <span className="block text-2xl md:text-3xl font-serif font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">5-Star</span>
+            <span className="block text-[10px] md:text-xs uppercase tracking-widest text-white/80 mt-1 font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">Customer Care</span>
           </div>
         </motion.div>
 
       </div>
 
       {/* Scalloped Wavy Divider with Glass Polish */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none w-full">
+      <div className="absolute bottom-0 left-0 right-0 z-40 pointer-events-none w-full block">
         <svg 
           viewBox="0 0 1440 120" 
           fill="none" 

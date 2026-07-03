@@ -66,13 +66,10 @@ export default function MegaHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full pb-4 transition-all duration-300 flex flex-col h-[160px] bg-transparent">
-      {/* Background Glass Panel with Clip-Path */}
+    <header className="absolute top-0 left-0 w-full z-50 pb-4 transition-all duration-300 flex flex-col h-[160px] bg-transparent">
+      {/* Background Glass Panel */}
       <div 
-        className="absolute inset-0 pointer-events-none z-0 bg-white/65 dark:bg-bg-vanilla-cream/65 backdrop-blur-md"
-        style={{
-          clipPath: "url(#header-clip)"
-        }}
+        className="absolute inset-0 pointer-events-none z-0 bg-white/20 backdrop-blur-md border-b border-white/10"
       />
 
       {/* Golden Stroke Rim Overlay */}
@@ -327,15 +324,6 @@ export default function MegaHeader() {
         </div>
 
       </div>
-
-      {/* Responsive Clip Path Definition */}
-      <svg className="absolute w-0 h-0 pointer-events-none">
-        <defs>
-          <clipPath id="header-clip" clipPathUnits="objectBoundingBox">
-            <path d="M 0,0 L 1,0 L 1,0.8 C 0.888,0.63 0.777,0.63 0.666,0.8 C 0.583,0.96 0.416,0.96 0.333,0.8 C 0.222,0.63 0.111,0.63 0,0.8 Z" />
-          </clipPath>
-        </defs>
-      </svg>
 
       {/* Mobile Drawer Panel */}
       <AnimatePresence>
