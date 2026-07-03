@@ -48,10 +48,13 @@ export default function HeroSection() {
   return (
     <section 
       ref={sectionRef} 
-      className="-mt-[160px] relative w-full min-h-screen flex items-center justify-center overflow-visible pt-[160px] pb-32 px-4 md:px-8 lg:px-12 transition-colors duration-500"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-visible pt-24 pb-32 px-4 md:px-8 lg:px-12 transition-colors duration-500"
     >
       {/* Collage Grid */}
-      <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 gap-0 space-x-0 z-10">
+      <div 
+        className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 gap-0 space-x-0 z-10"
+        style={{ clipPath: 'url(#hero-clip-path)', marginTop: '75px' }}
+      >
         <div className="relative h-full w-full overflow-hidden">
           <Image 
             src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1920&auto=format&fit=crop" 
@@ -238,6 +241,15 @@ export default function HeroSection() {
           />
         </svg>
       </div>
+
+      {/* Responsive Clip Path Definition */}
+      <svg className="absolute w-0 h-0 pointer-events-none">
+        <defs>
+          <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0.038 C 0.111,0 0.222,0 0.333,0.038 C 0.416,0.073 0.583,0.073 0.666,0.038 C 0.777,0 0.888,0 1,0.038 L 1,1 L 0,1 Z" />
+          </clipPath>
+        </defs>
+      </svg>
     </section>
   );
 }

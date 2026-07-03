@@ -66,23 +66,26 @@ export default function MegaHeader() {
   };
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 pb-4 transition-all duration-300 flex flex-col h-[160px] bg-transparent">
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300 flex flex-col h-[120px] bg-transparent">
       {/* Background Glass Panel */}
       <div 
-        className="absolute inset-0 pointer-events-none z-0 bg-white/20 backdrop-blur-md border-b border-white/10"
+        className="absolute inset-0 pointer-events-none z-0 bg-white/10 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.03)]"
+        style={{
+          clipPath: "url(#header-clip)"
+        }}
       />
 
       {/* Golden Stroke Rim Overlay */}
-      <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[160px]">
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none z-10 h-[120px]">
         <svg
-          viewBox="0 0 1440 160"
+          viewBox="0 0 1440 120"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
           preserveAspectRatio="none"
         >
           <path
-            d="M0,128 C160,100.8 320,100.8 480,128 C600,153.6 840,153.6 960,128 C1120,100.8 1280,100.8 1440,128"
+            d="M0,96 C160,75.6 320,75.6 480,96 C600,115.2 840,115.2 960,96 C1120,75.6 1280,75.6 1440,96"
             stroke="#c5a059"
             strokeWidth="1.5"
             fill="none"
@@ -91,7 +94,7 @@ export default function MegaHeader() {
       </div>
 
       {/* Main Content Layout Container */}
-      <div className="mx-auto w-full max-w-7xl px-8 pt-10 pb-10 relative flex items-center justify-between z-20 transform translate-y-2">
+      <div className="mx-auto w-full max-w-7xl px-8 py-5 relative flex items-center justify-between z-20">
         
         {/* Desktop Navigation Split Grid */}
         <div className="hidden md:grid grid-cols-3 items-center w-full relative">
@@ -324,6 +327,15 @@ export default function MegaHeader() {
         </div>
 
       </div>
+
+      {/* Responsive Clip Path Definition */}
+      <svg className="absolute w-0 h-0 pointer-events-none">
+        <defs>
+          <clipPath id="header-clip" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0 L 1,0 L 1,0.8 C 0.888,0.63 0.777,0.63 0.666,0.8 C 0.583,0.96 0.416,0.96 0.333,0.8 C 0.222,0.63 0.111,0.63 0,0.8 Z" />
+          </clipPath>
+        </defs>
+      </svg>
 
       {/* Mobile Drawer Panel */}
       <AnimatePresence>
