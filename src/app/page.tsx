@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,7 +10,8 @@ import {
   ShoppingBag, 
   ArrowRight,
   Sparkle,
-  Sparkles
+  Sparkles,
+  Star
 } from "lucide-react";
 import { Sacramento } from "next/font/google";
 import ProductCategories from "@/components/shared/product-categories";
@@ -38,6 +39,36 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileCategoriesExpanded, setMobileCategoriesExpanded] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const [activeCommentIndex, setActiveCommentIndex] = useState(0);
+
+  const customerComments = [
+    {
+      name: "Genevieve Sterling",
+      rating: 5,
+      text: "The wedding cake was an absolute showstopper! Not only was the sculptural design breathtaking, but the champagne velvet layer was insanely delicious.",
+      event: "Wedding Celebration"
+    },
+    {
+      name: "Arthur Pendelton",
+      rating: 5,
+      text: "Lochi's custom studio is unparalleled. The geometric cake rig he designed for our gallery opening was a true culinary art installation.",
+      event: "Art Gallery Opening"
+    },
+    {
+      name: "Sophia Martinez",
+      rating: 5,
+      text: "My clients expect perfection, and cake_by_lochi delivers every single time. The macarons are crispy, chewy, and absolute perfection.",
+      event: "Bespoke Corporate Event"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveCommentIndex((prev) => (prev + 1) % customerComments.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [customerComments.length]);
 
   // Category mapping for the Mega Dropdown Menu
   const categories: CategoryGroup[] = [
@@ -589,14 +620,402 @@ export default function Home() {
         {/* Product Categories Grid */}
         <ProductCategories />
 
-        {/* Bottom Ribbon Coordinate Bar */}
-        <div className="relative z-30 w-full bg-white dark:bg-bg-vanilla-cream py-8 border-t border-accent-chocolate/5 flex flex-col items-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-            className="max-w-4xl w-full px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-[10px] font-bold tracking-[0.2em] text-accent-chocolate-light dark:text-bg-vanilla/80 uppercase"
-          >
+        {/* About Us Section */}
+        <section className="relative w-full py-24 px-6 md:px-12 bg-[#FAF6EE] dark:bg-bg-vanilla-cream/50 transition-colors duration-500 overflow-hidden">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left Side: Rich Text Profile */}
+            <div className="lg:col-span-6 flex flex-col gap-6 text-left">
+              <span className={`${sacramento.className} text-4xl text-primary-pink-deep dark:text-primary-pink`}>
+                About Us
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase leading-tight">
+                Crafting Confectionery Sculptures
+              </h2>
+              <span className="w-16 h-0.5 bg-primary-pink" />
+              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed font-normal">
+                Born out of a passion for avant-garde baking, Cake By Lochi combines classical Parisian pastry techniques with modern architectural design principles. We believe that a cake should not only taste sublime but stand as a visual centerpiece—a bespoke sculpture that commands the room.
+              </p>
+              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed font-normal">
+                Every creation is individually designed, utilizing locally sourced organic farm-fresh ingredients and biological botanical extracts. From hand-painted gold leaf tiers to delicate sugar floral installations, our work is sugar art redefined.
+              </p>
+              <div className="mt-4">
+                <Link href="/about" className="glass-button inline-flex items-center gap-2 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-accent-chocolate border-accent-chocolate/20 bg-white/40 dark:text-white dark:border-white/20 dark:bg-white/5 hover:bg-primary-pink hover:text-white transition-all duration-300">
+                  Read Our Story
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Right Side: Stylized Multi-Photo Collage */}
+            <div className="lg:col-span-6 grid grid-cols-12 gap-4 relative">
+              <div className="col-span-8 overflow-hidden rounded-[2rem] shadow-xl aspect-[3/4] relative group">
+                <Image 
+                  src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?q=80&w=600&auto=format&fit=crop" 
+                  alt="Wedding Cake Tier Detail" 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div className="col-span-4 flex flex-col gap-4">
+                <div className="overflow-hidden rounded-[2rem] shadow-md aspect-square relative group">
+                  <Image 
+                    src="/cake_cat_dietary.png" 
+                    alt="Pastry Detail" 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[2rem] shadow-md aspect-[3/4] relative group mt-2">
+                  <Image 
+                    src="/cake_cat_celebration.png" 
+                    alt="Floral Detail" 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Customer Comments (Testimonials Slider) */}
+        <section className="relative w-full py-24 px-6 md:px-12 bg-white dark:bg-bg-vanilla-cream transition-colors duration-500 flex flex-col items-center">
+          <div className="text-center flex flex-col items-center gap-2 mb-12">
+            <span className={`${sacramento.className} text-4xl text-primary-pink-deep dark:text-primary-pink`}>
+              Customer Comments
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase mt-1">
+              Loved by Connoisseurs
+            </h2>
+            <span className="w-12 h-0.5 bg-primary-pink/40 mt-3" />
+          </div>
+
+          <div className="max-w-3xl w-full relative overflow-hidden h-72 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              {customerComments.map((comment, index) => {
+                if (index !== activeCommentIndex) return null;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="absolute w-full p-8 md:p-12 rounded-[2rem] bg-gradient-to-br from-primary-pink/15 to-primary-pink-soft/5 dark:from-white/5 dark:to-white/10 border border-primary-pink/15 flex flex-col gap-6 shadow-lg text-center"
+                  >
+                    <div className="flex justify-center gap-1">
+                      {[...Array(comment.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-gold-accent fill-gold-accent" />
+                      ))}
+                    </div>
+                    <p className="text-sm sm:text-base md:text-lg text-accent-chocolate dark:text-white leading-relaxed font-normal italic">
+                      "{comment.text}"
+                    </p>
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span className="text-xs font-bold text-accent-chocolate dark:text-white">
+                        {comment.name}
+                      </span>
+                      <span className="text-[10px] text-accent-chocolate-light dark:text-bg-vanilla/60 uppercase tracking-wider font-semibold">
+                        {comment.event}
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          {/* Dot Pagination indicators */}
+          <div className="flex gap-2.5 mt-8">
+            {customerComments.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveCommentIndex(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  index === activeCommentIndex
+                    ? "bg-primary-pink scale-125 shadow-sm"
+                    : "bg-primary-pink/30 hover:bg-primary-pink/50"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Social Media 'Our Cake Stories' Video Box */}
+        <section className="relative w-full py-24 px-6 md:px-12 bg-[#FAF6EE] dark:bg-bg-vanilla-cream/30 transition-colors duration-500 overflow-hidden flex flex-col items-center">
+          <div className="text-center flex flex-col items-center gap-2 mb-12">
+            <span className={`${sacramento.className} text-4xl text-primary-pink-deep dark:text-primary-pink`}>
+              Our Cake Stories
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase mt-1">
+              Sugar Art In Motion
+            </h2>
+            <span className="w-12 h-0.5 bg-primary-pink/40 mt-3" />
+          </div>
+
+          <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center bg-white/40 dark:bg-white/5 border border-white/30 dark:border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-xl backdrop-blur-sm">
+            {/* Left: Text & Social Handles */}
+            <div className="md:col-span-6 flex flex-col gap-6 text-left">
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-accent-chocolate dark:text-white leading-snug">
+                Follow Chef Lochi’s Creative Process
+              </h3>
+              <p className="text-xs sm:text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+                Go behind the scenes of our luxury confections. Watch the mesmerizing details, the paint sweeps, the edible pearls, and the final structural setup. We post daily stories sharing our love for luxury cake sculptures.
+              </p>
+              
+              <div className="flex flex-col gap-4 mt-2">
+                {/* Instagram Handle */}
+                <Link href="https://instagram.com" className="flex items-center gap-4 group/social bg-white/60 dark:bg-white/5 border border-white/50 p-4 rounded-2xl hover:bg-primary-pink/10 hover:border-primary-pink/30 transition-all duration-300">
+                  <div className="p-3 bg-rose-100 dark:bg-rose-950/30 rounded-xl text-rose-500">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold text-accent-chocolate dark:text-white group-hover/social:text-primary-pink transition-colors">
+                      @cakebylochi
+                    </span>
+                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 font-medium">
+                      Instagram Stories & Reels
+                    </span>
+                  </div>
+                </Link>
+
+                {/* TikTok Handle */}
+                <Link href="https://tiktok.com" className="flex items-center gap-4 group/social bg-white/60 dark:bg-white/5 border border-white/50 p-4 rounded-2xl hover:bg-primary-pink/10 hover:border-primary-pink/30 transition-all duration-300">
+                  <div className="p-3 bg-cyan-50 dark:bg-cyan-950/30 rounded-xl text-cyan-500">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold text-accent-chocolate dark:text-white group-hover/social:text-primary-pink transition-colors">
+                      @chef_lochi
+                    </span>
+                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 font-medium">
+                      TikTok Decorating Clips
+                    </span>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: Vertical Mobile-Aspect Video Box */}
+            <div className="md:col-span-6 flex justify-center">
+              <div className="relative w-[260px] sm:w-[280px] aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl border border-white/30 bg-black/10 group/video">
+                {/* Placeholder Image mimicking video preview */}
+                <Image
+                  src="/cake_hero_main.png"
+                  alt="Story Video Preview"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover/video:scale-105"
+                />
+                
+                {/* Glow Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/60 z-10" />
+
+                {/* Center Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center z-20">
+                  <button className="w-12 h-12 rounded-full bg-white/35 backdrop-blur-md border border-white/40 flex items-center justify-center text-white cursor-pointer shadow-lg hover:bg-white/50 hover:scale-110 transition-all duration-300">
+                    <svg className="w-5 h-5 fill-white text-white translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="absolute bottom-4 left-4 right-12 z-20 text-left">
+                  <span className="text-[10px] font-bold text-white uppercase tracking-wider flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    LIVE PROCESS
+                  </span>
+                  <p className="text-[9px] text-white/90 font-medium leading-relaxed mt-1">
+                    Bespoke sketching to cake structure completion. Watch the masterclass!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Team & Price List Section */}
+        <section className="relative w-full py-24 px-6 md:px-12 bg-white dark:bg-bg-vanilla-cream transition-colors duration-500 flex flex-col items-center">
+          <div className="text-center flex flex-col items-center gap-2 mb-12">
+            <span className={`${sacramento.className} text-4xl text-primary-pink-deep dark:text-primary-pink`}>
+              Our Team & Custom Offerings
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase mt-1">
+              Pricing & Tiers
+            </h2>
+            <span className="w-12 h-0.5 bg-primary-pink/40 mt-3" />
+          </div>
+
+          <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Column 1: Signature Cakes Menu */}
+            <div className="flex flex-col gap-6 text-left">
+              <h3 className="font-serif text-xl font-bold text-accent-chocolate dark:text-white border-b border-accent-chocolate/10 dark:border-white/10 pb-3 flex items-center justify-between">
+                <span>Signature Cakes</span>
+                <span className="text-xs uppercase tracking-wider text-primary-pink-deep dark:text-primary-pink font-semibold">Base Price</span>
+              </h3>
+              
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
+                    <span>The Rose Gold Truffle</span>
+                    <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
+                    <span>$240</span>
+                  </div>
+                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                    Organic rosewater sponge with wild berry compote and white chocolate truffle.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
+                    <span>Blossom Vanilla Masterpiece</span>
+                    <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
+                    <span>$180</span>
+                  </div>
+                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                    Watercolor flower printings, organic vanilla bean mousse, and fresh buttercream.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
+                    <span>Botanical Forest Creation</span>
+                    <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
+                    <span>$165</span>
+                  </div>
+                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                    Vegan chocolate layers with raspberry puree and biological elderberry frosting.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 2: Custom Tiers & Consultations */}
+            <div className="flex flex-col gap-6 text-left">
+              <h3 className="font-serif text-xl font-bold text-accent-chocolate dark:text-white border-b border-accent-chocolate/10 dark:border-white/10 pb-3 flex items-center justify-between">
+                <span>Bespoke Consulting</span>
+                <span className="text-xs uppercase tracking-wider text-primary-pink-deep dark:text-primary-pink font-semibold">Details</span>
+              </h3>
+
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
+                    <span>Bespoke Sculptural Design</span>
+                    <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
+                    <span>From $350</span>
+                  </div>
+                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                    1-on-1 design session, private tasting flight, and custom structural rig.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
+                    <span>Private Tasting Flight</span>
+                    <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
+                    <span>$65</span>
+                  </div>
+                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                    Curated tasting profile of 5 signature flavors for your wedding or milestone event.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
+                    <span>Floral & Sugar Rig Setup</span>
+                    <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
+                    <span>$120</span>
+                  </div>
+                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                    On-site installation, stabilization, and decoration of your bespoke cake sculpture.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Events Block */}
+        <section className="relative w-full py-24 px-6 md:px-12 bg-[#FAF6EE] dark:bg-bg-vanilla-cream/50 transition-colors duration-500 flex flex-col items-center">
+          <div className="text-center flex flex-col items-center gap-2 mb-12">
+            <span className={`${sacramento.className} text-4xl text-primary-pink-deep dark:text-primary-pink`}>
+              Events
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase mt-1">
+              Masterclasses & Tastings
+            </h2>
+            <span className="w-12 h-0.5 bg-primary-pink/40 mt-3" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 max-w-7xl w-full mx-auto">
+            {/* Event 1 */}
+            <div className="flex flex-col gap-4 bg-white dark:bg-white/5 border border-white/30 dark:border-white/10 rounded-[2rem] p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary-pink-deep dark:text-primary-pink">
+                Masterclass
+              </span>
+              <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
+                Parisian Macaron Workshop
+              </h3>
+              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+                Learn the delicate art of piping and baking classical French macarons with biological ganache fillings.
+              </p>
+              <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
+                <span>July 15, 2026</span>
+                <Link href="/events/macaron" className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1">
+                  Book Slot <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Event 2 */}
+            <div className="flex flex-col gap-4 bg-white dark:bg-white/5 border border-white/30 dark:border-white/10 rounded-[2rem] p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary-pink-deep dark:text-primary-pink">
+                Private Tasting
+              </span>
+              <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
+                Autumn Tasting Expo
+              </h3>
+              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+                A private session for engaged couples to taste our signature cakes and sketch design rigs.
+              </p>
+              <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
+                <span>August 08, 2026</span>
+                <Link href="/events/tasting" className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1">
+                  Request Invite <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Event 3 */}
+            <div className="flex flex-col gap-4 bg-white dark:bg-white/5 border border-white/30 dark:border-white/10 rounded-[2rem] p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary-pink-deep dark:text-primary-pink">
+                Exhibition
+              </span>
+              <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
+                Sugar Sculpture Show
+              </h3>
+              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+                Join us for an exclusive gallery showing of Chef Lochi's latest custom geometric cake installations.
+              </p>
+              <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
+                <span>Sept 20, 2026</span>
+                <Link href="/events/sculpture" className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1">
+                  Get Tickets <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer Section */}
+        <footer className="relative z-30 w-full bg-white dark:bg-bg-vanilla-cream py-12 border-t border-accent-chocolate/5 flex flex-col items-center gap-6">
+          <div className="max-w-4xl w-full px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-[10px] font-bold tracking-[0.2em] text-accent-chocolate-light dark:text-bg-vanilla/80 uppercase">
             {/* Phone */}
             <div className="flex items-center gap-2.5">
               <svg className="w-4 h-4 text-primary-pink stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -626,8 +1045,12 @@ export default function Home() {
               </svg>
               <span>@cakebylochi</span>
             </Link>
-          </motion.div>
-        </div>
+          </div>
+          
+          <div className="text-[9px] text-accent-chocolate-light/60 dark:text-bg-vanilla/40 tracking-wider">
+            &copy; {new Date().getFullYear()} Cake By Lochi. All Rights Reserved. Crafted with Parisienne Elegance.
+          </div>
+        </footer>
 
       </main>
 
