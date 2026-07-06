@@ -3,13 +3,15 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { 
   ChevronDown, 
   Search, 
   ShoppingBag, 
   Calendar,
   Sparkle,
-  Sparkles
+  Sparkles,
+  ArrowRight
 } from "lucide-react";
 import { Sacramento } from "next/font/google";
 
@@ -36,20 +38,23 @@ export default function MegaHeader() {
   const [mobileCategoriesExpanded, setMobileCategoriesExpanded] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const categories: CategoryGroup[] = [
     {
       title: "Signature Bakes",
       items: [
-        { name: "Celebration Cakes", href: "/categories/celebration", desc: "Multi-layered luxury custom creations" },
-        { name: "Artisanal Cupcakes", href: "/categories/cupcakes", desc: "Hand-piped buttercream delicate bites" },
-        { name: "French Macarons", href: "/categories/macarons", desc: "Crisp almond shells with rich ganache fills" }
+        { name: "Celebration Cakes", href: "/shop?category=celebration-cakes", desc: "Multi-layered luxury custom creations" },
+        { name: "Artisanal Cupcakes", href: "/shop?category=cupcakes", desc: "Hand-piped buttercream delicate bites" },
+        { name: "French Macarons", href: "/shop?category=macarons", desc: "Crisp almond shells with rich ganache fills" }
       ]
     },
     {
       title: "Specialties",
       items: [
-        { name: "Coffee & Chocolate", href: "/categories/chocolate", desc: "Single-origin cacao and espresso fusions" },
-        { name: "Organic Botanical", href: "/categories/organic", desc: "Crafted strictly with local, farm-fresh harvest" }
+        { name: "Coffee & Chocolate", href: "/shop?category=coffee-chocolate", desc: "Single-origin cacao and espresso fusions" },
+        { name: "Organic Botanical", href: "/shop?category=organic-botanical", desc: "Crafted strictly with local, farm-fresh harvest" }
       ]
     }
   ];
@@ -66,7 +71,8 @@ export default function MegaHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300 flex flex-col h-[120px] bg-transparent">
+    <>
+      <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300 flex flex-col h-[120px] bg-transparent">
       {/* Background Glass Panel */}
       <div 
         className="absolute inset-0 pointer-events-none z-0 bg-white/10 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.03)]"
@@ -271,20 +277,52 @@ export default function MegaHeader() {
 
             {/* Utilities */}
             <div className="flex items-center gap-3">
-              {/* Search Button */}
-              <motion.button 
-                whileHover={{ scale: 1.08, y: -1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
-                aria-label="Search Catalog"
-              >
-                <Search className="w-4 h-4" />
-              </motion.button>
+              {/* Search Trigger and Dropdown */}
+              <div className="relative">
+                <motion.button 
+                  whileHover={{ scale: 1.08, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                  className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
+                  aria-label="Search Catalog"
+                >
+                  <Search className="w-4 h-4" />
+                </motion.button>
+
+                <AnimatePresence>
+                  {isSearchOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute top-full right-0 mt-2.5 w-72 bg-white/95 dark:bg-bg-vanilla-cream/95 backdrop-blur-md border border-accent-chocolate/10 dark:border-white/10 p-2.5 rounded-2xl shadow-2xl z-50 flex items-center gap-2"
+                    >
+                      <input 
+                        type="text" 
+                        autoFocus
+                        placeholder="Search cakes..." 
+                        className="w-full bg-transparent text-xs font-semibold text-accent-chocolate dark:text-white placeholder-accent-chocolate-light/50 dark:placeholder-white/40 focus:outline-none px-2 py-1.5"
+                      />
+                      <button 
+                        onClick={() => setIsSearchOpen(false)}
+                        className="text-accent-chocolate-light hover:text-primary-pink transition-colors p-1"
+                        aria-label="Clear Search"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
               {/* Cart Icon with indicator */}
               <motion.button 
                 whileHover={{ scale: 1.08, y: -1 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setIsCartOpen(true)}
                 className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
                 aria-label="View Shopping Cart"
               >
@@ -439,5 +477,86 @@ export default function MegaHeader() {
         )}
       </AnimatePresence>
     </header>
+
+
+    {/* Slide-out Cart Drawer */}
+    <AnimatePresence>
+      {isCartOpen && (
+        <>
+          {/* Backdrop shadow overlay */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsCartOpen(false)}
+            className="fixed inset-0 z-[90] bg-black/45 backdrop-blur-sm cursor-pointer"
+          />
+          {/* Drawer */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.3 }}
+            className="fixed top-0 right-0 h-full w-full sm:w-[400px] z-[100] bg-[#fdfbf7] dark:bg-bg-vanilla-cream shadow-2xl flex flex-col justify-between border-l border-accent-chocolate/10"
+          >
+            {/* Header */}
+            <div className="p-6 border-b border-accent-chocolate/5 flex items-center justify-between">
+              <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white uppercase tracking-wider">
+                Your Shopping Bag
+              </h3>
+              <button 
+                onClick={() => setIsCartOpen(false)}
+                className="text-accent-chocolate/60 dark:text-white/60 hover:text-primary-pink cursor-pointer p-1"
+                aria-label="Close cart"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Items List (Mock populated) */}
+            <div className="flex-grow p-6 overflow-y-auto flex flex-col gap-6">
+              {/* Item 1 */}
+              <div className="flex gap-4 items-center border-b border-accent-chocolate/5 pb-4">
+                <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-accent-chocolate/5">
+                  <Image src="/cake_hero_main.png" alt="Rose Gold Truffle" fill className="object-cover" />
+                </div>
+                <div className="flex-grow flex flex-col text-left">
+                  <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">The Rose Gold Truffle</span>
+                  <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">Qty: 1 | Flavor: Champagne Velvet</span>
+                  <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">$240</span>
+                </div>
+              </div>
+
+              {/* Item 2 */}
+              <div className="flex gap-4 items-center border-b border-accent-chocolate/5 pb-4">
+                <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-accent-chocolate/5">
+                  <Image src="/cake_cat_cupcake.png" alt="Gourmet Cupcake Flight" fill className="object-cover" />
+                </div>
+                <div className="flex-grow flex flex-col text-left">
+                  <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">Gourmet Cupcake Flight</span>
+                  <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">Qty: 1 | Flavor: Roasted Pistachio</span>
+                  <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">$48</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-6 border-t border-accent-chocolate/5 flex flex-col gap-4 bg-white/40 dark:bg-white/5 backdrop-blur-sm">
+              <div className="flex justify-between items-baseline font-bold text-sm text-accent-chocolate dark:text-white">
+                <span>Cart Subtotal</span>
+                <span className="text-base text-primary-pink-deep dark:text-primary-pink">$288</span>
+              </div>
+              <button className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary-pink hover:text-white transition-all duration-300">
+                Proceed to Checkout
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
