@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, { Suspense } from "react";
 import MegaHeader from "@/components/shared/mega-header";
 import ProductCatalog from "@/components/shared/product-catalog";
 
@@ -10,8 +10,13 @@ export default function ShopPage() {
       <MegaHeader />
       
       <main className="w-full pt-[120px]">
-        {/* Render the ProductCatalog component */}
-        <ProductCatalog />
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-[400px] text-accent-chocolate dark:text-white font-serif">
+            Loading Catalog...
+          </div>
+        }>
+          <ProductCatalog />
+        </Suspense>
       </main>
     </div>
   );

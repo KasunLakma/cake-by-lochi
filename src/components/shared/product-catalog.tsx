@@ -1,8 +1,7 @@
-'use client';
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ArrowRight, Sparkle } from "lucide-react";
 
@@ -22,6 +21,32 @@ interface Product {
 export default function ProductCatalog() {
   const [selectedFlavor, setSelectedFlavor] = useState<Record<string, string>>({});
   const [activeCategory, setActiveCategory] = useState("All");
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+
+  useEffect(() => {
+    if (categoryParam) {
+      const slug = categoryParam.toLowerCase();
+      if (slug === "celebration-cakes" || slug === "wedding-cakes") {
+        setActiveCategory("Celebration Cakes");
+      } else if (
+        slug === "fine-pastries" ||
+        slug === "cupcakes" ||
+        slug === "macarons" ||
+        slug === "lollypops" ||
+        slug === "just-treats" ||
+        slug === "ice-cream"
+      ) {
+        setActiveCategory("Fine Pastries");
+      } else if (
+        slug === "dietary-luxe" ||
+        slug === "organic-botanical" ||
+        slug === "coffee-chocolate"
+      ) {
+        setActiveCategory("Dietary Luxe");
+      }
+    }
+  }, [categoryParam]);
 
   const categoriesList = ["All", "Celebration Cakes", "Fine Pastries", "Dietary Luxe"];
 
@@ -290,13 +315,12 @@ export default function ProductCatalog() {
                           "Flavor Options Available"
                         )}
                       </span>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="glass-button text-[11px] font-semibold py-1.5 px-3.5 border-white/50 bg-primary-pink/10 hover:bg-primary-pink hover:text-white transition-colors cursor-pointer"
+                      <Link
+                        href={`/shop/${product.id}`}
+                        className="glass-button text-[11px] font-semibold py-1.5 px-3.5 border-white/50 bg-primary-pink/10 hover:bg-primary-pink hover:text-white transition-all cursor-pointer block text-center"
                       >
                         Inquire Art
-                      </motion.button>
+                      </Link>
                     </div>
                   </div>
 

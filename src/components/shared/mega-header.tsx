@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/context/cart-context";
 import Image from "next/image";
 import { 
   ChevronDown, 
@@ -40,6 +41,7 @@ export default function MegaHeader() {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { cartItems, removeFromCart, updateQuantity, cartCount, cartSubtotal } = useCart();
 
   const categories: CategoryGroup[] = [
     {
@@ -328,7 +330,7 @@ export default function MegaHeader() {
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary-pink text-[9px] font-bold text-white shadow-sm animate-scale-in">
-                  2
+                  {cartCount}
                 </span>
               </motion.button>
             </div>
@@ -347,7 +349,16 @@ export default function MegaHeader() {
 
           {/* Right Mobile Utilities */}
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-accent-chocolate dark:text-bg-vanilla" />
+            <button 
+              onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
+              className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
+              aria-label="View Shopping Cart"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary-pink text-[9px] font-bold text-white shadow-sm">
+                {cartCount}
+              </span>
+            </button>
             
             {/* Hamburger Menu Toggle */}
             <button
@@ -515,43 +526,67 @@ export default function MegaHeader() {
               </button>
             </div>
 
-            {/* Items List (Mock populated) */}
+            {/* Items List */}
             <div className="flex-grow p-6 overflow-y-auto flex flex-col gap-6">
-              {/* Item 1 */}
-              <div className="flex gap-4 items-center border-b border-accent-chocolate/5 pb-4">
-                <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-accent-chocolate/5">
-                  <Image src="/cake_hero_main.png" alt="Rose Gold Truffle" fill className="object-cover" />
+              {cartItems.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full text-center text-accent-chocolate-light dark:text-bg-vanilla/60 gap-3">
+                  <ShoppingBag className="w-12 h-12 stroke-[1.2] text-primary-pink/60 animate-bounce" />
+                  <span className="font-serif text-lg font-semibold">Your bag is empty</span>
+                  <p className="text-xs max-w-[200px]">Fill it with Chef Lochi's handcrafted sweet masterpieces!</p>
                 </div>
-                <div className="flex-grow flex flex-col text-left">
-                  <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">The Rose Gold Truffle</span>
-                  <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">Qty: 1 | Flavor: Champagne Velvet</span>
-                  <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">$240</span>
-                </div>
-              </div>
-
-              {/* Item 2 */}
-              <div className="flex gap-4 items-center border-b border-accent-chocolate/5 pb-4">
-                <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-accent-chocolate/5">
-                  <Image src="/cake_cat_cupcake.png" alt="Gourmet Cupcake Flight" fill className="object-cover" />
-                </div>
-                <div className="flex-grow flex flex-col text-left">
-                  <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">Gourmet Cupcake Flight</span>
-                  <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">Qty: 1 | Flavor: Roasted Pistachio</span>
-                  <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">$48</span>
-                </div>
-              </div>
+              ) : (
+                cartItems.map((item) => (
+                  <div key={`${item.id}-${item.flavor}`} className="flex gap-4 items-center border-b border-accent-chocolate/5 pb-4">
+                    <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-accent-chocolate/5">
+                      <Image src={item.image || "/cake_hero_main.png"} alt={item.name} fill className="object-cover" />
+                    </div>
+                    <div className="flex-grow flex flex-col text-left">
+                      <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">{item.name}</span>
+                      <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">
+                        Qty: {item.quantity} | Flavor: {item.flavor}
+                      </span>
+                      <div className="flex items-center gap-2 mt-1.5">
+                        <button 
+                          onClick={() => updateQuantity(item.id, item.flavor, item.quantity - 1)}
+                          className="w-5 h-5 rounded bg-primary-pink/10 dark:bg-white/10 text-accent-chocolate dark:text-white flex items-center justify-center font-bold text-xs hover:bg-primary-pink hover:text-white transition-colors cursor-pointer"
+                        >
+                          -
+                        </button>
+                        <span className="text-xs font-bold w-4 text-center">{item.quantity}</span>
+                        <button 
+                          onClick={() => updateQuantity(item.id, item.flavor, item.quantity + 1)}
+                          className="w-5 h-5 rounded bg-primary-pink/10 dark:bg-white/10 text-accent-chocolate dark:text-white flex items-center justify-center font-bold text-xs hover:bg-primary-pink hover:text-white transition-colors cursor-pointer"
+                        >
+                          +
+                        </button>
+                        <button 
+                          onClick={() => removeFromCart(item.id, item.flavor)}
+                          className="text-[10px] text-red-500 hover:text-red-700 ml-auto cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">${item.price * item.quantity}</span>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
 
             {/* Footer */}
             <div className="p-6 border-t border-accent-chocolate/5 flex flex-col gap-4 bg-white/40 dark:bg-white/5 backdrop-blur-sm">
               <div className="flex justify-between items-baseline font-bold text-sm text-accent-chocolate dark:text-white">
                 <span>Cart Subtotal</span>
-                <span className="text-base text-primary-pink-deep dark:text-primary-pink">$288</span>
+                <span className="text-base text-primary-pink-deep dark:text-primary-pink">${cartSubtotal}</span>
               </div>
-              <button className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary-pink hover:text-white transition-all duration-300">
+              <Link 
+                href="/checkout"
+                onClick={() => setIsCartOpen(false)}
+                className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary-pink hover:text-white transition-all duration-300 block text-center"
+              >
                 Proceed to Checkout
-                <ArrowRight className="w-4 h-4" />
-              </button>
+                <ArrowRight className="w-4 h-4 inline" />
+              </Link>
             </div>
           </motion.div>
         </>
