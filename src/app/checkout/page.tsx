@@ -141,7 +141,7 @@ export default function CheckoutPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="guest@example.com"
-                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors font-sans"
+                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3.5 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors font-sans"
                   />
                 </div>
                 <div>
@@ -154,7 +154,7 @@ export default function CheckoutPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Genevieve Sterling"
-                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors"
+                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3.5 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors"
                   />
                 </div>
                 <div>
@@ -167,7 +167,7 @@ export default function CheckoutPage() {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="42 Golden Crescent, Colombo"
-                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors"
+                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3.5 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors"
                   />
                 </div>
                 <div>
@@ -180,7 +180,7 @@ export default function CheckoutPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+94 77 123 4567"
-                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors font-sans"
+                    className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-3.5 text-sm text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors font-sans"
                   />
                 </div>
               </div>
