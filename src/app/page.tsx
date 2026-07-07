@@ -11,7 +11,8 @@ import {
   ArrowRight,
   Sparkle,
   Sparkles,
-  Star
+  Star,
+  Check
 } from "lucide-react";
 import { Sacramento } from "next/font/google";
 import ProductCategories from "@/components/shared/product-categories";
@@ -159,6 +160,76 @@ export default function Home() {
   const { cartItems, removeFromCart, updateQuantity, cartCount, cartSubtotal } = useCart();
 
   const [activeCommentIndex, setActiveCommentIndex] = useState(0);
+
+  // Event booking states
+  const [activeEvent, setActiveEvent] = useState<{ title: string; date: string; type: string } | null>(null);
+  const [bookingModal, setBookingModal] = useState<"BOOK" | "REQUEST" | "TICKETS" | null>(null);
+  const [bookingName, setBookingName] = useState("");
+  const [bookingEmail, setBookingEmail] = useState("");
+  const [bookingPhone, setBookingPhone] = useState("");
+  const [bookingSeats, setBookingSeats] = useState(1);
+  const [bookingIntake, setBookingIntake] = useState("");
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [bookingError, setBookingError] = useState("");
+  const [generatedTicket, setGeneratedTicket] = useState<string | null>(null);
+  const [bookingLoading, setBookingLoading] = useState(false);
+
+  const handleEventBookingSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!activeEvent || !bookingName || !bookingEmail) return;
+
+    setBookingLoading(true);
+    setBookingError("");
+
+    let ticketCode = undefined;
+    if (bookingModal === "TICKETS") {
+      ticketCode = `TKT-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    }
+
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventTitle: activeEvent.title,
+          eventType: activeEvent.type,
+          eventDate: activeEvent.date,
+          name: bookingName,
+          email: bookingEmail,
+          phone: bookingPhone,
+          seats: bookingSeats,
+          intakeNotes: bookingIntake,
+          ticketCode,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Booking failed");
+
+      if (bookingModal === "TICKETS") {
+        setGeneratedTicket(ticketCode || "");
+      } else {
+        setBookingSuccess(true);
+      }
+    } catch (err: any) {
+      setBookingError(err.message || "Failed to submit booking");
+    } finally {
+      setBookingLoading(false);
+    }
+  };
+
+  const closeBookingModal = () => {
+    setBookingModal(null);
+    setActiveEvent(null);
+    setBookingName("");
+    setBookingEmail("");
+    setBookingPhone("");
+    setBookingSeats(1);
+    setBookingIntake("");
+    setBookingSuccess(false);
+    setBookingError("");
+    setGeneratedTicket(null);
+  };
 
   const customerComments = [
     {
@@ -1145,9 +1216,15 @@ export default function Home() {
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
                 <span>July 15, 2026</span>
-                <Link href="/events/macaron" className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1">
+                <button 
+                  onClick={() => {
+                    setActiveEvent({ title: "Parisian Macaron Workshop", date: "July 15, 2026", type: "WORKSHOP" });
+                    setBookingModal("BOOK");
+                  }}
+                  className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1 cursor-pointer bg-transparent border-none font-semibold text-xs"
+                >
                   Book Slot <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -1164,9 +1241,15 @@ export default function Home() {
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
                 <span>August 08, 2026</span>
-                <Link href="/events/tasting" className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1">
+                <button 
+                  onClick={() => {
+                    setActiveEvent({ title: "Autumn Tasting Expo", date: "August 08, 2026", type: "INVITATION" });
+                    setBookingModal("REQUEST");
+                  }}
+                  className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1 cursor-pointer bg-transparent border-none font-semibold text-xs"
+                >
                   Request Invite <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -1183,9 +1266,15 @@ export default function Home() {
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
                 <span>Sept 20, 2026</span>
-                <Link href="/events/sculpture" className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1">
+                <button 
+                  onClick={() => {
+                    setActiveEvent({ title: "Sugar Sculpture Show", date: "Sept 20, 2026", type: "TICKET" });
+                    setBookingModal("TICKETS");
+                  }}
+                  className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1 cursor-pointer bg-transparent border-none font-semibold text-xs"
+                >
                   Get Tickets <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -1331,6 +1420,211 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 inline" />
                 </Link>
               </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Event Booking Modals */}
+      <AnimatePresence>
+        {bookingModal && activeEvent && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeBookingModal}
+              className="fixed inset-0 z-[99990] bg-black/60 backdrop-blur-sm cursor-pointer"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="fixed inset-0 m-auto h-fit w-full max-w-md z-[99999] rounded-[2rem] glass-card border border-white/40 dark:border-white/10 p-6 sm:p-8 bg-bg-vanilla/95 dark:bg-bg-vanilla-cream/95 shadow-2xl overflow-y-auto max-h-[90vh] text-left"
+            >
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary-pink-deep dark:text-primary-pink">
+                    {activeEvent.type === "WORKSHOP" ? "Event Booking" : activeEvent.type === "INVITATION" ? "Invitation Request" : "Entry Pass"}
+                  </span>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-accent-chocolate dark:text-white uppercase leading-tight mt-1">
+                    {activeEvent.title}
+                  </h3>
+                  <span className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/60 mt-1 block font-normal">
+                    Scheduled for {activeEvent.date}
+                  </span>
+                </div>
+                <button
+                  onClick={closeBookingModal}
+                  className="text-accent-chocolate/40 hover:text-primary-pink cursor-pointer p-1"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {bookingSuccess ? (
+                <div className="text-center py-8 space-y-4">
+                  <div className="w-12 h-12 bg-green-500/10 border border-green-500/20 text-green-600 rounded-full flex items-center justify-center mx-auto">
+                    <Check className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white uppercase">
+                    Submission Received!
+                  </h4>
+                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed max-w-sm mx-auto font-normal">
+                    {activeEvent.type === "WORKSHOP" 
+                      ? "Your seat is reserved. We've sent details to your inbox." 
+                      : "We have received your intake requirements and will extend invitations shortly."}
+                  </p>
+                  <div className="pt-4 flex gap-3 justify-center">
+                    <Link
+                      href="/dashboard"
+                      className="glass-button text-[10px] font-bold uppercase tracking-widest py-2.5 px-4 bg-primary-pink border-primary-pink text-white hover:bg-primary-pink-deep text-center"
+                    >
+                      Go to Dashboard
+                    </Link>
+                    <button
+                      onClick={closeBookingModal}
+                      className="glass-button text-[10px] font-bold uppercase tracking-widest py-2.5 px-4 cursor-pointer"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              ) : generatedTicket ? (
+                <div className="space-y-6">
+                  <div className="relative border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-amber-500/0 rounded-2xl p-6 text-center shadow-inner overflow-hidden before:content-[''] before:absolute before:-left-3 before:top-1/2 before:-translate-y-1/2 before:w-6 before:h-6 before:rounded-full before:bg-[#fdfbf7] dark:before:bg-bg-vanilla-cream before:border-r before:border-amber-500/20 after:content-[''] after:absolute after:-right-3 after:top-1/2 after:-translate-y-1/2 after:w-6 after:h-6 after:rounded-full after:bg-[#fdfbf7] dark:after:bg-bg-vanilla-cream after:border-l after:border-amber-500/20">
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400 block mb-2">Official Entry Pass</span>
+                    <h4 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white uppercase leading-snug">{activeEvent.title}</h4>
+                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-1 block font-normal">{activeEvent.date}</span>
+                    
+                    <div className="w-full border-t border-dashed border-amber-500/20 my-4" />
+                    
+                    <div className="space-y-1">
+                      <span className="text-[8px] font-bold uppercase tracking-wider text-accent-chocolate-light/50 dark:text-bg-vanilla/40">Ticket Code</span>
+                      <span className="text-sm font-mono font-bold text-accent-chocolate dark:text-white block">{generatedTicket}</span>
+                    </div>
+
+                    <div className="mt-4 flex items-center justify-center">
+                      <div className="h-8 w-48 bg-[repeating-linear-gradient(90deg,currentColor,currentColor_2px,transparent_2px,transparent_6px)] opacity-50" />
+                    </div>
+                  </div>
+                  
+                  <p className="text-[11px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 text-center leading-relaxed font-normal">
+                    This ticket pass has been registered to your email. You can present this code at Lochi's Custom Studio on arrival or view it in your dashboard.
+                  </p>
+                  
+                  <div className="flex gap-3 justify-center">
+                    <Link
+                      href="/dashboard"
+                      className="glass-button text-[10px] font-bold uppercase tracking-widest py-2.5 px-4 bg-primary-pink border-primary-pink text-white hover:bg-primary-pink-deep text-center"
+                    >
+                      View Dashboard
+                    </Link>
+                    <button
+                      onClick={closeBookingModal}
+                      className="glass-button text-[10px] font-bold uppercase tracking-widest py-2.5 px-4 cursor-pointer"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleEventBookingSubmit} className="space-y-4">
+                  {bookingError && (
+                    <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-700 dark:text-red-400 text-xs font-semibold text-center">
+                      {bookingError}
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={bookingName}
+                      onChange={(e) => setBookingName(e.target.value)}
+                      placeholder="Genevieve Sterling"
+                      className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-xl px-3 py-2 text-xs text-accent-chocolate dark:text-white focus:outline-none focus:border-primary-pink transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={bookingEmail}
+                      onChange={(e) => setBookingEmail(e.target.value)}
+                      placeholder="name@domain.com"
+                      className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-xl px-3 py-2 text-xs text-accent-chocolate dark:text-white focus:outline-none focus:border-primary-pink transition-colors font-sans"
+                    />
+                  </div>
+
+                  {bookingModal !== "TICKETS" && (
+                    <div>
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                        Phone Number (Optional)
+                      </label>
+                      <input
+                        type="tel"
+                        value={bookingPhone}
+                        onChange={(e) => setBookingPhone(e.target.value)}
+                        placeholder="+94 77 123 4567"
+                        className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-xl px-3 py-2 text-xs text-accent-chocolate dark:text-white focus:outline-none focus:border-primary-pink transition-colors font-sans"
+                      />
+                    </div>
+                  )}
+
+                  {bookingModal === "BOOK" && (
+                    <div>
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                        Seat Quantity
+                      </label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={10}
+                        required
+                        value={bookingSeats}
+                        onChange={(e) => setBookingSeats(parseInt(e.target.value) || 1)}
+                        className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-xl px-3 py-2 text-xs text-accent-chocolate dark:text-white focus:outline-none focus:border-primary-pink transition-colors font-sans"
+                      />
+                    </div>
+                  )}
+
+                  {bookingModal === "REQUEST" && (
+                    <div>
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                        Intake / Custom Requirements
+                      </label>
+                      <textarea
+                        required
+                        rows={3}
+                        value={bookingIntake}
+                        onChange={(e) => setBookingIntake(e.target.value)}
+                        placeholder="Provide details about your target event design theme, milestone bakes expectations, or dietary requests."
+                        className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-xl px-3 py-2 text-xs text-accent-chocolate dark:text-white focus:outline-none focus:border-primary-pink transition-colors resize-none leading-relaxed"
+                      />
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={bookingLoading}
+                    className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 bg-primary-pink border-primary-pink text-white hover:bg-primary-pink-deep transition-all duration-300 shadow-md cursor-pointer disabled:opacity-50"
+                  >
+                    {bookingLoading ? "Submitting..." : bookingModal === "BOOK" ? "Confirm Booking" : bookingModal === "REQUEST" ? "Submit Invitation Request" : "Generate Entry Pass"}
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              )}
             </motion.div>
           </>
         )}

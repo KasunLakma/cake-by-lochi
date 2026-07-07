@@ -29,9 +29,17 @@ export async function GET(request: Request) {
       },
     });
 
-    return NextResponse.json({ orders });
+    // Fetch user's event bookings
+    const bookings = await prisma.eventBooking.findMany({
+      where: { userId },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return NextResponse.json({ orders, bookings });
   } catch (error: any) {
-    console.error("Fetch orders API error:", error);
-    return NextResponse.json({ error: error.message || "Failed to fetch orders" }, { status: 500 });
+    console.error("Fetch orders/bookings API error:", error);
+    return NextResponse.json({ error: error.message || "Failed to fetch dashboard data" }, { status: 500 });
   }
 }

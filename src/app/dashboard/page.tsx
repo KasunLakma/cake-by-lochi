@@ -61,10 +61,23 @@ interface User {
   name: string;
 }
 
+interface EventBooking {
+  id: string;
+  eventTitle: string;
+  eventType: string;
+  eventDate: string;
+  name: string;
+  seats: number;
+  intakeNotes: string | null;
+  ticketCode: string | null;
+  createdAt: string;
+}
+
 export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [bookings, setBookings] = useState<EventBooking[]>([]);
   const [loading, setLoading] = useState(true);
   const [authLoading, setAuthLoading] = useState(false);
   const [emailInput, setEmailInput] = useState("");
@@ -98,8 +111,11 @@ export default function DashboardPage() {
       if (data.orders) {
         setOrders(data.orders);
       }
+      if (data.bookings) {
+        setBookings(data.bookings);
+      }
     } catch (e) {
-      console.error("Failed to load orders", e);
+      console.error("Failed to load dashboard data", e);
     } finally {
       setLoading(false);
     }
@@ -290,6 +306,57 @@ export default function DashboardPage() {
             <LogOut className="w-4 h-4" /> Log Out
           </button>
         </div>
+
+        {/* Upcoming Events Section */}
+        {bookings.length > 0 && (
+          <div className="mb-12 max-w-4xl mx-auto space-y-6 text-left">
+            <h2 className="font-serif text-xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase">
+              Upcoming Events
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {bookings.map((booking) => (
+                <div 
+                  key={booking.id}
+                  className="glass-card border border-white/30 dark:border-white/10 rounded-3xl bg-white/20 dark:bg-white/5 p-6 shadow-md relative overflow-hidden flex flex-col justify-between"
+                >
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-start">
+                      <span className="text-[9px] font-bold uppercase tracking-widest text-primary-pink-deep dark:text-primary-pink">
+                        {booking.eventType}
+                      </span>
+                      <span className="text-[10px] font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60 font-sans">
+                        {booking.eventDate}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white leading-snug uppercase">
+                      {booking.eventTitle}
+                    </h3>
+                    <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80 font-normal">
+                      Reserved for <strong className="text-accent-chocolate dark:text-white font-bold">{booking.name}</strong> 
+                      {booking.seats > 1 && ` (+${booking.seats - 1} seats)`}
+                    </p>
+                    {booking.intakeNotes && (
+                      <div className="p-3 rounded-xl bg-accent-chocolate/5 dark:bg-white/5 border border-accent-chocolate/5 text-[11px] text-accent-chocolate-light dark:text-bg-vanilla-cream/70 leading-relaxed italic font-normal">
+                        "{booking.intakeNotes}"
+                      </div>
+                    )}
+                  </div>
+
+                  {booking.ticketCode && (
+                    <div className="border-t border-accent-chocolate/10 dark:border-white/10 pt-4 mt-4 flex items-center justify-between text-xs font-sans">
+                      <span className="font-mono text-accent-chocolate dark:text-white font-bold tracking-wider">
+                        Pass: {booking.ticketCode}
+                      </span>
+                      <span className="text-[9px] font-bold uppercase tracking-widest text-green-600 dark:text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded">
+                        Active Pass
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Orders List */}
         {orders.length === 0 ? (

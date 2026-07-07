@@ -7,12 +7,13 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  name      String?
-  orders    Order[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String         @id @default(uuid())
+  email         String         @unique
+  name          String?
+  orders        Order[]
+  eventBookings EventBooking[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
 model Order {
@@ -55,4 +56,20 @@ model DeliveryTracking {
   status      String   // PENDING, PREPARING, SHIPPED, DELIVERED
   updatedAt   DateTime @updatedAt
   description String?
+}
+
+model EventBooking {
+  id          String   @id @default(uuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  eventTitle  String
+  eventType   String   // WORKSHOP, INVITATION, TICKET
+  eventDate   String
+  name        String
+  email       String
+  phone       String?
+  seats       Int      @default(1)
+  intakeNotes String?
+  ticketCode  String?
+  createdAt   DateTime @default(now())
 }
