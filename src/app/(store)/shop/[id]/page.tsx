@@ -16,6 +16,21 @@ const sacramento = Sacramento({
   display: "swap",
 });
 
+function SafeImage({ src, alt, ...props }: any) {
+  const [imgSrc, setImgSrc] = useState(src || "/cake_hero_main.png");
+  useEffect(() => {
+    setImgSrc(src || "/cake_hero_main.png");
+  }, [src]);
+  return (
+    <Image
+      {...props}
+      src={imgSrc}
+      alt={alt}
+      onError={() => setImgSrc("/cake_hero_main.png")}
+    />
+  );
+}
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
@@ -146,7 +161,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className="w-full h-full relative"
                 >
-                  <Image
+                  <SafeImage
                     src={activeImage || "/placeholder.png"}
                     alt={product.name}
                     fill
@@ -176,7 +191,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                         : "border-accent-chocolate/10 hover:border-primary-pink/50 dark:border-white/10 dark:hover:border-white/30"
                     }`}
                   >
-                    <Image
+                    <SafeImage
                       src={img}
                       alt={`${product.name} gallery image ${i + 1}`}
                       fill

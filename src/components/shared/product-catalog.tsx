@@ -18,6 +18,21 @@ interface Product {
   badge?: string;
 }
 
+function SafeImage({ src, alt, ...props }: any) {
+  const [imgSrc, setImgSrc] = useState(src || "/cake_hero_main.png");
+  useEffect(() => {
+    setImgSrc(src || "/cake_hero_main.png");
+  }, [src]);
+  return (
+    <Image
+      {...props}
+      src={imgSrc}
+      alt={alt}
+      onError={() => setImgSrc("/cake_hero_main.png")}
+    />
+  );
+}
+
 export default function ProductCatalog() {
   const [selectedFlavor, setSelectedFlavor] = useState<Record<string, string>>({});
   const [activeCategory, setActiveCategory] = useState("All");
@@ -277,7 +292,7 @@ export default function ProductCatalog() {
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className="w-full h-full relative"
                     >
-                      <Image
+                      <SafeImage
                         src={product.image}
                         alt={product.name}
                         fill
