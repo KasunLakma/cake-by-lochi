@@ -24,6 +24,41 @@ export default function ProductCatalog() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
 
+  const [dbProducts, setDbProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchDbProducts = async () => {
+      try {
+        const res = await fetch("/api/admin/products");
+        const data = await res.json();
+        if (data.success && data.products.length > 0) {
+          const formatted = data.products.map((p: any) => ({
+            ...p,
+            flavors: p.flavors ? p.flavors.split(", ").filter(Boolean) : []
+          }));
+          
+          if (!formatted.some((p: any) => p.id === "bespoke-studio")) {
+            formatted.push({
+              id: "bespoke-studio",
+              name: "Custom Cake Orders",
+              category: "Custom Consultation",
+              price: "From Rs. 105,000",
+              description: "Work directly with Chef Lochi to co-create a sculptural dessert masterpiece tailored strictly to your event's architectural theme.",
+              image: "",
+              flavors: [],
+              gridClass: "md:col-span-1 md:row-span-1",
+              imageAspect: ""
+            });
+          }
+          setDbProducts(formatted);
+        }
+      } catch (err) {
+        console.error("Failed to load products from DB, falling back to static:", err);
+      }
+    };
+    fetchDbProducts();
+  }, []);
+
   useEffect(() => {
     if (categoryParam) {
       const slug = categoryParam.toLowerCase();
@@ -111,10 +146,12 @@ export default function ProductCatalog() {
     }
   ];
 
+  const activeProducts = dbProducts.length > 0 ? dbProducts : products;
+
   // Category filter handles either full match or dynamic inclusion check
   const filteredProducts = activeCategory === "All"
-    ? products
-    : products.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase() || p.category === "Custom Consultation");
+    ? activeProducts
+    : activeProducts.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase() || p.category === "Custom Consultation");
 
   return (
     <section className="relative w-full py-24 px-4 md:px-8 lg:px-12 bg-bg-vanilla dark:bg-bg-vanilla-cream transition-colors duration-500">

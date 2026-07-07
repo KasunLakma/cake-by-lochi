@@ -16,7 +16,22 @@ export async function GET(request: Request) {
     const cookieVal = sessionCookie.split("=")[1];
     const sessionPayload = JSON.parse(decodeURIComponent(cookieVal));
 
-    return NextResponse.json({ user: sessionPayload });
+    const dbUser = await prisma.user.findUnique({
+      where: { id: sessionPayload.userId },
+    });
+
+    if (!dbUser) {
+      return NextResponse.json({ user: null });
+    }
+
+    return NextResponse.json({
+      user: {
+        userId: dbUser.id,
+        email: dbUser.email,
+        name: dbUser.name,
+        isAdmin: dbUser.isAdmin,
+      },
+    });
   } catch (error) {
     return NextResponse.json({ user: null });
   }
@@ -50,6 +65,7 @@ export async function POST(request: Request) {
       userId: user.id,
       email: user.email,
       name: user.name,
+      isAdmin: user.isAdmin,
     };
     const sessionString = encodeURIComponent(JSON.stringify(sessionPayload));
 

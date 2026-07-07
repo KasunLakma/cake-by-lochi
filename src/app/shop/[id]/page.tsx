@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, use } from "react";
+import React, { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/lib/products";
@@ -22,13 +22,77 @@ interface PageProps {
 
 export default function ProductDetailPage({ params }: PageProps) {
   const { id } = use(params);
-  const product = products.find((p) => p.id === id);
+  const [product, setProduct] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
   const { addToCart } = useCart();
 
-  const [activeImage, setActiveImage] = useState(product?.image || "");
-  const [selectedFlavor, setSelectedFlavor] = useState(product?.flavors[0] || "");
+  const [activeImage, setActiveImage] = useState("");
+  const [selectedFlavor, setSelectedFlavor] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [addedNotify, setAddedNotify] = useState(false);
+
+  useEffect(() => {
+    // 1. Check static products
+    const staticProd = products.find((p) => p.id === id);
+    if (staticProd) {
+      setProduct(staticProd);
+      setActiveImage(staticProd.image);
+      setSelectedFlavor(staticProd.flavors[0] || "");
+      setLoading(false);
+      return;
+    }
+
+    // 2. Fetch from DB if not found statically
+    const fetchDbProduct = async () => {
+      try {
+        const res = await fetch("/api/admin/products");
+        const data = await res.json();
+        if (data.success) {
+          const dbProd = data.products.find((p: any) => p.id === id);
+          if (dbProd) {
+            const formatted = {
+              ...dbProd,
+              flavors: dbProd.flavors ? dbProd.flavors.split(", ").filter(Boolean) : []
+            };
+            setProduct(formatted);
+            setActiveImage(formatted.image);
+            setSelectedFlavor(formatted.flavors[0] || "");
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch product from DB", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDbProduct();
+  }, [id]);
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.priceNumber,
+      priceString: product.price,
+      flavor: selectedFlavor,
+      image: product.image,
+      quantity,
+    });
+    setAddedNotify(true);
+    setTimeout(() => setAddedNotify(false), 3000);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#fdfbf7] dark:bg-bg-vanilla-cream">
+        <span className="text-xs uppercase tracking-widest text-accent-chocolate dark:text-white animate-pulse">
+          Fetching Creation...
+        </span>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -51,20 +115,6 @@ export default function ProductDetailPage({ params }: PageProps) {
       </div>
     );
   }
-
-  const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.priceNumber,
-      priceString: product.price,
-      flavor: selectedFlavor,
-      image: product.image,
-      quantity,
-    });
-    setAddedNotify(true);
-    setTimeout(() => setAddedNotify(false), 3000);
-  };
 
   return (
     <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans flex flex-col">
@@ -116,7 +166,7 @@ export default function ProductDetailPage({ params }: PageProps) {
             {/* Gallery Thumbnails */}
             {product.gallery && product.gallery.length > 1 && (
               <div className="flex gap-3 overflow-x-auto pb-2">
-                {product.gallery.map((img, i) => (
+                {product.gallery.map((img: string, i: number) => (
                   <button
                     key={i}
                     onClick={() => setActiveImage(img)}
@@ -172,7 +222,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                     Selected Flavor
                   </span>
                   <div className="flex flex-wrap gap-2.5">
-                    {product.flavors.map((flavor) => (
+                    {product.flavors.map((flavor: string) => (
                       <button
                         key={flavor}
                         onClick={() => setSelectedFlavor(flavor)}

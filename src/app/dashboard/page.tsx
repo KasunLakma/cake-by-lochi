@@ -59,6 +59,7 @@ interface User {
   userId: string;
   email: string;
   name: string;
+  isAdmin?: boolean;
 }
 
 interface EventBooking {
@@ -299,12 +300,22 @@ export default function DashboardPage() {
               Your Sweet Portfolio
             </h1>
           </div>
-          <button
-            onClick={handleSignOut}
-            className="glass-button text-xs py-2.5 px-4 font-bold uppercase tracking-widest hover:bg-red-500/10 hover:text-red-500 border-red-500/20 text-accent-chocolate-light dark:text-bg-vanilla/60 flex items-center gap-2 cursor-pointer transition-all"
-          >
-            <LogOut className="w-4 h-4" /> Log Out
-          </button>
+          <div className="flex gap-2">
+            {user.isAdmin && (
+              <Link
+                href="/admin"
+                className="glass-button text-xs py-2.5 px-4 font-bold uppercase tracking-widest bg-primary-pink border-primary-pink text-white hover:bg-primary-pink-deep flex items-center gap-2 transition-all text-center"
+              >
+                Admin Panel
+              </Link>
+            )}
+            <button
+              onClick={handleSignOut}
+              className="glass-button text-xs py-2.5 px-4 font-bold uppercase tracking-widest hover:bg-red-500/10 hover:text-red-500 border-red-500/20 text-accent-chocolate-light dark:text-bg-vanilla/60 flex items-center gap-2 cursor-pointer transition-all"
+            >
+              <LogOut className="w-4 h-4" /> Log Out
+            </button>
+          </div>
         </div>
 
         {/* Upcoming Events Section */}
