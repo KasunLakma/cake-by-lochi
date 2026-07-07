@@ -88,3 +88,10 @@ model EventBooking {
   ticketCode  String?
   createdAt   DateTime @default(now())
 }
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+}

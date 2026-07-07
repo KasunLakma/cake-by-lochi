@@ -46,6 +46,19 @@ export async function POST(request: Request) {
       });
     }
 
+    // Keep dedicated Admin table in sync
+    if (isAdmin) {
+      await prisma.admin.upsert({
+        where: { email },
+        update: { name: targetUser.name },
+        create: { email, name: targetUser.name },
+      });
+    } else {
+      await prisma.admin.deleteMany({
+        where: { email },
+      });
+    }
+
     return NextResponse.json({ success: true, user: targetUser });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

@@ -112,6 +112,10 @@ export default function AdminDashboardPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [submittingLogin, setSubmittingLogin] = useState(false);
+
   useEffect(() => {
     checkAdminAuth();
   }, []);
@@ -126,12 +130,35 @@ export default function AdminDashboardPage() {
       } else {
         setIsAdminUser(false);
         setLoading(false);
-        router.push("/dashboard");
       }
     } catch (e) {
       setIsAdminUser(false);
       setLoading(false);
-      router.push("/dashboard");
+    }
+  };
+
+  const handleAdminLoginSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError("");
+    setSubmittingLogin(true);
+
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginEmail })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setIsAdminUser(true);
+        fetchAdminData();
+      } else {
+        setLoginError(data.error || "Access Denied. This terminal is strictly reserved for authorized administrators only.");
+      }
+    } catch (err) {
+      setLoginError("Access Denied. This terminal is strictly reserved for authorized administrators only.");
+    } finally {
+      setSubmittingLogin(false);
     }
   };
 
@@ -368,7 +395,59 @@ export default function AdminDashboardPage() {
     );
   }
 
-  if (isAdminUser === false) return null;
+  if (isAdminUser === false) {
+    return (
+      <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans flex flex-col justify-between">
+        <MegaHeader />
+        
+        <main className="w-full max-w-md mx-auto px-6 pt-[180px] pb-24 flex-grow z-10 flex flex-col justify-center">
+          <div className="glass-card border border-white/30 dark:border-white/10 p-8 rounded-3xl bg-white/20 dark:bg-white/5 shadow-2xl text-left">
+            <div className="text-center mb-6">
+              <span className={`${sacramento.className} text-4xl text-primary-pink-deep dark:text-primary-pink`}>
+                Administrative Port
+              </span>
+              <h1 className="font-serif text-2xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase mt-1">
+                Workshop Access
+              </h1>
+              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/60 mt-2 font-normal leading-relaxed">
+                Please authenticate using your verified administrator credentials.
+              </p>
+            </div>
+
+            <form onSubmit={handleAdminLoginSubmit} className="space-y-4">
+              <div>
+                <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                  Admin Email Address
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  placeholder="admin@cakebylochi.com"
+                  className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-xl px-4 py-3.5 text-xs text-accent-chocolate dark:text-white focus:outline-none focus:border-primary-pink transition-colors font-sans"
+                />
+                {loginError && (
+                  <p className="mt-2 text-xs text-red-600 dark:text-red-400 font-bold leading-normal">
+                    {loginError}
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={submittingLogin}
+                className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-[9px] flex items-center justify-center gap-2 bg-primary-pink border-primary-pink text-white hover:bg-primary-pink-deep transition-all duration-300 shadow-md cursor-pointer disabled:opacity-50"
+              >
+                {submittingLogin ? "Authenticating..." : "Authenticate Credentials"}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </form>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans flex flex-col justify-between">

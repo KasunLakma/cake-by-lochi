@@ -14,7 +14,7 @@ if (typeof window === 'undefined') {
   // Self-executing dynamic seed wrapper
   (async () => {
     try {
-      // 1. Ensure at least one admin exists
+      // 1. Ensure at least one admin exists in User table
       const adminEmail = "guest@example.com";
       const existingUser = await prismaClient.user.findUnique({ where: { email: adminEmail } });
       if (!existingUser) {
@@ -44,6 +44,25 @@ if (typeof window === 'undefined') {
           }
         });
       }
+
+      // 1.b. Ensure admin emails exist in the dedicated Admin table
+      await prismaClient.admin.upsert({
+        where: { email: adminEmail },
+        update: {},
+        create: {
+          email: adminEmail,
+          name: "Master Admin Lochi",
+        }
+      });
+
+      await prismaClient.admin.upsert({
+        where: { email: mainAdminEmail },
+        update: {},
+        create: {
+          email: mainAdminEmail,
+          name: "Chef Lochi",
+        }
+      });
 
       // 2. Ensure initial products exist in DB
       const productCount = await prismaClient.product.count();
