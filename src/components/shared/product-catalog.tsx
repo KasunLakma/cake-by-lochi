@@ -55,7 +55,7 @@ export default function ProductCatalog() {
       id: "signature-truffle",
       name: "The Rose Gold Truffle",
       category: "Celebration Cakes",
-      price: "$240",
+      price: "Rs. 72,000",
       description: "Our signature multi-tiered creation featuring organic rosewater sponge, wild berry compote, and premium white chocolate truffle frosting. Hand-painted with edible gold leaf.",
       image: "/cake_hero_main.png",
       flavors: ["Wild Raspberry", "Champagne Velvet", "Salted Cocoa"],
@@ -67,7 +67,7 @@ export default function ProductCatalog() {
       id: "cupcake-flight",
       name: "Gourmet Cupcake Flight",
       category: "Fine Pastries",
-      price: "$48",
+      price: "Rs. 14,400",
       description: "A curated flight of six fluffy bakes dressed in velvety gourmet frostings.",
       image: "/cake_cat_cupcake.png",
       flavors: ["Madagascar Vanilla", "Roasted Pistachio", "Salted Caramel"],
@@ -79,7 +79,7 @@ export default function ProductCatalog() {
       id: "botanical-tart",
       name: "Botanical Forest Tart",
       category: "Dietary Luxe",
-      price: "$65",
+      price: "Rs. 19,500",
       description: "Gluten-free and vegan tart loaded with forest berries and organic botanical greens.",
       image: "/cake_cat_dietary.png",
       flavors: ["Lemon Botanical", "Wild Elderberry", "Coconut Matcha"],
@@ -90,7 +90,7 @@ export default function ProductCatalog() {
       id: "blossom-vanilla",
       name: "Blossom Vanilla Masterpiece",
       category: "Celebration Cakes",
-      price: "$180",
+      price: "Rs. 54,000",
       description: "Elegant double-layered cake featuring edible watercolor flower printings, organic vanilla bean mousse, and soft buttercream design.",
       image: "/cake_cat_celebration.png",
       flavors: ["Vanilla Orchid", "Lavender Lemon", "Almond Buttercream"],
@@ -100,9 +100,9 @@ export default function ProductCatalog() {
     },
     {
       id: "bespoke-studio",
-      name: "Bespoke Consulting Studio",
+      name: "Custom Cake Orders",
       category: "Custom Consultation",
-      price: "From $350",
+      price: "From Rs. 105,000",
       description: "Work directly with Chef Lochi to co-create a sculptural dessert masterpiece tailored strictly to your event's architectural theme.",
       image: "",
       flavors: [],
@@ -212,7 +212,7 @@ export default function ProductCatalog() {
                         href="/book" 
                         className="inline-flex items-center justify-between w-full glass-button py-2.5 px-4 text-xs font-semibold hover:bg-primary-pink hover:text-white transition-all duration-300 shadow-md border-white/50 bg-white/40 dark:bg-white/5"
                       >
-                        Book Session
+                        Message Us
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
@@ -302,9 +302,6 @@ export default function ProductCatalog() {
                       <h3 className="font-serif text-xl font-bold text-accent-chocolate dark:text-white leading-tight">
                         {product.name}
                       </h3>
-                      <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
-                        {product.description}
-                      </p>
                     </div>
 
                     <div className="flex items-center justify-between border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2">
@@ -317,9 +314,9 @@ export default function ProductCatalog() {
                       </span>
                       <Link
                         href={`/shop/${product.id}`}
-                        className="glass-button text-[11px] font-semibold py-1.5 px-3.5 border-white/50 bg-primary-pink/10 hover:bg-primary-pink hover:text-white transition-all cursor-pointer block text-center"
+                        className="glass-button text-[10px] font-bold uppercase tracking-widest py-2 px-4 border-white/50 bg-primary-pink text-white hover:bg-primary-pink-deep transition-all cursor-pointer block text-center shadow-sm"
                       >
-                        Inquire Art
+                        ADD TO CART
                       </Link>
                     </div>
                   </div>

@@ -18,8 +18,8 @@ export const products: Product[] = [
     id: "signature-truffle",
     name: "The Rose Gold Truffle",
     category: "Celebration Cakes",
-    price: "$240",
-    priceNumber: 240,
+    price: "Rs. 72,000",
+    priceNumber: 72000,
     description: "Our signature multi-tiered creation featuring organic rosewater sponge, wild berry compote, and premium white chocolate truffle frosting. Hand-painted with edible gold leaf.",
     image: "/cake_hero_main.png",
     gallery: [
@@ -36,8 +36,8 @@ export const products: Product[] = [
     id: "cupcake-flight",
     name: "Gourmet Cupcake Flight",
     category: "Fine Pastries",
-    price: "$48",
-    priceNumber: 48,
+    price: "Rs. 14,400",
+    priceNumber: 14400,
     description: "A curated flight of six fluffy bakes dressed in velvety gourmet frostings. Includes signature Madagascar vanilla, rich roasted pistachio, and pure salted caramel flavors.",
     image: "/cake_cat_cupcake.png",
     gallery: [
@@ -53,8 +53,8 @@ export const products: Product[] = [
     id: "botanical-tart",
     name: "Botanical Forest Tart",
     category: "Dietary Luxe",
-    price: "$65",
-    priceNumber: 65,
+    price: "Rs. 19,500",
+    priceNumber: 19500,
     description: "Gluten-free and vegan tart loaded with forest berries and organic botanical greens. Uses cold-pressed coconut sugar and almond base.",
     image: "/cake_cat_dietary.png",
     gallery: [
@@ -69,8 +69,8 @@ export const products: Product[] = [
     id: "blossom-vanilla",
     name: "Blossom Vanilla Masterpiece",
     category: "Celebration Cakes",
-    price: "$180",
-    priceNumber: 180,
+    price: "Rs. 54,000",
+    priceNumber: 54000,
     description: "Elegant double-layered cake featuring edible watercolor flower printings, organic vanilla bean mousse, and soft buttercream design.",
     image: "/cake_cat_celebration.png",
     gallery: [

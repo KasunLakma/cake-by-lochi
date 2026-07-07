@@ -40,7 +40,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const deliveryFee = cartSubtotal > 0 ? 15 : 0;
+  const deliveryFee = cartSubtotal > 0 ? 4500 : 0;
   const grandTotal = cartSubtotal + deliveryFee;
 
   const handleCheckout = async (e: React.FormEvent) => {
@@ -288,7 +288,7 @@ export default function CheckoutPage() {
                         <span className="text-xs font-bold uppercase tracking-wider">Koko Buy Now Pay Later (BNPL)</span>
                       </div>
                       <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed font-normal">
-                        Split this transaction into 3 interest-free monthly installments of <strong className="text-yellow-600 dark:text-yellow-400">${(grandTotal / 3).toFixed(2)}</strong>. 
+                        Split this transaction into 3 interest-free monthly installments of <strong className="text-yellow-600 dark:text-yellow-400">Rs. {Math.round(grandTotal / 3).toLocaleString()}</strong>. 
                         Your order is processed instantly and baked for your event immediately.
                       </p>
                     </div>
@@ -307,7 +307,7 @@ export default function CheckoutPage() {
                 "Processing Order..."
               ) : (
                 <>
-                  Complete Order (${grandTotal})
+                  Complete Order (Rs. {grandTotal.toLocaleString()})
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
@@ -340,7 +340,7 @@ export default function CheckoutPage() {
                           Qty: {item.quantity} | Flavor: {item.flavor}
                         </span>
                       </div>
-                      <span className="text-xs font-bold text-accent-chocolate dark:text-white">${item.price * item.quantity}</span>
+                      <span className="text-xs font-bold text-accent-chocolate dark:text-white">Rs. {(item.price * item.quantity).toLocaleString()}</span>
                     </div>
                   ))
                 )}
@@ -350,15 +350,15 @@ export default function CheckoutPage() {
               <div className="border-t border-accent-chocolate/10 dark:border-white/10 pt-4 mt-6 space-y-2">
                 <div className="flex justify-between text-xs text-accent-chocolate-light dark:text-bg-vanilla/80">
                   <span>Cart Subtotal</span>
-                  <span>${cartSubtotal}</span>
+                  <span>Rs. {cartSubtotal.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-xs text-accent-chocolate-light dark:text-bg-vanilla/80">
                   <span>Delivery Charges</span>
-                  <span>${deliveryFee}</span>
+                  <span>Rs. {deliveryFee.toLocaleString()}</span>
                 </div>
                 <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-2 mt-2 flex justify-between font-bold text-sm text-accent-chocolate dark:text-white">
                   <span>Grand Total</span>
-                  <span className="text-primary-pink-deep dark:text-primary-pink">${grandTotal}</span>
+                  <span className="text-primary-pink-deep dark:text-primary-pink">Rs. {grandTotal.toLocaleString()}</span>
                 </div>
               </div>
             </div>

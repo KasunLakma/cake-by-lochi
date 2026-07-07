@@ -216,7 +216,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                     </button>
                   </div>
                   <span className="text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60">
-                    Total: <strong className="text-primary-pink-deep dark:text-primary-pink">${product.priceNumber * quantity}</strong>
+                    Total: <strong className="text-primary-pink-deep dark:text-primary-pink">Rs. {(product.priceNumber * quantity).toLocaleString()}</strong>
                   </span>
                 </div>
               </div>

@@ -1114,7 +1114,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>The Rose Gold Truffle</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>$240</span>
+                    <span>Rs. 72,000</span>
                   </div>
                   <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
                     Organic rosewater sponge with wild berry compote and white chocolate truffle.
@@ -1125,7 +1125,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Blossom Vanilla Masterpiece</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>$180</span>
+                    <span>Rs. 54,000</span>
                   </div>
                   <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
                     Watercolor flower printings, organic vanilla bean mousse, and fresh buttercream.
@@ -1136,7 +1136,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Botanical Forest Creation</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>$165</span>
+                    <span>Rs. 49,500</span>
                   </div>
                   <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
                     Vegan chocolate layers with raspberry puree and biological elderberry frosting.
@@ -1157,7 +1157,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Bespoke Sculptural Design</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>From $350</span>
+                    <span>From Rs. 105,000</span>
                   </div>
                   <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
                     1-on-1 design session, private tasting flight, and custom structural rig.
@@ -1168,7 +1168,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Private Tasting Flight</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>$65</span>
+                    <span>Rs. 19,500</span>
                   </div>
                   <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
                     Curated tasting profile of 5 signature flavors for your wedding or milestone event.
@@ -1179,7 +1179,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Floral & Sugar Rig Setup</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>$120</span>
+                    <span>Rs. 36,000</span>
                   </div>
                   <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
                     On-site installation, stabilization, and decoration of your bespoke cake sculpture.
@@ -1398,7 +1398,7 @@ export default function Home() {
                             Remove
                           </button>
                         </div>
-                        <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">${item.price * item.quantity}</span>
+                        <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">Rs. {(item.price * item.quantity).toLocaleString()}</span>
                       </div>
                     </div>
                   ))
@@ -1409,7 +1409,7 @@ export default function Home() {
               <div className="p-6 border-t border-accent-chocolate/5 flex flex-col gap-4 bg-white/40 dark:bg-white/5 backdrop-blur-sm">
                 <div className="flex justify-between items-baseline font-bold text-sm text-accent-chocolate dark:text-white">
                   <span>Cart Subtotal</span>
-                  <span className="text-base text-primary-pink-deep dark:text-primary-pink">${cartSubtotal}</span>
+                  <span className="text-base text-primary-pink-deep dark:text-primary-pink">Rs. {cartSubtotal.toLocaleString()}</span>
                 </div>
                 <Link 
                   href="/checkout"

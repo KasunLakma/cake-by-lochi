@@ -566,7 +566,7 @@ export default function MegaHeader() {
                           Remove
                         </button>
                       </div>
-                      <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">${item.price * item.quantity}</span>
+                      <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink mt-1">Rs. {(item.price * item.quantity).toLocaleString()}</span>
                     </div>
                   </div>
                 ))
@@ -577,7 +577,7 @@ export default function MegaHeader() {
             <div className="p-6 border-t border-accent-chocolate/5 flex flex-col gap-4 bg-white/40 dark:bg-white/5 backdrop-blur-sm">
               <div className="flex justify-between items-baseline font-bold text-sm text-accent-chocolate dark:text-white">
                 <span>Cart Subtotal</span>
-                <span className="text-base text-primary-pink-deep dark:text-primary-pink">${cartSubtotal}</span>
+                <span className="text-base text-primary-pink-deep dark:text-primary-pink">Rs. {cartSubtotal.toLocaleString()}</span>
               </div>
               <Link 
                 href="/checkout"
