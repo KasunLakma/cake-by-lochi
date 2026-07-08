@@ -3,33 +3,26 @@ import { PrismaNeon } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
 import ws from 'ws';
 
-if (typeof window === 'undefined') {
-  neonConfig.webSocketConstructor = ws;
-}
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
-
-const getPrisma = (): PrismaClient => {
+const createPrismaClient = () => {
   if (typeof window === 'undefined') {
-    if (globalForPrisma.prisma) {
-      return globalForPrisma.prisma;
-    }
+    neonConfig.webSocketConstructor = ws;
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL
     });
     const adapter = new PrismaNeon(pool as any);
-    const prismaClient = new PrismaClient({ adapter: adapter as any });
-    if (process.env.NODE_ENV !== 'production') {
-      globalForPrisma.prisma = prismaClient;
-    }
-    return prismaClient;
+    return new PrismaClient({ adapter: adapter as any });
   }
   return {} as PrismaClient;
 };
 
-export const prisma = new Proxy({} as PrismaClient, {
-  get(target, prop, receiver) {
-    const client = getPrisma();
-    return Reflect.get(client, prop, receiver);
+export const prisma = globalForPrisma.prisma ?? createPrismaClient();
+
+if (process.env.NODE_ENV !== 'production') {
+  if (typeof window === 'undefined') {
+    globalForPrisma.prisma = prisma;
   }
-});
+}
