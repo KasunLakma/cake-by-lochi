@@ -2,9 +2,8 @@ import { PrismaClient } from '@prisma/client'
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
-// Explicitly pass config maps under standard instantiation layout
 const clientOptions = {
-  log: ['error'],
+  log: ['error' as const],
 }
 
 export const prisma =
