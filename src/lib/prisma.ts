@@ -6,11 +6,7 @@ let prismaClient: PrismaClient;
 
 if (typeof window === 'undefined') {
   prismaClient = new PrismaClient({
-    datasources: {
-      db: {
-        url: process.env.DATABASE_URL,
-      },
-    },
+    datasourceUrl: process.env.DATABASE_URL,
   });
 
   // Self-executing dynamic seed wrapper
