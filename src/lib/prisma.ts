@@ -9,28 +9,18 @@ if (typeof window === 'undefined') {
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
-if (globalForPrisma.prisma) {
-  try {
-    delete (globalForPrisma as any).prisma;
-  } catch (e) {}
-}
-
-let prismaClient: PrismaClient;
-
 const getPrisma = (): PrismaClient => {
   if (typeof window === 'undefined') {
     if (globalForPrisma.prisma) {
       return globalForPrisma.prisma;
     }
-    if (!prismaClient) {
-      const pool = new Pool({
-        connectionString: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_vndvBNt1DONg@ep-lingering-salad-a5ipt27d-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-      });
-      const adapter = new PrismaNeon(pool as any);
-      prismaClient = new PrismaClient({ adapter: adapter as any });
-      if (process.env.NODE_ENV !== 'production') {
-        globalForPrisma.prisma = prismaClient;
-      }
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL
+    });
+    const adapter = new PrismaNeon(pool as any);
+    const prismaClient = new PrismaClient({ adapter: adapter as any });
+    if (process.env.NODE_ENV !== 'production') {
+      globalForPrisma.prisma = prismaClient;
     }
     return prismaClient;
   }
