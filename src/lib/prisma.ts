@@ -14,8 +14,8 @@ let prismaClient: PrismaClient;
 if (typeof window === 'undefined') {
   const connectionString = `${process.env.DATABASE_URL}`;
   const pool = new Pool({ connectionString });
-  const adapter = new PrismaNeon(pool);
-  prismaClient = new PrismaClient({ adapter });
+  const adapter = new PrismaNeon(pool as any);
+  prismaClient = new PrismaClient({ adapter: adapter as any });
 } else {
   prismaClient = {} as PrismaClient;
 }
