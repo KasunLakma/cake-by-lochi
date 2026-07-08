@@ -23,10 +23,7 @@ const getPrisma = (): PrismaClient => {
       return globalForPrisma.prisma;
     }
     if (!prismaClient) {
-      const connectionString = process.env.DATABASE_URL || process.env.NEXT_PUBLIC_DATABASE_URL;
-      if (!connectionString) {
-        throw new Error("DATABASE_URL environment variable is missing at runtime!");
-      }
+      const connectionString = process.env.DATABASE_URL || process.env.NEXT_PUBLIC_DATABASE_URL || "postgresql://neondb_owner:npg_vndvBNt1DONg@ep-lingering-salad-a5ipt27d-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
       const pool = new Pool({ connectionString });
       const adapter = new PrismaNeon(pool as any);
       prismaClient = new PrismaClient({ adapter: adapter as any });
