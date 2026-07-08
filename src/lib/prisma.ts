@@ -9,6 +9,12 @@ if (typeof window === 'undefined') {
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
+if (globalForPrisma.prisma) {
+  try {
+    delete (globalForPrisma as any).prisma;
+  } catch (e) {}
+}
+
 let prismaClient: PrismaClient;
 
 const getPrisma = (): PrismaClient => {
