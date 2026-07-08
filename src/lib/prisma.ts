@@ -5,9 +5,7 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 let prismaClient: PrismaClient;
 
 if (typeof window === 'undefined') {
-  prismaClient = new PrismaClient({
-    datasourceUrl: process.env.DATABASE_URL,
-  });
+  prismaClient = new PrismaClient();
 
   // Self-executing dynamic seed wrapper
   (async () => {
