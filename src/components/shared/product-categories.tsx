@@ -23,7 +23,7 @@ interface CategoryItem {
 const categoryData: CategoryItem[] = [
   {
     name: "Lollypops",
-    image: "/cake_cat_cupcake.png",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=600&auto=format&fit=crop",
     href: "/shop?category=lollypops",
     count: "12 Items"
   },

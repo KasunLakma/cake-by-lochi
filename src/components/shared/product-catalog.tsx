@@ -284,7 +284,7 @@ export default function ProductCatalog() {
                 >
                   
                   {/* Image Container with Zoom & Overlay */}
-                  <div className={`relative w-full overflow-hidden ${product.imageAspect}`}>
+                  <div className={`relative w-full overflow-hidden rounded-t-xl ${product.imageAspect || "h-48 sm:h-64"}`}>
                     
                     <motion.div
                       initial={{ scale: 1 }}

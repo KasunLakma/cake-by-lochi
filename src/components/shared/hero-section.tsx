@@ -48,7 +48,7 @@ export default function HeroSection() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative w-full min-h-screen flex items-center justify-center overflow-visible pt-24 pb-32 px-4 md:px-8 lg:px-12 transition-colors duration-500"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-visible pt-[140px] md:pt-[180px] pb-32 px-4 md:px-8 lg:px-12 transition-colors duration-500"
     >
       {/* Collage Grid */}
       <div 
