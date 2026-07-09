@@ -56,7 +56,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       );
       if (existingIndex > -1) {
         const updated = [...prev];
-        updated[existingIndex].quantity += qty;
+        updated[existingIndex].quantity = qty;
         return updated;
       }
       return [...prev, { ...item, quantity: qty }];
@@ -79,6 +79,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setCartItems([]);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('cake_by_lochi_cart');
+      } catch (e) {
+        console.error('Failed to clear cart storage', e);
+      }
+    }
   };
 
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
