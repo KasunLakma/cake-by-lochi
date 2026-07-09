@@ -9,6 +9,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
+    // Ensure default admin exists
+    const defaultAdminEmail = "admin@cakebylochi.com";
+    const defaultAdmin = await prisma.admin.findUnique({
+      where: { email: defaultAdminEmail },
+    });
+    if (!defaultAdmin) {
+      await prisma.admin.create({
+        data: {
+          email: defaultAdminEmail,
+          name: "Lochi Admin",
+        },
+      });
+    }
+
     // Query database using Prisma strictly matching Admin table entry
     const adminRecord = await prisma.admin.findUnique({
       where: { email },
