@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import MegaHeader from "@/components/shared/mega-header";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sacramento } from "next/font/google";
 import { 
@@ -398,7 +397,6 @@ export default function AdminDashboardPage() {
   if (isAdminUser === false) {
     return (
       <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans flex flex-col justify-between">
-        <MegaHeader />
         
         <main className="w-full max-w-md mx-auto px-6 pt-[180px] pb-24 flex-grow z-10 flex flex-col justify-center">
           <div className="glass-card border border-white/30 dark:border-white/10 p-8 rounded-3xl bg-white/20 dark:bg-white/5 shadow-2xl text-left">
@@ -451,7 +449,6 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="relative min-h-screen bg-[#fdfbf7] dark:bg-bg-vanilla-cream transition-colors duration-500 overflow-x-hidden font-sans flex flex-col justify-between">
-      <MegaHeader />
 
       <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[140px] pb-24 flex-grow z-10">
         
