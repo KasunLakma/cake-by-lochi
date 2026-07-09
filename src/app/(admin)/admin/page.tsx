@@ -190,24 +190,22 @@ export default function AdminDashboardPage() {
   const handleImageFile = async (file: File) => {
     setUploadingImage(true);
     setErrorMsg("");
-    const formData = new FormData();
-    formData.append("file", file);
 
     try {
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData
-      });
-      const data = await res.json();
-      if (data.success) {
-        setProductForm(prev => ({ ...prev, image: data.url }));
-        setSuccessMsg("Image uploaded successfully!");
-      } else {
-        throw new Error(data.error || "Upload failed");
-      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setProductForm(prev => ({ ...prev, image: base64String }));
+        setSuccessMsg("Image processed successfully!");
+        setUploadingImage(false);
+      };
+      reader.onerror = () => {
+        setErrorMsg("Failed to read file contents");
+        setUploadingImage(false);
+      };
+      reader.readAsDataURL(file);
     } catch (err: any) {
-      setErrorMsg(err.message || "Failed to upload image asset");
-    } finally {
+      setErrorMsg(err.message || "Failed to process image asset");
       setUploadingImage(false);
     }
   };
