@@ -239,7 +239,7 @@ export default function ProductCatalog() {
                       <h3 className="font-serif text-xl font-bold text-accent-chocolate dark:text-white leading-tight">
                         {product.name}
                       </h3>
-                      <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+                      <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
                         {product.description}
                       </p>
                       

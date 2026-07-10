@@ -157,7 +157,7 @@ export default function MegaHeader() {
                                   <span className="text-xs font-bold text-accent-chocolate dark:text-white group-hover/item:text-primary-pink transition-colors">
                                     {item.name}
                                   </span>
-                                  <span className="text-[9px] text-accent-chocolate-light/75 dark:text-bg-vanilla/60 mt-0.5 leading-relaxed font-normal">
+                                  <span className="text-[9px] text-zinc-800 dark:text-zinc-100 mt-0.5 leading-relaxed font-normal">
                                     {item.desc}
                                   </span>
                                 </Link>
@@ -175,7 +175,7 @@ export default function MegaHeader() {
                           <Sparkle className="w-3.5 h-3.5 text-primary-pink fill-primary-pink/20" />
                           Custom Orders Available
                         </span>
-                        <span className="text-[9px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5 font-normal">
+                        <span className="text-[9px] text-zinc-800 dark:text-zinc-100 mt-0.5 font-normal">
                           Reserve a bespoke design for your celebration
                         </span>
                       </div>

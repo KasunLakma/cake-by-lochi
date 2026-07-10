@@ -117,7 +117,7 @@ export default function ProductDetailPage({ params }: PageProps) {
           <h2 className="font-serif text-3xl font-bold text-accent-chocolate dark:text-white mb-4">
             Creation Not Found
           </h2>
-          <p className="text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/70 mb-8 max-w-md">
+          <p className="text-sm text-zinc-800 dark:text-zinc-100 mb-8 max-w-md">
             The confectionery masterpiece you are seeking does not exist or has been archived.
           </p>
           <Link
@@ -225,7 +225,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 </span>
               </div>
 
-              <p className="text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+              <p className="text-sm text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
                 {product.description}
               </p>
 

@@ -394,7 +394,7 @@ export default function Home() {
                                         {item.name}
                                         <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
                                       </div>
-                                      <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 line-clamp-2 mt-0.5 font-normal">
+                                      <p className="text-xs text-zinc-800 dark:text-zinc-100 line-clamp-2 mt-0.5 font-normal">
                                         {item.desc}
                                       </p>
                                     </Link>
@@ -415,7 +415,7 @@ export default function Home() {
                             <h4 className="mt-4 text-base font-serif font-bold text-accent-chocolate dark:text-white leading-snug">
                               Raspberry Rose Gold Truffle Cake
                             </h4>
-                            <p className="mt-1 text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+                            <p className="mt-1 text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
                               A triple-layered champagne sponge layered with biological wild berries and premium white chocolate frosting.
                             </p>
                           </div>
@@ -1009,7 +1009,7 @@ export default function Home() {
               <h3 className="font-serif text-2xl md:text-3xl font-bold text-accent-chocolate dark:text-white leading-snug">
                 Follow Chef Lochi’s Creative Process
               </h3>
-              <p className="text-xs sm:text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
                 Go behind the scenes of our luxury confections. Watch the mesmerizing details, the paint sweeps, the edible pearls, and the final structural setup. We post daily stories sharing our love for luxury cake sculptures.
               </p>
               
@@ -1116,7 +1116,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span>Rs. 72,000</span>
                   </div>
-                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Organic rosewater sponge with wild berry compote and white chocolate truffle.
                   </p>
                 </div>
@@ -1127,7 +1127,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span>Rs. 54,000</span>
                   </div>
-                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Watercolor flower printings, organic vanilla bean mousse, and fresh buttercream.
                   </p>
                 </div>
@@ -1138,7 +1138,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span>Rs. 49,500</span>
                   </div>
-                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Vegan chocolate layers with raspberry puree and biological elderberry frosting.
                   </p>
                 </div>
@@ -1159,7 +1159,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span>From Rs. 105,000</span>
                   </div>
-                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     1-on-1 design session, private tasting flight, and custom structural rig.
                   </p>
                 </div>
@@ -1170,7 +1170,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span>Rs. 19,500</span>
                   </div>
-                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Curated tasting profile of 5 signature flavors for your wedding or milestone event.
                   </p>
                 </div>
@@ -1181,7 +1181,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span>Rs. 36,000</span>
                   </div>
-                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/70 font-normal">
+                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     On-site installation, stabilization, and decoration of your bespoke cake sculpture.
                   </p>
                 </div>
@@ -1211,7 +1211,7 @@ export default function Home() {
               <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
                 Parisian Macaron Workshop
               </h3>
-              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+              <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
                 Learn the delicate art of piping and baking classical French macarons with biological ganache fillings.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
@@ -1236,7 +1236,7 @@ export default function Home() {
               <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
                 Autumn Tasting Expo
               </h3>
-              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+              <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
                 A private session for engaged couples to taste our signature cakes and sketch design rigs.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
@@ -1261,7 +1261,7 @@ export default function Home() {
               <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
                 Sugar Sculpture Show
               </h3>
-              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+              <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
                 Join us for an exclusive gallery showing of Chef Lochi's latest custom geometric cake installations.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
