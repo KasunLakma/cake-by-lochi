@@ -582,7 +582,7 @@ export default function MegaHeader() {
               <Link 
                 href="/checkout"
                 onClick={() => setIsCartOpen(false)}
-                className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary-pink hover:text-white transition-all duration-300 block text-center"
+                className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-rose-600 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700 transition-all duration-300 block text-center shadow-md cursor-pointer"
               >
                 Proceed to Checkout
                 <ArrowRight className="w-4 h-4 inline" />

@@ -310,7 +310,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                       quantity,
                     });
                   }}
-                  className="glass-button flex-1 py-4 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light transition-all duration-300 text-center shadow-md cursor-pointer"
+                  className="glass-button flex-1 py-4 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-rose-600 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700 transition-all duration-300 text-center shadow-md cursor-pointer"
                 >
                   Buy Now
                 </Link>
