@@ -1115,7 +1115,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>The Rose Gold Truffle</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>Rs. 72,000</span>
+                    <span className="whitespace-nowrap">Rs. 72,000</span>
                   </div>
                   <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Organic rosewater sponge with wild berry compote and white chocolate truffle.
@@ -1126,7 +1126,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Blossom Vanilla Masterpiece</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>Rs. 54,000</span>
+                    <span className="whitespace-nowrap">Rs. 54,000</span>
                   </div>
                   <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Watercolor flower printings, organic vanilla bean mousse, and fresh buttercream.
@@ -1137,7 +1137,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Botanical Forest Creation</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>Rs. 49,500</span>
+                    <span className="whitespace-nowrap">Rs. 49,500</span>
                   </div>
                   <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Vegan chocolate layers with raspberry puree and biological elderberry frosting.
@@ -1158,7 +1158,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Bespoke Sculptural Design</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>From Rs. 105,000</span>
+                    <span className="whitespace-nowrap">From Rs. 105,000</span>
                   </div>
                   <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     1-on-1 design session, private tasting flight, and custom structural rig.
@@ -1169,7 +1169,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Private Tasting Flight</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>Rs. 19,500</span>
+                    <span className="whitespace-nowrap">Rs. 19,500</span>
                   </div>
                   <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     Curated tasting profile of 5 signature flavors for your wedding or milestone event.
@@ -1180,7 +1180,7 @@ export default function Home() {
                   <div className="flex justify-between items-baseline font-bold text-sm sm:text-base text-accent-chocolate dark:text-white">
                     <span>Floral & Sugar Rig Setup</span>
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
-                    <span>Rs. 36,000</span>
+                    <span className="whitespace-nowrap">Rs. 36,000</span>
                   </div>
                   <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
                     On-site installation, stabilization, and decoration of your bespoke cake sculpture.

@@ -217,7 +217,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
               {/* Price Token */}
               <div className="inline-flex items-center rounded-full bg-accent-chocolate/5 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 px-5 py-2">
-                <span className="text-2xl font-serif font-bold text-primary-pink-deep dark:text-primary-pink">
+                <span className="text-2xl font-serif font-bold text-primary-pink-deep dark:text-primary-pink whitespace-nowrap">
                   {product.price}
                 </span>
                 <span className="text-[10px] uppercase font-bold text-accent-chocolate-light dark:text-bg-vanilla/60 tracking-wider ml-3 pl-3 border-l border-accent-chocolate/10 dark:border-white/10">
@@ -280,8 +280,8 @@ export default function ProductDetailPage({ params }: PageProps) {
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
-                  <span className="text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60">
-                    Total: <strong className="text-primary-pink-deep dark:text-primary-pink">Rs. {(product.priceNumber * quantity).toLocaleString()}</strong>
+                  <span className="text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60 whitespace-nowrap">
+                    Total: <strong className="text-primary-pink-deep dark:text-primary-pink whitespace-nowrap">Rs. {(product.priceNumber * quantity).toLocaleString()}</strong>
                   </span>
                 </div>
               </div>

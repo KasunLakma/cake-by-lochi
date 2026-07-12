@@ -314,7 +314,7 @@ export default function ProductCatalog() {
                     )}
 
                     {/* Price Tag Overlay */}
-                    <span className="absolute top-4 right-4 z-10 rounded-full bg-accent-chocolate/80 dark:bg-bg-vanilla-cream/90 px-3.5 py-1 text-xs font-bold text-white dark:text-accent-chocolate shadow-sm backdrop-blur-md border border-white/10">
+                    <span className="absolute top-4 right-4 z-10 rounded-full bg-accent-chocolate/80 dark:bg-bg-vanilla-cream/90 px-3.5 py-1 text-xs font-bold text-white dark:text-accent-chocolate shadow-sm backdrop-blur-md border border-white/10 whitespace-nowrap">
                       {product.price}
                     </span>
 
