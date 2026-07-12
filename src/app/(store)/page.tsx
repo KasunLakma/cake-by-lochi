@@ -1315,6 +1315,12 @@ export default function Home() {
             </Link>
           </div>
           
+          <div className="flex gap-6 text-[9px] font-bold tracking-widest text-accent-chocolate-light/75 dark:text-zinc-100/60 uppercase">
+            <Link href="/faq" className="hover:text-primary-pink dark:hover:text-pink-400 transition-colors">FAQ</Link>
+            <Link href="/policies" className="hover:text-primary-pink dark:hover:text-pink-400 transition-colors">Policies</Link>
+            <Link href="/terms" className="hover:text-primary-pink dark:hover:text-pink-400 transition-colors">Terms of Service</Link>
+          </div>
+
           <div className="text-[9px] text-accent-chocolate-light/60 dark:text-zinc-100/50 tracking-wider">
             &copy; {new Date().getFullYear()} Cake By Lochi. All Rights Reserved. Crafted with Parisienne Elegance.
           </div>

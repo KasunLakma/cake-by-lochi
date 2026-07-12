@@ -22,40 +22,28 @@ interface CategoryItem {
 
 const categoryData: CategoryItem[] = [
   {
-    name: "Lollypops",
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=600&auto=format&fit=crop",
-    href: "/shop?category=lollypops",
+    name: "Luxury Cupcakes",
+    image: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=600&auto=format&fit=crop",
+    href: "/shop?category=luxury-cupcakes",
     count: "12 Items"
   },
   {
-    name: "Wedding Cakes",
+    name: "Celebration Cakes",
     image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?q=80&w=600&auto=format&fit=crop",
-    href: "/shop?category=wedding-cakes",
+    href: "/shop?category=celebration-cakes",
     count: "8 Items"
   },
   {
-    name: "Coffee & Chocolate",
+    name: "Signature Desserts",
     image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600&auto=format&fit=crop",
-    href: "/shop?category=coffee-chocolate",
+    href: "/shop?category=signature-desserts",
     count: "15 Items"
   },
   {
-    name: "Ice Cream",
-    image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?q=80&w=600&auto=format&fit=crop",
-    href: "/shop?category=ice-cream",
-    count: "10 Items"
-  },
-  {
-    name: "Macarons",
+    name: "Artisan Pastries",
     image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?q=80&w=600&auto=format&fit=crop",
-    href: "/shop?category=macarons",
+    href: "/shop?category=artisan-pastries",
     count: "24 Items"
-  },
-  {
-    name: "Just Treats",
-    image: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=600&auto=format&fit=crop",
-    href: "/shop?category=just-treats",
-    count: "18 Items"
   }
 ];
 

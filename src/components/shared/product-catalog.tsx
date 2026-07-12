@@ -79,26 +79,17 @@ export default function ProductCatalog() {
       const slug = categoryParam.toLowerCase();
       if (slug === "celebration-cakes" || slug === "wedding-cakes") {
         setActiveCategory("Celebration Cakes");
-      } else if (
-        slug === "fine-pastries" ||
-        slug === "cupcakes" ||
-        slug === "macarons" ||
-        slug === "lollypops" ||
-        slug === "just-treats" ||
-        slug === "ice-cream"
-      ) {
-        setActiveCategory("Fine Pastries");
-      } else if (
-        slug === "dietary-luxe" ||
-        slug === "organic-botanical" ||
-        slug === "coffee-chocolate"
-      ) {
-        setActiveCategory("Dietary Luxe");
+      } else if (slug === "luxury-cupcakes" || slug === "cupcakes") {
+        setActiveCategory("Luxury Cupcakes");
+      } else if (slug === "artisan-pastries" || slug === "pastries" || slug === "macarons") {
+        setActiveCategory("Artisan Pastries");
+      } else if (slug === "signature-desserts" || slug === "desserts" || slug === "coffee-chocolate") {
+        setActiveCategory("Signature Desserts");
       }
     }
   }, [categoryParam]);
 
-  const categoriesList = ["All", "Celebration Cakes", "Fine Pastries", "Dietary Luxe"];
+  const categoriesList = ["All", "Celebration Cakes", "Luxury Cupcakes", "Artisan Pastries", "Signature Desserts"];
 
   const products: Product[] = [
     {
@@ -116,7 +107,7 @@ export default function ProductCatalog() {
     {
       id: "cupcake-flight",
       name: "Gourmet Cupcake Flight",
-      category: "Fine Pastries",
+      category: "Luxury Cupcakes",
       price: "Rs. 14,400",
       description: "A curated flight of six fluffy bakes dressed in velvety gourmet frostings.",
       image: "/cake_cat_cupcake.png",
@@ -128,7 +119,7 @@ export default function ProductCatalog() {
     {
       id: "botanical-tart",
       name: "Botanical Forest Tart",
-      category: "Dietary Luxe",
+      category: "Artisan Pastries",
       price: "Rs. 19,500",
       description: "Gluten-free and vegan tart loaded with forest berries and organic botanical greens.",
       image: "/cake_cat_dietary.png",
@@ -139,7 +130,7 @@ export default function ProductCatalog() {
     {
       id: "blossom-vanilla",
       name: "Blossom Vanilla Masterpiece",
-      category: "Celebration Cakes",
+      category: "Signature Desserts",
       price: "Rs. 54,000",
       description: "Elegant double-layered cake featuring edible watercolor flower printings, organic vanilla bean mousse, and soft buttercream design.",
       image: "/cake_cat_celebration.png",

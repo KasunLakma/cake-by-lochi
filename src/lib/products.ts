@@ -35,7 +35,7 @@ export const products: Product[] = [
   {
     id: "cupcake-flight",
     name: "Gourmet Cupcake Flight",
-    category: "Fine Pastries",
+    category: "Luxury Cupcakes",
     price: "Rs. 14,400",
     priceNumber: 14400,
     description: "A curated flight of six fluffy bakes dressed in velvety gourmet frostings. Includes signature Madagascar vanilla, rich roasted pistachio, and pure salted caramel flavors.",
@@ -52,7 +52,7 @@ export const products: Product[] = [
   {
     id: "botanical-tart",
     name: "Botanical Forest Tart",
-    category: "Dietary Luxe",
+    category: "Artisan Pastries",
     price: "Rs. 19,500",
     priceNumber: 19500,
     description: "Gluten-free and vegan tart loaded with forest berries and organic botanical greens. Uses cold-pressed coconut sugar and almond base.",
@@ -68,7 +68,7 @@ export const products: Product[] = [
   {
     id: "blossom-vanilla",
     name: "Blossom Vanilla Masterpiece",
-    category: "Celebration Cakes",
+    category: "Signature Desserts",
     price: "Rs. 54,000",
     priceNumber: 54000,
     description: "Elegant double-layered cake featuring edible watercolor flower printings, organic vanilla bean mousse, and soft buttercream design.",
