@@ -1282,7 +1282,7 @@ export default function Home() {
 
         {/* Footer Section */}
         <footer className="relative z-30 w-full bg-white dark:bg-bg-vanilla-cream py-12 border-t border-accent-chocolate/5 flex flex-col items-center gap-6">
-          <div className="max-w-4xl w-full px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-[10px] font-bold tracking-[0.2em] text-accent-chocolate-light dark:text-bg-vanilla/80 uppercase">
+          <div className="max-w-4xl w-full px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-[10px] font-bold tracking-[0.2em] text-accent-chocolate-light dark:text-zinc-100 uppercase">
             {/* Phone */}
             <div className="flex items-center gap-2.5">
               <svg className="w-4 h-4 text-primary-pink stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1294,7 +1294,7 @@ export default function Home() {
             <span className="hidden sm:block h-4 w-px bg-accent-chocolate/10 dark:bg-white/10" />
 
             {/* Facebook */}
-            <Link href="https://facebook.com" className="flex items-center gap-2.5 hover:text-primary-pink transition-colors">
+            <Link href="https://facebook.com" className="flex items-center gap-2.5 hover:text-primary-pink dark:hover:text-pink-400 transition-colors">
               <svg className="w-4 h-4 text-primary-pink stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
               </svg>
@@ -1304,7 +1304,7 @@ export default function Home() {
             <span className="hidden sm:block h-4 w-px bg-accent-chocolate/10 dark:bg-white/10" />
 
             {/* Instagram */}
-            <Link href="https://instagram.com" className="flex items-center gap-2.5 hover:text-primary-pink transition-colors">
+            <Link href="https://instagram.com" className="flex items-center gap-2.5 hover:text-primary-pink dark:hover:text-pink-400 transition-colors">
               <svg className="w-4 h-4 text-primary-pink stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -1314,7 +1314,7 @@ export default function Home() {
             </Link>
           </div>
           
-          <div className="text-[9px] text-accent-chocolate-light/60 dark:text-bg-vanilla/40 tracking-wider">
+          <div className="text-[9px] text-accent-chocolate-light/60 dark:text-zinc-100/50 tracking-wider">
             &copy; {new Date().getFullYear()} Cake By Lochi. All Rights Reserved. Crafted with Parisienne Elegance.
           </div>
         </footer>
