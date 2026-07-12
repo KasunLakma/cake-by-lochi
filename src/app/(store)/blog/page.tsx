@@ -7,6 +7,7 @@ import { Sacramento } from "next/font/google";
 import { ArrowRight } from "lucide-react";
 import MegaHeader from "@/components/shared/mega-header";
 import { blogPosts } from "@/lib/blog";
+import { formatEventDate } from "@/lib/dates";
 
 const sacramento = Sacramento({
   weight: "400",
@@ -45,7 +46,7 @@ export default function BlogPage() {
                     quality={80}
                   />
                 </div>
-                <span className="text-[10px] font-bold text-primary-pink-deep dark:text-primary-pink">{post.date}</span>
+                <span className="text-[10px] font-bold text-primary-pink-deep dark:text-primary-pink">{formatEventDate(post.date)}</span>
                 <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white leading-snug">{post.title}</h3>
                 <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">{post.excerpt}</p>
                 <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-2">

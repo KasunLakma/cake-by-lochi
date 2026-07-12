@@ -17,6 +17,7 @@ import {
 import { Sacramento } from "next/font/google";
 import ProductCategories from "@/components/shared/product-categories";
 import { useCart } from "@/context/cart-context";
+import { formatEventDate } from "@/lib/dates";
 
 const sacramento = Sacramento({
   weight: "400",
@@ -1215,10 +1216,10 @@ export default function Home() {
                 Learn the delicate art of piping and baking classical French macarons with biological ganache fillings.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
-                <span>July 15, 2026</span>
+                <span>{formatEventDate("July 15, 2026")}</span>
                 <button 
                   onClick={() => {
-                    setActiveEvent({ title: "Parisian Macaron Workshop", date: "July 15, 2026", type: "WORKSHOP" });
+                    setActiveEvent({ title: "Parisian Macaron Workshop", date: formatEventDate("July 15, 2026"), type: "WORKSHOP" });
                     setBookingModal("BOOK");
                   }}
                   className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1 cursor-pointer bg-transparent border-none font-semibold text-xs"
@@ -1240,10 +1241,10 @@ export default function Home() {
                 A private session for engaged couples to taste our signature cakes and sketch design rigs.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
-                <span>August 08, 2026</span>
+                <span>{formatEventDate("August 08, 2026")}</span>
                 <button 
                   onClick={() => {
-                    setActiveEvent({ title: "Autumn Tasting Expo", date: "August 08, 2026", type: "INVITATION" });
+                    setActiveEvent({ title: "Autumn Tasting Expo", date: formatEventDate("August 08, 2026"), type: "INVITATION" });
                     setBookingModal("REQUEST");
                   }}
                   className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1 cursor-pointer bg-transparent border-none font-semibold text-xs"
@@ -1265,10 +1266,10 @@ export default function Home() {
                 Join us for an exclusive gallery showing of Chef Lochi's latest custom geometric cake installations.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
-                <span>Sept 20, 2026</span>
+                <span>{formatEventDate("Sept 20, 2026")}</span>
                 <button 
                   onClick={() => {
-                    setActiveEvent({ title: "Sugar Sculpture Show", date: "Sept 20, 2026", type: "TICKET" });
+                    setActiveEvent({ title: "Sugar Sculpture Show", date: formatEventDate("Sept 20, 2026"), type: "TICKET" });
                     setBookingModal("TICKETS");
                   }}
                   className="text-primary-pink hover:text-primary-pink-deep flex items-center gap-1 cursor-pointer bg-transparent border-none font-semibold text-xs"
@@ -1498,7 +1499,7 @@ export default function Home() {
                   <div className="relative border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-amber-500/0 rounded-2xl p-6 text-center shadow-inner overflow-hidden before:content-[''] before:absolute before:-left-3 before:top-1/2 before:-translate-y-1/2 before:w-6 before:h-6 before:rounded-full before:bg-[#fdfbf7] dark:before:bg-bg-vanilla-cream before:border-r before:border-amber-500/20 after:content-[''] after:absolute after:-right-3 after:top-1/2 after:-translate-y-1/2 after:w-6 after:h-6 after:rounded-full after:bg-[#fdfbf7] dark:after:bg-bg-vanilla-cream after:border-l after:border-amber-500/20">
                     <span className="text-[9px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400 block mb-2">Official Entry Pass</span>
                     <h4 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white uppercase leading-snug">{activeEvent.title}</h4>
-                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-1 block font-normal">{activeEvent.date}</span>
+                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-1 block font-normal">{formatEventDate(activeEvent.date)}</span>
                     
                     <div className="w-full border-t border-dashed border-amber-500/20 my-4" />
                     

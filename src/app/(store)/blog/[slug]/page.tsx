@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import MegaHeader from "@/components/shared/mega-header";
 import { blogPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
+import { formatEventDate } from "@/lib/dates";
 
 const sacramento = Sacramento({
   weight: "400",
@@ -41,7 +42,7 @@ export default async function BlogDetailPage({ params }: BlogDetailProps) {
 
           <div className="space-y-4">
             <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink uppercase tracking-widest">
-              {post.date}
+              {formatEventDate(post.date)}
             </span>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-accent-chocolate dark:text-white uppercase leading-tight">
               {post.title}
