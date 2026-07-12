@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "PRISMA_DISABLE_WITHOUT_NODE_ENV_WARNING=1 prisma generate && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
@@ -35,6 +36,7 @@
     "eslint-config-next": "16.2.9",
     "prisma": "6.19.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.10"
   }
 }

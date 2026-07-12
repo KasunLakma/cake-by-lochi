@@ -85,12 +85,7 @@ export default function DashboardPage() {
   const [authError, setAuthError] = useState("");
   const [simulatingId, setSimulatingId] = useState<string | null>(null);
 
-  // 1. Fetch current session on mount
-  useEffect(() => {
-    checkSession();
-  }, []);
-
-  const checkSession = async () => {
+  async function checkSession() {
     try {
       const res = await fetch("/api/auth/session");
       const data = await res.json();
@@ -103,9 +98,15 @@ export default function DashboardPage() {
     } catch (e) {
       setLoading(false);
     }
-  };
+  }
 
-  const fetchOrders = async () => {
+  // 1. Fetch current session on mount
+  useEffect(() => {
+    checkSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function fetchOrders() {
     try {
       const res = await fetch("/api/dashboard/orders");
       const data = await res.json();
@@ -120,7 +121,7 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

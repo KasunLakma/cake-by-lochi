@@ -115,11 +115,7 @@ export default function AdminDashboardPage() {
   const [loginError, setLoginError] = useState("");
   const [submittingLogin, setSubmittingLogin] = useState(false);
 
-  useEffect(() => {
-    checkAdminAuth();
-  }, []);
-
-  const checkAdminAuth = async () => {
+  async function checkAdminAuth() {
     try {
       const res = await fetch("/api/auth/session");
       const data = await res.json();
@@ -134,7 +130,12 @@ export default function AdminDashboardPage() {
       setIsAdminUser(false);
       setLoading(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    checkAdminAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleAdminLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -161,7 +162,7 @@ export default function AdminDashboardPage() {
     }
   };
 
-  const fetchAdminData = async () => {
+  async function fetchAdminData() {
     try {
       setErrorMsg("");
       const res = await fetch("/api/admin/analytics");
@@ -184,7 +185,7 @@ export default function AdminDashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   // Image upload
   const handleImageFile = async (file: File) => {
