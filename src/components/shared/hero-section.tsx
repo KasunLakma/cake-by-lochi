@@ -114,7 +114,7 @@ export default function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] max-w-3xl text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] max-w-3xl text-center mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
         >
           {words.map((word, wordIdx) => (
             <span key={wordIdx} className="inline-block whitespace-nowrap mr-3 md:mr-4">

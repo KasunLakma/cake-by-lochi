@@ -818,7 +818,7 @@ export default function Home() {
               </div>
 
               {/* Main Typography Title */}
-              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] text-center mx-auto">
                 {"Dessert is a Beautiful Cake, Handcrafted with Love and a Touch of Sri Lankan Flavor!"
                   .split("")
                   .map((char, index) => (
