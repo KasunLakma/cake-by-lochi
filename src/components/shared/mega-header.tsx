@@ -102,10 +102,10 @@ export default function MegaHeader() {
       </div>
 
       {/* Main Content Layout Container */}
-      <div className="mx-auto w-full max-w-7xl px-8 py-5 relative flex items-center justify-between z-20">
+      <div className="mx-auto w-full max-w-7xl px-8 py-5 relative flex items-center justify-between gap-4 z-20">
         
         {/* Desktop Navigation Split Grid */}
-        <div className="hidden md:grid grid-cols-3 items-center w-full relative">
+        <div className="hidden md:grid grid-cols-3 items-center w-full relative gap-4 lg:gap-8">
           
           {/* Left Side Links */}
           <div className="flex items-center gap-8 justify-start flex-row -mt-4">
@@ -199,15 +199,15 @@ export default function MegaHeader() {
           </div>
 
           {/* Centered Brand Identity (Pure SVG Logo & Custom Typography) */}
-          <div className="flex justify-center items-center">
-            <Link href="/" className="group flex flex-col items-center select-none z-50">
+          <div className="flex justify-center items-center flex-shrink-0">
+            <Link href="/" className="group flex flex-col items-center select-none z-50 flex-shrink-0">
               {/* Arched peripheral subtext */}
               <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-bg-vanilla/65 mb-1 transition-colors">
                 Baked with Style
               </span>
               
               {/* Vector Rolling Pin & Floral Bundle */}
-              <div className="relative w-48 h-6 flex items-center justify-center">
+              <div className="relative w-48 h-6 flex items-center justify-center flex-shrink-0">
                 
                 {/* Floral Bundle */}
                 <svg className="absolute -top-3.5 w-36 h-7 z-10 overflow-visible pointer-events-none" viewBox="0 0 100 20">
@@ -339,9 +339,9 @@ export default function MegaHeader() {
         </div>
 
         {/* Mobile Layout */}
-        <div className="flex md:hidden items-center justify-between w-full z-20">
+        <div className="flex md:hidden items-center justify-between w-full z-20 gap-4">
           {/* Logo */}
-          <Link href="/" className="group flex flex-col items-center">
+          <Link href="/" className="group flex flex-col items-center flex-shrink-0">
             <span className={`${sacramento.className} text-xl font-bold text-accent-chocolate dark:text-white`}>
               Cake By Lochi
             </span>
