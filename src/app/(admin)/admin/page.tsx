@@ -406,14 +406,14 @@ export default function AdminDashboardPage() {
               <h1 className="font-serif text-2xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase mt-1">
                 Workshop Access
               </h1>
-              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/60 mt-2 font-normal leading-relaxed">
+              <p className="text-xs text-accent-chocolate-light dark:text-slate-300 mt-2 font-normal leading-relaxed">
                 Please authenticate using your verified administrator credentials.
               </p>
             </div>
 
             <form onSubmit={handleAdminLoginSubmit} className="space-y-4">
               <div>
-                <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-2">
                   Admin Email Address
                 </label>
                 <input
@@ -520,7 +520,7 @@ export default function AdminDashboardPage() {
                           transition={{ delay: idx * 0.05, duration: 0.5 }}
                           className="w-full bg-gradient-to-t from-primary-pink-deep to-primary-pink dark:from-primary-pink dark:to-primary-pink-soft rounded-t-lg shadow-md"
                         />
-                        <span className="text-[9px] font-bold text-accent-chocolate-light/80 dark:text-bg-vanilla/60 font-sans tracking-wide">
+                        <span className="text-[9px] font-bold text-accent-chocolate-light/80 dark:text-slate-300 font-sans tracking-wide">
                           {data.date}
                         </span>
                       </div>
@@ -544,7 +544,7 @@ export default function AdminDashboardPage() {
                 
                 <form onSubmit={handleProductSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                       Artisan Name
                     </label>
                     <input
@@ -559,7 +559,7 @@ export default function AdminDashboardPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                         Category Classification
                       </label>
                       <select
@@ -573,7 +573,7 @@ export default function AdminDashboardPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                         Price Value Tag (LKR)
                       </label>
                       <input
@@ -588,7 +588,7 @@ export default function AdminDashboardPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                       Custom Flavor Suite (Comma Separated)
                     </label>
                     <input
@@ -601,7 +601,7 @@ export default function AdminDashboardPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                       Artisan Description
                     </label>
                     <textarea
@@ -616,7 +616,7 @@ export default function AdminDashboardPage() {
 
                   {/* Drag-and-drop Image Upload Zone */}
                   <div>
-                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                       Visual Asset Image
                     </label>
                     
@@ -655,7 +655,7 @@ export default function AdminDashboardPage() {
                         />
                         <label htmlFor="file-upload-input" className="flex flex-col items-center gap-2 cursor-pointer">
                           <UploadCloud className="w-8 h-8 text-accent-chocolate-light/40" />
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 text-center">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 text-center">
                             {uploadingImage ? "Uploading Asset..." : "Drag & Drop Image or Click to Browse"}
                           </span>
                         </label>
@@ -694,7 +694,7 @@ export default function AdminDashboardPage() {
 
                 <table className="w-full text-xs text-left text-accent-chocolate dark:text-white font-medium border-collapse">
                   <thead>
-                    <tr className="border-b border-accent-chocolate/5 dark:border-white/5 text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60">
+                    <tr className="border-b border-accent-chocolate/5 dark:border-white/5 text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300">
                       <th className="pb-3">Product Name</th>
                       <th className="pb-3">Category</th>
                       <th className="pb-3">Price tag</th>
@@ -754,7 +754,7 @@ export default function AdminDashboardPage() {
                     >
                       <div className="space-y-3 text-left">
                         <div className="flex flex-wrap gap-2 items-center">
-                          <span className="text-[10px] font-bold text-accent-chocolate-light dark:text-bg-vanilla/60 font-sans">
+                          <span className="text-[10px] font-bold text-accent-chocolate-light dark:text-slate-300 font-sans">
                             Commission #{order.id.slice(0, 8).toUpperCase()}
                           </span>
                           <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded ${
@@ -767,10 +767,10 @@ export default function AdminDashboardPage() {
                         </div>
 
                         <div>
-                          <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80">
+                          <p className="text-xs text-accent-chocolate-light dark:text-slate-200">
                             Buyer: <strong className="text-accent-chocolate dark:text-white">{order.user.email}</strong>
                           </p>
-                          <p className="text-[11px] text-accent-chocolate-light/60 dark:text-bg-vanilla-cream/50 font-sans mt-0.5">
+                          <p className="text-[11px] text-accent-chocolate-light/60 dark:text-slate-400 font-sans mt-0.5">
                             Created: {new Date(order.createdAt).toLocaleString()}
                           </p>
                         </div>
@@ -819,13 +819,13 @@ export default function AdminDashboardPage() {
                 <h2 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white uppercase mb-4">
                   Add Administrator
                 </h2>
-                <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/60 mb-6 font-normal leading-relaxed">
+                <p className="text-xs text-accent-chocolate-light dark:text-slate-300 mb-6 font-normal leading-relaxed">
                   Enter a secondary user email below to instantly whitelist their profile with master administrative workspace commands.
                 </p>
 
                 <form onSubmit={handleRegisterAdmin} className="space-y-4">
                   <div>
-                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-2">
                       Administrator Email Address
                     </label>
                     <input
@@ -857,7 +857,7 @@ export default function AdminDashboardPage() {
 
                 <table className="w-full text-xs text-left text-accent-chocolate dark:text-white font-medium border-collapse">
                   <thead>
-                    <tr className="border-b border-accent-chocolate/5 dark:border-white/5 text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60">
+                    <tr className="border-b border-accent-chocolate/5 dark:border-white/5 text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300">
                       <th className="pb-3">Admin Email</th>
                       <th className="pb-3">Permissions Status</th>
                       <th className="pb-3 text-right">Actions</th>
@@ -881,7 +881,7 @@ export default function AdminDashboardPage() {
                               Revoke Access
                             </button>
                           ) : (
-                            <span className="text-[9px] font-bold uppercase tracking-widest text-accent-chocolate-light/40 dark:text-bg-vanilla/40">
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-accent-chocolate-light/40 dark:text-slate-400">
                               System Owner
                             </span>
                           )}
@@ -915,7 +915,7 @@ function TabButton({ active, label, icon, onClick }: TabButtonProps) {
       className={`px-4 py-2.5 rounded-full border text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 cursor-pointer transition-all duration-300 shadow-sm ${
         active 
           ? "bg-accent-chocolate border-accent-chocolate text-white dark:bg-primary-pink dark:border-primary-pink dark:text-white" 
-          : "bg-white/40 border-accent-chocolate/10 text-accent-chocolate hover:bg-white/80 dark:bg-white/5 dark:border-white/10 dark:text-bg-vanilla-cream dark:hover:bg-white/10"
+          : "bg-white/40 border-accent-chocolate/10 text-accent-chocolate hover:bg-white/80 dark:bg-white/5 dark:border-white/10 dark:text-slate-200 dark:hover:bg-white/10"
       }`}
     >
       {icon}
@@ -934,7 +934,7 @@ function MetricCard({ label, value, icon }: MetricCardProps) {
   return (
     <div className="glass-card border border-white/30 dark:border-white/10 p-5 rounded-2xl bg-white/20 dark:bg-white/5 shadow-md flex justify-between items-center">
       <div className="space-y-1">
-        <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60">{label}</span>
+        <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300">{label}</span>
         <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">{value}</h3>
       </div>
       <div className="p-2 bg-primary-pink/10 rounded-full text-primary-pink">

@@ -117,7 +117,7 @@ export default function ProductDetailPage({ params }: PageProps) {
           <h2 className="font-serif text-3xl font-bold text-accent-chocolate dark:text-white mb-4">
             Creation Not Found
           </h2>
-          <p className="text-sm text-zinc-800 dark:text-zinc-100 mb-8 max-w-md">
+          <p className="text-sm text-neutral-900 dark:text-slate-100 mb-8 max-w-md font-semibold">
             The confectionery masterpiece you are seeking does not exist or has been archived.
           </p>
           <Link
@@ -140,7 +140,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         {/* Back Link */}
         <Link 
           href="/shop" 
-          className="inline-flex items-center gap-2 text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/70 hover:text-primary-pink transition-colors mb-8 cursor-pointer group"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-accent-chocolate-light dark:text-slate-300 hover:text-primary-pink transition-colors mb-8 cursor-pointer group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
           Back to Catalog
@@ -220,12 +220,12 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <span className="text-2xl font-serif font-bold text-primary-pink-deep dark:text-primary-pink whitespace-nowrap">
                   {product.price}
                 </span>
-                <span className="text-[10px] uppercase font-bold text-accent-chocolate-light dark:text-bg-vanilla/60 tracking-wider ml-3 pl-3 border-l border-accent-chocolate/10 dark:border-white/10">
+                <span className="text-[10px] uppercase font-bold text-accent-chocolate-light dark:text-slate-300 tracking-wider ml-3 pl-3 border-l border-accent-chocolate/10 dark:border-white/10">
                   Tax Included
                 </span>
               </div>
 
-              <p className="text-sm text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
+              <p className="text-sm text-neutral-900 dark:text-slate-100 leading-relaxed font-semibold">
                 {product.description}
               </p>
 
@@ -244,7 +244,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                         className={`text-xs px-4 py-2 rounded-full border transition-all cursor-pointer font-medium ${
                           selectedFlavor === flavor
                             ? "bg-primary-pink border-primary-pink text-white font-semibold shadow-sm"
-                            : "bg-white/40 border-accent-chocolate/10 text-accent-chocolate hover:bg-white/80 dark:bg-white/5 dark:border-white/10 dark:text-bg-vanilla dark:hover:bg-white/10"
+                            : "bg-white/40 border-accent-chocolate/10 text-accent-chocolate hover:bg-white/80 dark:bg-white/5 dark:border-white/10 dark:text-slate-200 dark:hover:bg-white/10"
                         }`}
                       >
                         {flavor}
@@ -280,7 +280,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
-                  <span className="text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60 whitespace-nowrap">
+                  <span className="text-xs font-semibold text-accent-chocolate-light dark:text-slate-300 whitespace-nowrap">
                     Total: <strong className="text-primary-pink-deep dark:text-primary-pink whitespace-nowrap">Rs. {(product.priceNumber * quantity).toLocaleString()}</strong>
                   </span>
                 </div>
@@ -310,7 +310,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                       quantity,
                     });
                   }}
-                  className="glass-button flex-1 py-4 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-rose-600 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700 transition-all duration-300 text-center shadow-md cursor-pointer"
+                  className="glass-button flex-1 py-4 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-white dark:border-white dark:!text-neutral-950 dark:hover:bg-zinc-200 transition-all duration-300 text-center shadow-md cursor-pointer"
                 >
                   Buy Now
                 </Link>

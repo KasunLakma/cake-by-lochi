@@ -106,7 +106,7 @@ export default function Testimonials() {
         </div>
 
         {/* Review Text */}
-        <p className="text-xs text-accent-chocolate dark:text-bg-vanilla leading-relaxed font-normal italic">
+        <p className="text-xs text-accent-chocolate dark:text-slate-100 leading-relaxed font-normal italic">
           "{t.content}"
         </p>
       </div>
@@ -120,7 +120,7 @@ export default function Testimonials() {
           <h4 className="text-xs font-bold text-accent-chocolate dark:text-white leading-tight">
             {t.name}
           </h4>
-          <span className="text-[10px] text-accent-chocolate-light dark:text-bg-vanilla-cream/60">
+          <span className="text-[10px] text-accent-chocolate-light dark:text-slate-300">
             {t.role}
           </span>
         </div>
@@ -149,7 +149,7 @@ export default function Testimonials() {
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-accent-chocolate dark:text-white mt-3 leading-tight">
               Loved by Connoisseurs
             </h2>
-            <p className="text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/70 mt-4 leading-relaxed font-normal max-w-xl">
+            <p className="text-sm text-accent-chocolate-light dark:text-slate-200 mt-4 leading-relaxed font-normal max-w-xl">
               Discover feedback from weddings, art openings, and bespoke birthday events celebrating Lochi's custom sculpture cakes.
             </p>
           </div>

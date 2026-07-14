@@ -58,7 +58,7 @@ export default function PoliciesPage() {
                   <ShieldCheck className="w-5 h-5 text-primary-pink-deep dark:text-primary-pink shrink-0 mt-0.5" />
                   <span>{policy.title}</span>
                 </h3>
-                <p className="text-xs sm:text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed mt-3 pl-8 font-normal">
+                <p className="text-xs sm:text-sm text-accent-chocolate-light dark:text-slate-300 leading-relaxed mt-3 pl-8 font-normal">
                   {policy.content}
                 </p>
               </div>

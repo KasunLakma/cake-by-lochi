@@ -178,7 +178,7 @@ export default function ProductCatalog() {
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-accent-chocolate dark:text-white mt-3 leading-tight">
             Our Handcrafted Creations
           </h2>
-          <p className="text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/70 mt-4 leading-relaxed font-normal">
+          <p className="text-sm text-accent-chocolate-light dark:text-slate-200 mt-4 leading-relaxed font-normal">
             Explore our curated selection of bespoke cakes and pastries, dynamically categorized and customized for the sweet tooth connoisseur.
           </p>
         </div>
@@ -192,7 +192,7 @@ export default function ProductCatalog() {
               className={`text-xs px-5 py-2.5 rounded-full font-semibold border transition-all duration-300 cursor-pointer ${
                 activeCategory === cat
                   ? "bg-accent-chocolate border-accent-chocolate text-white dark:bg-primary-pink dark:border-primary-pink dark:text-white"
-                  : "bg-white/40 border-accent-chocolate/10 text-accent-chocolate hover:bg-white/80 dark:bg-white/5 dark:border-white/10 dark:text-bg-vanilla-cream dark:hover:bg-white/10"
+                  : "bg-white/40 border-accent-chocolate/10 text-accent-chocolate hover:bg-white/80 dark:bg-white/5 dark:border-white/10 dark:text-slate-200 dark:hover:bg-white/10"
               }`}
             >
               {cat}
@@ -230,20 +230,20 @@ export default function ProductCatalog() {
                       <h3 className="font-serif text-xl font-bold text-accent-chocolate dark:text-white leading-tight">
                         {product.name}
                       </h3>
-                      <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
+                      <p className="text-xs text-neutral-900 dark:text-slate-100 font-semibold leading-relaxed">
                         {product.description}
                       </p>
                       
                       <ul className="space-y-2 mt-4">
-                        <li className="flex items-center gap-2 text-[11px] text-accent-chocolate dark:text-bg-vanilla-cream font-medium">
+                        <li className="flex items-center gap-2 text-[11px] text-accent-chocolate dark:text-slate-200 font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary-pink" />
                           1-on-1 Sketching Session
                         </li>
-                        <li className="flex items-center gap-2 text-[11px] text-accent-chocolate dark:text-bg-vanilla-cream font-medium">
+                        <li className="flex items-center gap-2 text-[11px] text-accent-chocolate dark:text-slate-200 font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary-pink" />
                           Private Tasting Flight (5 Flavors)
                         </li>
-                        <li className="flex items-center gap-2 text-[11px] text-accent-chocolate dark:text-bg-vanilla-cream font-medium">
+                        <li className="flex items-center gap-2 text-[11px] text-accent-chocolate dark:text-slate-200 font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary-pink" />
                           Bespoke Structural Rig Design
                         </li>
@@ -326,7 +326,7 @@ export default function ProductCatalog() {
                                 className={`text-[10px] px-2.5 py-1 rounded-full border transition-all cursor-pointer font-medium ${
                                   isSelected
                                     ? "bg-primary-pink border-primary-pink text-white font-semibold shadow-sm"
-                                    : "border-accent-chocolate/10 hover:border-primary-pink dark:border-white/10 dark:hover:border-primary-pink text-accent-chocolate dark:text-bg-vanilla"
+                                    : "border-accent-chocolate/10 hover:border-primary-pink dark:border-white/10 dark:hover:border-primary-pink text-accent-chocolate dark:text-slate-200"
                                 }`}
                               >
                                 {flavor}
@@ -350,7 +350,7 @@ export default function ProductCatalog() {
                     </div>
 
                     <div className="flex items-center justify-between border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2">
-                      <span className="text-[10px] font-medium text-accent-chocolate-light dark:text-bg-vanilla-cream/60">
+                      <span className="text-[10px] font-medium text-accent-chocolate-light dark:text-slate-300">
                         {selectedFlavor[product.id] ? (
                           <>Selected: <strong className="text-primary-pink-deep dark:text-primary-pink">{selectedFlavor[product.id]}</strong></>
                         ) : (

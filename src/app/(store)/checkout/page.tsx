@@ -132,7 +132,7 @@ export default function CheckoutPage() {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-2">
                     Email Address
                   </label>
                   <input
@@ -145,7 +145,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-2">
                     Full Name
                   </label>
                   <input
@@ -158,7 +158,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-2">
                     Shipping Address
                   </label>
                   <input
@@ -171,7 +171,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-2">
                     Phone Number
                   </label>
                   <input
@@ -203,7 +203,7 @@ export default function CheckoutPage() {
                     className={`py-3 px-2 rounded-xl text-center text-xs font-bold transition-all cursor-pointer ${
                       paymentMethod === method
                         ? "bg-accent-chocolate text-white dark:bg-primary-pink dark:text-white shadow-sm"
-                        : "text-accent-chocolate-light dark:text-bg-vanilla/70 hover:bg-white/30 dark:hover:bg-white/5"
+                        : "text-accent-chocolate-light dark:text-slate-300 hover:bg-white/30 dark:hover:bg-white/5"
                     }`}
                   >
                     {method === "COD" ? "Cash" : method === "CARD" ? "Card" : "Koko Pay"}
@@ -227,7 +227,7 @@ export default function CheckoutPage() {
                         <DollarSign className="w-5 h-5" />
                         <span className="text-xs font-bold uppercase tracking-wider">Cash on Delivery (COD)</span>
                       </div>
-                      <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed font-normal">
+                      <p className="text-xs text-accent-chocolate-light dark:text-slate-200 leading-relaxed font-normal">
                         Pay with cash upon receipt. Perfect for local Colombo residents. A culinary courier will hand over your fresh artisan bake directly at your doorstep.
                       </p>
                     </div>
@@ -274,7 +274,7 @@ export default function CheckoutPage() {
                           className="w-full bg-white/40 dark:bg-white/5 border border-accent-chocolate/10 dark:border-white/10 rounded-2xl px-4 py-2.5 text-xs text-accent-chocolate dark:text-white placeholder:text-accent-chocolate-light/40 focus:outline-none focus:border-primary-pink transition-colors font-sans"
                         />
                       </div>
-                      <div className="flex items-center gap-1.5 text-[9px] text-accent-chocolate-light/75 dark:text-bg-vanilla/50 mt-2">
+                      <div className="flex items-center gap-1.5 text-[9px] text-accent-chocolate-light/75 dark:text-slate-400 mt-2">
                         <Lock className="w-3 h-3 text-gold-accent" />
                         Fully encrypted bank-grade checkout gateway simulation.
                       </div>
@@ -287,7 +287,7 @@ export default function CheckoutPage() {
                         <Calendar className="w-5 h-5" />
                         <span className="text-xs font-bold uppercase tracking-wider">Koko Buy Now Pay Later (BNPL)</span>
                       </div>
-                      <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed font-normal">
+                      <p className="text-xs text-accent-chocolate-light dark:text-slate-200 leading-relaxed font-normal">
                         Split this transaction into 3 interest-free monthly installments of <strong className="text-yellow-600 dark:text-yellow-400">Rs. {Math.round(grandTotal / 3).toLocaleString()}</strong>. 
                         Your order is processed instantly and baked for your event immediately.
                       </p>
@@ -325,7 +325,7 @@ export default function CheckoutPage() {
               {/* Items List */}
               <div className="divide-y divide-accent-chocolate/5 dark:divide-white/5 max-h-[300px] overflow-y-auto pr-2 flex flex-col gap-4">
                 {cartItems.length === 0 ? (
-                  <p className="text-xs text-accent-chocolate-light/80 dark:text-bg-vanilla/60 py-4 font-normal">
+                  <p className="text-xs text-accent-chocolate-light/80 dark:text-slate-300 py-4 font-normal">
                     No items in bag.
                   </p>
                 ) : (
@@ -336,7 +336,7 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex-grow flex flex-col">
                         <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">{item.name}</span>
-                        <span className="text-[9px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60">
+                        <span className="text-[9px] text-accent-chocolate-light/80 dark:text-slate-300">
                           Qty: {item.quantity} | Flavor: {item.flavor}
                         </span>
                       </div>
@@ -348,11 +348,11 @@ export default function CheckoutPage() {
 
               {/* Bills Calculations */}
               <div className="border-t border-accent-chocolate/10 dark:border-white/10 pt-4 mt-6 space-y-2">
-                <div className="flex justify-between text-xs text-accent-chocolate-light dark:text-bg-vanilla/80">
+                <div className="flex justify-between text-xs text-accent-chocolate-light dark:text-slate-200">
                   <span>Cart Subtotal</span>
                   <span>Rs. {cartSubtotal.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-xs text-accent-chocolate-light dark:text-bg-vanilla/80">
+                <div className="flex justify-between text-xs text-accent-chocolate-light dark:text-slate-200">
                   <span>Delivery Charges</span>
                   <span>Rs. {deliveryFee.toLocaleString()}</span>
                 </div>

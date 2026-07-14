@@ -35,7 +35,7 @@ export default async function BlogDetailPage({ params }: BlogDetailProps) {
           
           <Link 
             href="/blog" 
-            className="text-xs font-bold uppercase tracking-widest text-accent-chocolate-light dark:text-bg-vanilla/60 hover:text-primary-pink transition-colors inline-flex items-center gap-2 min-h-[48px] py-2 px-4 border border-accent-chocolate/10 dark:border-white/10 rounded-full w-fit bg-white/40 dark:bg-white/5 backdrop-blur-md cursor-pointer"
+            className="text-xs font-bold uppercase tracking-widest text-accent-chocolate-light dark:text-slate-300 hover:text-primary-pink transition-colors inline-flex items-center gap-2 min-h-[48px] py-2 px-4 border border-accent-chocolate/10 dark:border-white/10 rounded-full w-fit bg-white/40 dark:bg-white/5 backdrop-blur-md cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
@@ -61,7 +61,7 @@ export default async function BlogDetailPage({ params }: BlogDetailProps) {
             />
           </div>
 
-          <div className="space-y-6 text-sm sm:text-base text-accent-chocolate-light dark:text-bg-vanilla-cream/90 leading-relaxed font-normal">
+          <div className="space-y-6 text-sm sm:text-base text-accent-chocolate-light dark:text-slate-200 leading-relaxed font-normal">
             {post.content.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}

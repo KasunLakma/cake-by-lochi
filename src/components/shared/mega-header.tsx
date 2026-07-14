@@ -127,7 +127,7 @@ export default function MegaHeader() {
                   animate={{ rotate: activeDropdown === "categories" ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <ChevronDown className="w-4 h-4 text-accent-chocolate-light dark:text-bg-vanilla-cream/70" />
+                  <ChevronDown className="w-4 h-4 text-accent-chocolate-light dark:text-slate-300" />
                 </motion.div>
               </button>
 
@@ -157,7 +157,7 @@ export default function MegaHeader() {
                                   <span className="text-xs font-bold text-accent-chocolate dark:text-white group-hover/item:text-primary-pink transition-colors">
                                     {item.name}
                                   </span>
-                                  <span className="text-[9px] text-zinc-800 dark:text-zinc-100 mt-0.5 leading-relaxed font-normal">
+                                  <span className="text-[9px] text-neutral-900 dark:text-white mt-0.5 leading-relaxed font-semibold">
                                     {item.desc}
                                   </span>
                                 </Link>
@@ -175,7 +175,7 @@ export default function MegaHeader() {
                           <Sparkle className="w-3.5 h-3.5 text-primary-pink fill-primary-pink/20" />
                           Custom Orders Available
                         </span>
-                        <span className="text-[9px] text-zinc-800 dark:text-zinc-100 mt-0.5 font-normal">
+                        <span className="text-[9px] text-neutral-900 dark:text-white mt-0.5 font-semibold">
                           Reserve a bespoke design for your celebration
                         </span>
                       </div>
@@ -199,10 +199,10 @@ export default function MegaHeader() {
           </div>
 
           {/* Centered Brand Identity (Pure SVG Logo & Custom Typography) */}
-          <div className="flex justify-center items-center flex-shrink-0">
+          <div className="flex justify-center items-center flex-shrink-0 px-8 mx-auto relative z-50">
             <Link href="/" className="group flex flex-col items-center select-none z-50 flex-shrink-0">
               {/* Arched peripheral subtext */}
-              <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-bg-vanilla/65 mb-1 transition-colors">
+              <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-white/70 mb-1 transition-colors">
                 Baked with Style
               </span>
               
@@ -285,7 +285,7 @@ export default function MegaHeader() {
                   whileHover={{ scale: 1.08, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
-                  className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
+                  className="p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
                   aria-label="Search Catalog"
                 >
                   <Search className="w-4 h-4" />
@@ -325,7 +325,7 @@ export default function MegaHeader() {
                 whileHover={{ scale: 1.08, y: -1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
+                className="relative p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm animate-fade-in"
                 aria-label="View Shopping Cart"
               >
                 <ShoppingBag className="w-4 h-4" />
@@ -351,7 +351,7 @@ export default function MegaHeader() {
           <div className="flex items-center gap-2">
             <button 
               onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
-              className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
+              className="relative p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
               aria-label="View Shopping Cart"
             >
               <ShoppingBag className="w-4 h-4" />
@@ -363,7 +363,7 @@ export default function MegaHeader() {
             {/* Hamburger Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer"
+              className="p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer"
               aria-label="Toggle Mobile Menu"
             >
               <div className="w-6 h-6 flex flex-col justify-center items-center relative">
@@ -403,7 +403,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                 >
                   Home
                 </Link>
@@ -412,7 +412,7 @@ export default function MegaHeader() {
                 <div className="flex flex-col">
                   <button 
                     onClick={() => setMobileCategoriesExpanded(!mobileCategoriesExpanded)}
-                    className="flex items-center justify-between text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 cursor-pointer bg-transparent border-none w-full text-left"
+                    className="flex items-center justify-between text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5 cursor-pointer bg-transparent border-none w-full text-left"
                   >
                     <span>Categories</span>
                     <ChevronDown className={`w-4 h-4 text-accent-chocolate-light transition-transform duration-300 ${mobileCategoriesExpanded ? 'rotate-180' : ''}`} />
@@ -437,7 +437,7 @@ export default function MegaHeader() {
                                   <Link 
                                     href={item.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="block py-1 text-sm font-medium text-accent-chocolate dark:text-bg-vanilla-cream hover:text-primary-pink transition-colors"
+                                    className="block py-1 text-sm font-medium text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors"
                                   >
                                     {item.name}
                                   </Link>
@@ -454,7 +454,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/about" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                 >
                   Our Craft
                 </Link>
@@ -462,7 +462,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/blog" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                 >
                   Blog
                 </Link>
@@ -470,7 +470,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/shop" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                 >
                   Shop
                 </Link>
@@ -478,7 +478,7 @@ export default function MegaHeader() {
                 <Link 
                   href="/contacts" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                  className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                 >
                   Contacts
                 </Link>
@@ -529,7 +529,7 @@ export default function MegaHeader() {
             {/* Items List */}
             <div className="flex-grow p-6 overflow-y-auto flex flex-col gap-6">
               {cartItems.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-full text-center text-accent-chocolate-light dark:text-bg-vanilla/60 gap-3">
+                <div className="flex flex-col items-center justify-center h-full text-center text-accent-chocolate-light dark:text-slate-300 gap-3">
                   <ShoppingBag className="w-12 h-12 stroke-[1.2] text-primary-pink/60 animate-bounce" />
                   <span className="font-serif text-lg font-semibold">Your bag is empty</span>
                   <p className="text-xs max-w-[200px]">Fill it with Chef Lochi's handcrafted sweet masterpieces!</p>
@@ -542,7 +542,7 @@ export default function MegaHeader() {
                     </div>
                     <div className="flex-grow flex flex-col text-left">
                       <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">{item.name}</span>
-                      <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">
+                      <span className="text-[10px] text-accent-chocolate-light/80 dark:text-slate-300 mt-0.5">
                         Qty: {item.quantity} | Flavor: {item.flavor}
                       </span>
                       <div className="flex items-center gap-2 mt-1.5">
@@ -582,7 +582,7 @@ export default function MegaHeader() {
               <Link 
                 href="/checkout"
                 onClick={() => setIsCartOpen(false)}
-                className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-rose-600 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700 transition-all duration-300 block text-center shadow-md cursor-pointer"
+                className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-white dark:border-white dark:!text-neutral-950 dark:hover:bg-zinc-200 transition-all duration-300 block text-center shadow-md cursor-pointer"
               >
                 Proceed to Checkout
                 <ArrowRight className="w-4 h-4 inline" />

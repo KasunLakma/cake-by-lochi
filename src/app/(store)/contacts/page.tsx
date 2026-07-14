@@ -33,7 +33,7 @@ export default function ContactsPage() {
             {/* Contact Details & Info */}
             <div className="flex flex-col gap-8 text-left">
               <h2 className="font-serif text-2xl font-bold text-accent-chocolate dark:text-white">Let’s Discuss Your Sculpture Cake</h2>
-              <p className="text-xs sm:text-sm text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-accent-chocolate-light dark:text-slate-300 leading-relaxed font-normal">
                 Have an upcoming wedding, anniversary, or private gallery showing? Contact Chef Lochi to arrange a private tasting flight and design consultation. Let us build your sweet masterpiece.
               </p>
 
@@ -43,7 +43,7 @@ export default function ContactsPage() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60">Phone Call</span>
+                    <span className="text-xs font-semibold text-accent-chocolate-light dark:text-slate-300">Phone Call</span>
                     <span className="text-sm font-bold">070 441 5115</span>
                   </div>
                 </div>
@@ -53,7 +53,7 @@ export default function ContactsPage() {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60">Email Support</span>
+                    <span className="text-xs font-semibold text-accent-chocolate-light dark:text-slate-300">Email Support</span>
                     <span className="text-sm font-bold">studio@cakebylochi.com</span>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ export default function ContactsPage() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60">Bespoke Studio</span>
+                    <span className="text-xs font-semibold text-accent-chocolate-light dark:text-slate-300">Bespoke Studio</span>
                     <span className="text-sm font-bold">Colombo, Sri Lanka</span>
                   </div>
                 </div>
@@ -73,15 +73,15 @@ export default function ContactsPage() {
             {/* Contact Form */}
             <form className="flex flex-col gap-4 bg-white/40 dark:bg-white/5 border border-white/30 dark:border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-xl backdrop-blur-sm">
               <div className="flex flex-col gap-1 text-left">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60">Full Name</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300">Full Name</label>
                 <input type="text" className="w-full p-3 rounded-xl border border-accent-chocolate/10 bg-white/60 dark:bg-white/5 focus:outline-none focus:border-primary-pink text-xs font-semibold" placeholder="Your Name" />
               </div>
               <div className="flex flex-col gap-1 text-left">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60">Email Address</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300">Email Address</label>
                 <input type="email" className="w-full p-3 rounded-xl border border-accent-chocolate/10 bg-white/60 dark:bg-white/5 focus:outline-none focus:border-primary-pink text-xs font-semibold" placeholder="your@email.com" />
               </div>
               <div className="flex flex-col gap-1 text-left">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60">Event Message</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300">Event Message</label>
                 <textarea rows={4} className="w-full p-3 rounded-xl border border-accent-chocolate/10 bg-white/60 dark:bg-white/5 focus:outline-none focus:border-primary-pink text-xs font-semibold resize-none" placeholder="Describe your dream cake design..." />
               </div>
               <button type="submit" className="glass-button w-full mt-2 py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary-pink hover:text-white transition-all duration-300">

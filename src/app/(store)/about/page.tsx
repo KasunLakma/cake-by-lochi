@@ -36,13 +36,13 @@ export default function AboutPage() {
               <h2 className="font-serif text-2xl md:text-3xl font-bold text-accent-chocolate dark:text-white leading-snug">
                 Where Architecture Meets Fine Pastry
               </h2>
-              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed">
+              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-slate-300 leading-relaxed">
                 Founded by Chef Lochi, our studio is dedicated to expanding the boundaries of traditional cake design. We view desserts as temporary sculptural installations, crafted with visual poetry and exquisite flavors.
               </p>
-              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed">
+              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-slate-300 leading-relaxed">
                 By fusing structural engineering concepts with classical French pastry techniques, we build multi-tiered cake sculptures that stand as the highlight of any celebration. Every detail—from edible gold accents to handcrafted sugar flowers—is applied with precision.
               </p>
-              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed">
+              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-slate-300 leading-relaxed">
                 Our philosophy prioritizes organic, farm-fresh ingredients and natural botanical flavor profiles. We invite you to experience confectionary craftsmanship at its finest.
               </p>
             </div>

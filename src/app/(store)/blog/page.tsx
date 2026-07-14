@@ -48,7 +48,7 @@ export default function BlogPage() {
                 </div>
                 <span className="text-[10px] font-bold text-primary-pink-deep dark:text-primary-pink">{formatEventDate(post.date)}</span>
                 <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white leading-snug">{post.title}</h3>
-                <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/80 leading-relaxed font-normal">{post.excerpt}</p>
+                <p className="text-xs text-accent-chocolate-light dark:text-slate-300 leading-relaxed font-normal">{post.excerpt}</p>
                 <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-2">
                   <Link 
                     href={`/blog/${post.slug}`} 

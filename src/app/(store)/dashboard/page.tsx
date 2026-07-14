@@ -210,7 +210,7 @@ export default function DashboardPage() {
     if (stepIndex === currentIndex) {
       return "bg-primary-pink text-white border-primary-pink ring-4 ring-primary-pink/20 scale-110"; // Active
     }
-    return "bg-white/40 dark:bg-white/5 text-accent-chocolate/40 dark:text-bg-vanilla/30 border-accent-chocolate/10 dark:border-white/10"; // Upcoming
+    return "bg-white/40 dark:bg-white/5 text-accent-chocolate/40 dark:text-slate-500 border-accent-chocolate/10 dark:border-white/10"; // Upcoming
   };
 
   if (loading) {
@@ -242,7 +242,7 @@ export default function DashboardPage() {
               <h2 className="font-serif text-2xl font-bold tracking-tight text-accent-chocolate dark:text-white uppercase mt-1">
                 Access Dashboard
               </h2>
-              <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/60 mt-3 font-normal">
+              <p className="text-xs text-accent-chocolate-light dark:text-slate-300 mt-3 font-normal">
                 Enter your email address to securely access your active orders and real-time delivery status.
               </p>
             </div>
@@ -255,7 +255,7 @@ export default function DashboardPage() {
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-2">
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-2">
                   Email Address
                 </label>
                 <div className="relative">
@@ -312,7 +312,7 @@ export default function DashboardPage() {
             )}
             <button
               onClick={handleSignOut}
-              className="glass-button text-xs py-2.5 px-4 font-bold uppercase tracking-widest hover:bg-red-500/10 hover:text-red-500 border-red-500/20 text-accent-chocolate-light dark:text-bg-vanilla/60 flex items-center gap-2 cursor-pointer transition-all"
+              className="glass-button text-xs py-2.5 px-4 font-bold uppercase tracking-widest hover:bg-red-500/10 hover:text-red-500 border-red-500/20 text-accent-chocolate-light dark:text-slate-300 flex items-center gap-2 cursor-pointer transition-all"
             >
               <LogOut className="w-4 h-4" /> Log Out
             </button>
@@ -336,19 +336,19 @@ export default function DashboardPage() {
                       <span className="text-[9px] font-bold uppercase tracking-widest text-primary-pink-deep dark:text-primary-pink">
                         {booking.eventType}
                       </span>
-                      <span className="text-[10px] font-semibold text-accent-chocolate-light dark:text-bg-vanilla/60 font-sans">
+                      <span className="text-[10px] font-semibold text-accent-chocolate-light dark:text-slate-300 font-sans">
                         {booking.eventDate}
                       </span>
                     </div>
                     <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white leading-snug uppercase">
                       {booking.eventTitle}
                     </h3>
-                    <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80 font-normal">
+                    <p className="text-xs text-accent-chocolate-light dark:text-slate-200 font-normal">
                       Reserved for <strong className="text-accent-chocolate dark:text-white font-bold">{booking.name}</strong> 
                       {booking.seats > 1 && ` (+${booking.seats - 1} seats)`}
                     </p>
                     {booking.intakeNotes && (
-                      <div className="p-3 rounded-xl bg-accent-chocolate/5 dark:bg-white/5 border border-accent-chocolate/5 text-[11px] text-accent-chocolate-light dark:text-bg-vanilla-cream/70 leading-relaxed italic font-normal">
+                      <div className="p-3 rounded-xl bg-accent-chocolate/5 dark:bg-white/5 border border-accent-chocolate/5 text-[11px] text-accent-chocolate-light dark:text-slate-300 leading-relaxed italic font-normal">
                         "{booking.intakeNotes}"
                       </div>
                     )}
@@ -377,7 +377,7 @@ export default function DashboardPage() {
             <h2 className="font-serif text-xl font-bold text-accent-chocolate dark:text-white mb-2">
               No Orders Found
             </h2>
-            <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/60 max-w-md mx-auto mb-8 font-normal">
+            <p className="text-xs text-accent-chocolate-light dark:text-slate-300 max-w-md mx-auto mb-8 font-normal">
               You haven't commissioned any custom cakes or fine pastries yet. Browse our menu to begin!
             </p>
             <Link
@@ -397,11 +397,11 @@ export default function DashboardPage() {
                 {/* Order Top Summary Bar */}
                 <div className="bg-accent-chocolate/5 dark:bg-white/5 px-6 py-4 border-b border-accent-chocolate/5 flex flex-wrap justify-between items-center gap-4 text-left">
                   <div className="space-y-1">
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-bg-vanilla/40 block">Order ID</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-slate-400 block">Order ID</span>
                     <span className="text-xs font-mono font-bold text-accent-chocolate dark:text-white">{order.id}</span>
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-bg-vanilla/40 block">Commission Date</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-slate-400 block">Commission Date</span>
                     <span className="text-xs font-bold text-accent-chocolate dark:text-white">
                       {new Date(order.createdAt).toLocaleDateString("en-US", {
                         year: 'numeric', month: 'long', day: 'numeric'
@@ -409,7 +409,7 @@ export default function DashboardPage() {
                     </span>
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-bg-vanilla/40 block">Grand Total</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light/60 dark:text-slate-400 block">Grand Total</span>
                     <span className="text-xs font-bold text-primary-pink-deep dark:text-primary-pink">${order.total}</span>
                   </div>
                   
@@ -468,7 +468,7 @@ export default function DashboardPage() {
                     {/* Status Description Info Box */}
                     <div className="p-4 rounded-2xl bg-primary-pink/5 border border-primary-pink/10 text-left">
                       <span className="text-[9px] font-bold uppercase tracking-widest text-primary-pink-deep dark:text-primary-pink block mb-1">Status Update</span>
-                      <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla-cream/90 font-normal leading-relaxed">
+                      <p className="text-xs text-accent-chocolate-light dark:text-slate-200 font-normal leading-relaxed">
                         {order.deliveryTracking.description}
                       </p>
                     </div>
@@ -480,13 +480,13 @@ export default function DashboardPage() {
                   
                   {/* Items list (7 columns) */}
                   <div className="md:col-span-8 space-y-4">
-                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mb-2">Items Commissioned</h3>
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent-chocolate-light/80 dark:text-slate-300 mb-2">Items Commissioned</h3>
                     <div className="divide-y divide-accent-chocolate/5 dark:divide-white/5 space-y-3">
                       {order.items.map((item) => (
                         <div key={item.id} className="flex justify-between items-center pt-3 first:pt-0">
                           <div className="flex flex-col">
                             <span className="text-xs font-bold text-accent-chocolate dark:text-white">{item.name}</span>
-                            <span className="text-[9px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">
+                            <span className="text-[9px] text-accent-chocolate-light/80 dark:text-slate-300 mt-0.5">
                               Qty: {item.quantity} | Flavor: {item.flavor || "Standard"}
                             </span>
                           </div>
@@ -499,16 +499,16 @@ export default function DashboardPage() {
                   {/* Payment Details (4 columns offset) */}
                   <div className="md:col-span-4 bg-accent-chocolate/5 dark:bg-white/5 p-5 rounded-2xl border border-accent-chocolate/5 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-[9px] font-bold uppercase tracking-widest text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mb-3 flex items-center gap-1">
+                      <h3 className="text-[9px] font-bold uppercase tracking-widest text-accent-chocolate-light/80 dark:text-slate-300 mb-3 flex items-center gap-1">
                         <CreditCard className="w-3.5 h-3.5" />
                         Billing Details
                       </h3>
                       <div className="space-y-1.5 text-xs">
-                        <div className="flex justify-between text-accent-chocolate-light dark:text-bg-vanilla/80">
+                        <div className="flex justify-between text-accent-chocolate-light dark:text-slate-200">
                           <span>Method</span>
                           <span className="font-semibold uppercase text-accent-chocolate dark:text-white">{order.paymentStatus?.method}</span>
                         </div>
-                        <div className="flex justify-between text-accent-chocolate-light dark:text-bg-vanilla/80">
+                        <div className="flex justify-between text-accent-chocolate-light dark:text-slate-200">
                           <span>Status</span>
                           <span className={`font-semibold px-2 py-0.5 rounded text-[10px] ${
                             order.paymentStatus?.status === "PAID"

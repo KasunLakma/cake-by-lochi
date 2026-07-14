@@ -91,7 +91,7 @@ export default function ProductCategories() {
                     <span className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
                       {item.name}
                     </span>
-                    <span className="text-[10px] font-semibold text-accent-chocolate-light dark:text-bg-vanilla/70 uppercase tracking-widest mt-0.5">
+                    <span className="text-[10px] font-semibold text-accent-chocolate-light dark:text-slate-300 uppercase tracking-widest mt-0.5">
                       {item.count}
                     </span>
                   </div>

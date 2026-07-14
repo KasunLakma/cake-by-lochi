@@ -359,7 +359,7 @@ export default function Home() {
                     animate={{ rotate: activeDropdown === "categories" ? 180 : 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <ChevronDown className="w-4 h-4 text-accent-chocolate-light dark:text-bg-vanilla-cream/70" />
+                    <ChevronDown className="w-4 h-4 text-accent-chocolate-light dark:text-slate-300" />
                   </motion.div>
                 </button>
 
@@ -391,11 +391,11 @@ export default function Home() {
                                       href={item.href}
                                       className="group/item block rounded-xl p-2 hover:bg-primary-pink/10 dark:hover:bg-primary-pink/10 transition-colors duration-200"
                                     >
-                                      <div className="flex items-center gap-1 text-sm font-semibold text-accent-chocolate dark:text-bg-vanilla group-hover/item:text-primary-pink-deep dark:group-hover/item:text-primary-pink transition-colors">
+                                      <div className="flex items-center gap-1 text-sm font-semibold text-accent-chocolate dark:text-white group-hover/item:text-primary-pink-deep dark:group-hover/item:text-primary-pink transition-colors">
                                         {item.name}
                                         <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
                                       </div>
-                                      <p className="text-xs text-zinc-800 dark:text-zinc-100 line-clamp-2 mt-0.5 font-normal">
+                                      <p className="text-xs text-neutral-900 dark:text-white font-semibold line-clamp-2 mt-0.5 font-normal">
                                         {item.desc}
                                       </p>
                                     </Link>
@@ -416,7 +416,7 @@ export default function Home() {
                             <h4 className="mt-4 text-base font-serif font-bold text-accent-chocolate dark:text-white leading-snug">
                               Raspberry Rose Gold Truffle Cake
                             </h4>
-                            <p className="mt-1 text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
+                            <p className="mt-1 text-xs text-neutral-900 dark:text-white font-semibold leading-relaxed font-normal">
                               A triple-layered champagne sponge layered with biological wild berries and premium white chocolate frosting.
                             </p>
                           </div>
@@ -449,10 +449,10 @@ export default function Home() {
             </div>
 
             {/* Center Brand Identity (Pure SVG Logo & Custom Typography) */}
-            <div className="flex justify-center items-center flex-shrink-0">
+            <div className="flex justify-center items-center flex-shrink-0 px-8 mx-auto relative z-50">
               <Link href="/" className="group flex flex-col items-center select-none z-50 flex-shrink-0">
                 {/* Arched peripheral subtext */}
-                <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-bg-vanilla/65 mb-1 transition-colors">
+                <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-accent-chocolate/65 dark:text-white/70 mb-1 transition-colors">
                   Baked with Style
                 </span>
                 
@@ -537,7 +537,7 @@ export default function Home() {
                     whileHover={{ scale: 1.08, y: -1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsSearchOpen(!isSearchOpen)}
-                    className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
+                    className="p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
                     aria-label="Search"
                   >
                     <Search className="w-4 h-4" />
@@ -577,7 +577,7 @@ export default function Home() {
                   whileHover={{ scale: 1.08, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsCartOpen(true)}
-                  className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
+                  className="relative p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
                   aria-label="Cart"
                 >
                   <ShoppingBag className="w-4 h-4" />
@@ -604,7 +604,7 @@ export default function Home() {
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
-                className="relative p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
+                className="relative p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer bg-white/20 dark:bg-white/5 backdrop-blur-md border border-white/20 shadow-sm"
                 aria-label="View Shopping Cart"
               >
                 <ShoppingBag className="w-4 h-4" />
@@ -615,7 +615,7 @@ export default function Home() {
               
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-accent-chocolate dark:text-bg-vanilla hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer"
+                className="p-2 text-accent-chocolate dark:text-white hover:bg-primary-pink/15 rounded-full transition-colors cursor-pointer"
                 aria-label="Toggle Mobile Menu"
               >
                 <div className="w-6 h-6 flex flex-col justify-center items-center relative">
@@ -646,7 +646,7 @@ export default function Home() {
                   <Link 
                     href="/" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5"
+                    className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5 dark:border-white/5"
                   >
                     Home
                   </Link>
@@ -655,7 +655,7 @@ export default function Home() {
                   <div>
                     <button 
                       onClick={() => setMobileCategoriesExpanded(!mobileCategoriesExpanded)}
-                      className="flex items-center justify-between w-full text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5 dark:border-white/5 cursor-pointer bg-transparent border-none"
+                      className="flex items-center justify-between w-full text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5 dark:border-white/5 cursor-pointer bg-transparent border-none"
                     >
                       <span>Categories</span>
                       <motion.div
@@ -685,7 +685,7 @@ export default function Home() {
                                     <Link 
                                       href={item.href}
                                       onClick={() => setIsMobileMenuOpen(false)}
-                                      className="block py-1 text-sm font-medium text-accent-chocolate dark:text-bg-vanilla-cream hover:text-primary-pink transition-colors"
+                                      className="block py-1 text-sm font-medium text-accent-chocolate dark:text-white hover:text-primary-pink transition-colors"
                                     >
                                       {item.name}
                                     </Link>
@@ -702,7 +702,7 @@ export default function Home() {
                   <Link 
                     href="/about" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                    className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                   >
                     Our Craft
                   </Link>
@@ -710,7 +710,7 @@ export default function Home() {
                   <Link 
                     href="/blog" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                    className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                   >
                     Blog
                   </Link>
@@ -718,7 +718,7 @@ export default function Home() {
                   <Link 
                     href="/shop" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                    className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                   >
                     Shop
                   </Link>
@@ -726,7 +726,7 @@ export default function Home() {
                   <Link 
                     href="/contacts" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-semibold text-accent-chocolate dark:text-bg-vanilla py-1.5 border-b border-accent-chocolate/5"
+                    className="text-base font-semibold text-accent-chocolate dark:text-white py-1.5 border-b border-accent-chocolate/5"
                   >
                     Contacts
                   </Link>
@@ -882,10 +882,10 @@ export default function Home() {
                 Crafting Confectionery Sculptures
               </h2>
               <span className="w-16 h-0.5 bg-primary-pink" />
-              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed font-normal">
+              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-slate-200 leading-relaxed font-normal">
                 Born out of a passion for avant-garde baking, Cake By Lochi combines classical Parisian pastry techniques with modern architectural design principles. We believe that a cake should not only taste sublime but stand as a visual centerpiece—a bespoke sculpture that commands the room.
               </p>
-              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed font-normal">
+              <p className="text-sm md:text-base text-accent-chocolate-light dark:text-slate-200 leading-relaxed font-normal">
                 Every creation is individually designed, utilizing locally sourced organic farm-fresh ingredients and biological botanical extracts. From hand-painted gold leaf tiers to delicate sugar floral installations, our work is sugar art redefined.
               </p>
               <div className="mt-4">
@@ -965,7 +965,7 @@ export default function Home() {
                       <span className="text-xs font-bold text-accent-chocolate dark:text-white">
                         {comment.name}
                       </span>
-                      <span className="text-[10px] text-accent-chocolate-light dark:text-bg-vanilla/60 uppercase tracking-wider font-semibold">
+                      <span className="text-[10px] text-accent-chocolate-light dark:text-slate-300 uppercase tracking-wider font-semibold">
                         {comment.event}
                       </span>
                     </div>
@@ -1010,7 +1010,7 @@ export default function Home() {
               <h3 className="font-serif text-2xl md:text-3xl font-bold text-accent-chocolate dark:text-white leading-snug">
                 Follow Chef Lochi’s Creative Process
               </h3>
-              <p className="text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-neutral-900 dark:text-white font-semibold leading-relaxed font-normal">
                 Go behind the scenes of our luxury confections. Watch the mesmerizing details, the paint sweeps, the edible pearls, and the final structural setup. We post daily stories sharing our love for luxury cake sculptures.
               </p>
               
@@ -1028,7 +1028,7 @@ export default function Home() {
                     <span className="text-xs font-bold text-accent-chocolate dark:text-white group-hover/social:text-primary-pink transition-colors">
                       @cakebylochi
                     </span>
-                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 font-medium">
+                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-slate-300 font-medium">
                       Instagram Stories & Reels
                     </span>
                   </div>
@@ -1045,7 +1045,7 @@ export default function Home() {
                     <span className="text-xs font-bold text-accent-chocolate dark:text-white group-hover/social:text-primary-pink transition-colors">
                       @chef_lochi
                     </span>
-                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 font-medium">
+                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-slate-300 font-medium">
                       TikTok Decorating Clips
                     </span>
                   </div>
@@ -1117,7 +1117,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span className="whitespace-nowrap">Rs. 72,000</span>
                   </div>
-                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
+                  <p className="text-xs text-neutral-900 dark:text-white font-semibold font-normal">
                     Organic rosewater sponge with wild berry compote and white chocolate truffle.
                   </p>
                 </div>
@@ -1128,7 +1128,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span className="whitespace-nowrap">Rs. 54,000</span>
                   </div>
-                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
+                  <p className="text-xs text-neutral-900 dark:text-white font-semibold font-normal">
                     Watercolor flower printings, organic vanilla bean mousse, and fresh buttercream.
                   </p>
                 </div>
@@ -1139,7 +1139,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span className="whitespace-nowrap">Rs. 49,500</span>
                   </div>
-                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
+                  <p className="text-xs text-neutral-900 dark:text-white font-semibold font-normal">
                     Vegan chocolate layers with raspberry puree and biological elderberry frosting.
                   </p>
                 </div>
@@ -1160,7 +1160,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span className="whitespace-nowrap">From Rs. 105,000</span>
                   </div>
-                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
+                  <p className="text-xs text-neutral-900 dark:text-white font-semibold font-normal">
                     1-on-1 design session, private tasting flight, and custom structural rig.
                   </p>
                 </div>
@@ -1171,7 +1171,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span className="whitespace-nowrap">Rs. 19,500</span>
                   </div>
-                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
+                  <p className="text-xs text-neutral-900 dark:text-white font-semibold font-normal">
                     Curated tasting profile of 5 signature flavors for your wedding or milestone event.
                   </p>
                 </div>
@@ -1182,7 +1182,7 @@ export default function Home() {
                     <span className="w-full mx-3 border-b border-dotted border-accent-chocolate/20 dark:border-white/20" />
                     <span className="whitespace-nowrap">Rs. 36,000</span>
                   </div>
-                  <p className="text-xs text-zinc-800 dark:text-zinc-100 font-normal">
+                  <p className="text-xs text-neutral-900 dark:text-white font-semibold font-normal">
                     On-site installation, stabilization, and decoration of your bespoke cake sculpture.
                   </p>
                 </div>
@@ -1212,7 +1212,7 @@ export default function Home() {
               <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
                 Parisian Macaron Workshop
               </h3>
-              <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
+              <p className="text-xs text-neutral-900 dark:text-white font-semibold leading-relaxed font-normal">
                 Learn the delicate art of piping and baking classical French macarons with biological ganache fillings.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
@@ -1237,7 +1237,7 @@ export default function Home() {
               <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
                 Autumn Tasting Expo
               </h3>
-              <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
+              <p className="text-xs text-neutral-900 dark:text-white font-semibold leading-relaxed font-normal">
                 A private session for engaged couples to taste our signature cakes and sketch design rigs.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
@@ -1262,7 +1262,7 @@ export default function Home() {
               <h3 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white">
                 Sugar Sculpture Show
               </h3>
-              <p className="text-xs text-zinc-800 dark:text-zinc-100 leading-relaxed font-normal">
+              <p className="text-xs text-neutral-900 dark:text-white font-semibold leading-relaxed font-normal">
                 Join us for an exclusive gallery showing of Chef Lochi's latest custom geometric cake installations.
               </p>
               <div className="border-t border-accent-chocolate/5 dark:border-white/5 pt-4 mt-2 flex justify-between items-center text-xs font-semibold text-accent-chocolate dark:text-white">
@@ -1283,7 +1283,7 @@ export default function Home() {
 
         {/* Footer Section */}
         <footer className="relative z-30 w-full bg-white dark:bg-bg-vanilla-cream py-12 border-t border-accent-chocolate/5 flex flex-col items-center gap-6">
-          <div className="max-w-4xl w-full px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-[10px] font-bold tracking-[0.2em] text-accent-chocolate-light dark:text-zinc-100 uppercase">
+          <div className="max-w-4xl w-full px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-[10px] font-bold tracking-[0.2em] text-accent-chocolate-light dark:!text-slate-100 uppercase">
             {/* Phone */}
             <div className="flex items-center gap-2.5">
               <svg className="w-4 h-4 text-primary-pink stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1315,13 +1315,13 @@ export default function Home() {
             </Link>
           </div>
           
-          <div className="flex gap-6 text-[9px] font-bold tracking-widest text-accent-chocolate-light/75 dark:text-zinc-100/60 uppercase">
+          <div className="flex gap-6 text-[9px] font-bold tracking-widest text-accent-chocolate-light/75 dark:!text-slate-200 uppercase">
             <Link href="/faq" className="hover:text-primary-pink dark:hover:text-pink-400 transition-colors">FAQ</Link>
             <Link href="/policies" className="hover:text-primary-pink dark:hover:text-pink-400 transition-colors">Policies</Link>
             <Link href="/terms" className="hover:text-primary-pink dark:hover:text-pink-400 transition-colors">Terms of Service</Link>
           </div>
 
-          <div className="text-[9px] text-accent-chocolate-light/60 dark:text-zinc-100/50 tracking-wider">
+          <div className="text-[9px] text-accent-chocolate-light/60 dark:!text-slate-300 tracking-wider">
             &copy; {new Date().getFullYear()} Cake By Lochi. All Rights Reserved. Crafted with Parisienne Elegance.
           </div>
         </footer>
@@ -1368,7 +1368,7 @@ export default function Home() {
               {/* Items List */}
               <div className="flex-grow p-6 overflow-y-auto flex flex-col gap-6">
                 {cartItems.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-full text-center text-accent-chocolate-light dark:text-bg-vanilla/60 gap-3">
+                  <div className="flex flex-col items-center justify-center h-full text-center text-accent-chocolate-light dark:text-slate-300 gap-3">
                     <ShoppingBag className="w-12 h-12 stroke-[1.2] text-primary-pink/60 animate-bounce" />
                     <span className="font-serif text-lg font-semibold">Your bag is empty</span>
                     <p className="text-xs max-w-[200px]">Fill it with Chef Lochi's handcrafted sweet masterpieces!</p>
@@ -1381,7 +1381,7 @@ export default function Home() {
                       </div>
                       <div className="flex-grow flex flex-col text-left">
                         <span className="text-xs font-bold text-accent-chocolate dark:text-white leading-snug">{item.name}</span>
-                        <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-0.5">
+                        <span className="text-[10px] text-accent-chocolate-light/80 dark:text-slate-300 mt-0.5">
                           Qty: {item.quantity} | Flavor: {item.flavor}
                         </span>
                         <div className="flex items-center gap-2 mt-1.5">
@@ -1421,7 +1421,7 @@ export default function Home() {
                 <Link 
                   href="/checkout"
                   onClick={() => setIsCartOpen(false)}
-                  className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-rose-600 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700 transition-all duration-300 block text-center shadow-md cursor-pointer"
+                  className="glass-button w-full py-3.5 px-6 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 bg-accent-chocolate border-accent-chocolate text-white hover:bg-accent-chocolate-light dark:bg-white dark:border-white dark:!text-neutral-950 dark:hover:bg-zinc-200 transition-all duration-300 block text-center shadow-md cursor-pointer"
                 >
                   Proceed to Checkout
                   <ArrowRight className="w-4 h-4 inline" />
@@ -1458,7 +1458,7 @@ export default function Home() {
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-accent-chocolate dark:text-white uppercase leading-tight mt-1">
                     {activeEvent.title}
                   </h3>
-                  <span className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/60 mt-1 block font-normal">
+                  <span className="text-xs text-accent-chocolate-light dark:text-slate-300 mt-1 block font-normal">
                     Scheduled for {activeEvent.date}
                   </span>
                 </div>
@@ -1480,7 +1480,7 @@ export default function Home() {
                   <h4 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white uppercase">
                     Submission Received!
                   </h4>
-                  <p className="text-xs text-accent-chocolate-light dark:text-bg-vanilla/80 leading-relaxed max-w-sm mx-auto font-normal">
+                  <p className="text-xs text-accent-chocolate-light dark:text-slate-200 leading-relaxed max-w-sm mx-auto font-normal">
                     {activeEvent.type === "WORKSHOP" 
                       ? "Your seat is reserved. We've sent details to your inbox." 
                       : "We have received your intake requirements and will extend invitations shortly."}
@@ -1505,12 +1505,12 @@ export default function Home() {
                   <div className="relative border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-amber-500/0 rounded-2xl p-6 text-center shadow-inner overflow-hidden before:content-[''] before:absolute before:-left-3 before:top-1/2 before:-translate-y-1/2 before:w-6 before:h-6 before:rounded-full before:bg-[#fdfbf7] dark:before:bg-bg-vanilla-cream before:border-r before:border-amber-500/20 after:content-[''] after:absolute after:-right-3 after:top-1/2 after:-translate-y-1/2 after:w-6 after:h-6 after:rounded-full after:bg-[#fdfbf7] dark:after:bg-bg-vanilla-cream after:border-l after:border-amber-500/20">
                     <span className="text-[9px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400 block mb-2">Official Entry Pass</span>
                     <h4 className="font-serif text-lg font-bold text-accent-chocolate dark:text-white uppercase leading-snug">{activeEvent.title}</h4>
-                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 mt-1 block font-normal">{formatEventDate(activeEvent.date)}</span>
+                    <span className="text-[10px] text-accent-chocolate-light/80 dark:text-slate-300 mt-1 block font-normal">{formatEventDate(activeEvent.date)}</span>
                     
                     <div className="w-full border-t border-dashed border-amber-500/20 my-4" />
                     
                     <div className="space-y-1">
-                      <span className="text-[8px] font-bold uppercase tracking-wider text-accent-chocolate-light/50 dark:text-bg-vanilla/40">Ticket Code</span>
+                      <span className="text-[8px] font-bold uppercase tracking-wider text-accent-chocolate-light/50 dark:text-slate-400">Ticket Code</span>
                       <span className="text-sm font-mono font-bold text-accent-chocolate dark:text-white block">{generatedTicket}</span>
                     </div>
 
@@ -1519,7 +1519,7 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <p className="text-[11px] text-accent-chocolate-light/80 dark:text-bg-vanilla/60 text-center leading-relaxed font-normal">
+                  <p className="text-[11px] text-accent-chocolate-light/80 dark:text-slate-300 text-center leading-relaxed font-normal">
                     This ticket pass has been registered to your email. You can present this code at Lochi's Custom Studio on arrival or view it in your dashboard.
                   </p>
                   
@@ -1547,7 +1547,7 @@ export default function Home() {
                   )}
 
                   <div>
-                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                       Full Name
                     </label>
                     <input
@@ -1561,7 +1561,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                    <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -1576,7 +1576,7 @@ export default function Home() {
 
                   {bookingModal !== "TICKETS" && (
                     <div>
-                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                         Phone Number (Optional)
                       </label>
                       <input
@@ -1591,7 +1591,7 @@ export default function Home() {
 
                   {bookingModal === "BOOK" && (
                     <div>
-                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                         Seat Quantity
                       </label>
                       <input
@@ -1608,7 +1608,7 @@ export default function Home() {
 
                   {bookingModal === "REQUEST" && (
                     <div>
-                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-bg-vanilla/60 mb-1.5">
+                      <label className="block text-[9px] font-bold uppercase tracking-wider text-accent-chocolate-light dark:text-slate-300 mb-1.5">
                         Intake / Custom Requirements
                       </label>
                       <textarea
